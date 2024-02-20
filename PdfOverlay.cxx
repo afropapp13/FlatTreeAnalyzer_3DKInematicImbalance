@@ -53,61 +53,13 @@ void PdfOverlay(TString Tag = "") {
 
 	}
 
-	if (Tag == "GENIE") {
+	if (Tag == "Honda") {
 
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18");Colors.push_back(kBlack); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_hN2018.root"); Labels.push_back("hN"); Colors.push_back(kBlue); LineStyle.push_back(Gv2LineStyle);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_NoRPA.root"); Labels.push_back("NoRPA"); Colors.push_back(kMagenta-9); LineStyle.push_back(NEUTLineStyle);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_NoCoulomb.root"); Labels.push_back("NoC"); Colors.push_back(NEUTColor); LineStyle.push_back(NuWroLineStyle);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_RFG.root"); Labels.push_back("RFG"); Colors.push_back(GiBUUColor); LineStyle.push_back(GiBUULineStyle);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_EffSF.root"); Labels.push_back("SF");Colors.push_back(kRed); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18 BNB");Colors.push_back(kBlack); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a_Honda.root"); Labels.push_back("G18 Honda"); Colors.push_back(NEUTColor); LineStyle.push_back(NuWroLineStyle);
 
 	}
-
-	if (Tag == "Closure") {
-
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18 v3.0.6");Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a.root"); Labels.push_back("G18 v3.4.0");Colors.push_back(kAzure-4); LineStyle.push_back(kSolid);
-
-	}
-
-	if (Tag == "Weights") {
-
-	  //Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18a");Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a.root"); Labels.push_back("G18");Colors.push_back(kAzure-4); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11b.root"); Labels.push_back("G18b");Colors.push_back(kMagenta-9); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_03_320.root"); Labels.push_back("03_320"); Colors.push_back(kGreen+2); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_03_330.root"); Labels.push_back("03_330"); Colors.push_back(kBlue); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a_RS.root"); Labels.push_back("RS");Colors.push_back(kRed-1); LineStyle.push_back(kSolid);
-
-	}
-
-	if (Tag == "WeightsClosure") {
-
-	  // Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("T2K G18 v3.0.6");Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a.root"); Labels.push_back("T2K G18 v3.4.0");Colors.push_back(kAzure-4); LineStyle.push_back(kSolid);
-
-	}
-
-	if (Tag == "DUNE") {
-
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_AR23_20i_00_000.root"); Labels.push_back("AR23_20i_00_000");Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a.root"); Labels.push_back("G18_10a_02_11a");Colors.push_back(kAzure-4); LineStyle.push_back(kSolid);
-
-	}
-
-	if (Tag == "EnergyIndependence") {
-
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a.root"); Labels.push_back("uB Flux");Colors.push_back(kAzure-4); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a_0_3GeV.root"); Labels.push_back("0.3 GeV");Colors.push_back(kBlue); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a_0_5GeV.root"); Labels.push_back("0.5 GeV");Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a_0_8GeV.root"); Labels.push_back("0.8 GeV");Colors.push_back(kGreen+1); LineStyle.push_back(kSolid);
-
-	  //Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a_1GeV.root"); Labels.push_back("G18 1 GeV");Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
-	  //Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a_3GeV.root"); Labels.push_back("G18 3 GeV");Colors.push_back(kGreen+1); LineStyle.push_back(kSolid);
-
-	}
-
+	
 
 	const int NSamples = Names.size();
 	const int NColors = Colors.size();
@@ -130,72 +82,7 @@ void PdfOverlay(TString Tag = "") {
 
 	// 1D
 
-	PlotNames.push_back("DISTrueFineBinMuonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{#mu}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
-	PlotNames.push_back("RESTrueFineBinMuonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{#mu}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
-	PlotNames.push_back("MECTrueFineBinMuonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{#mu}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
-	PlotNames.push_back("QETrueFineBinMuonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{#mu}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
-	PlotNames.push_back("TrueFineBinMuonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{#mu}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPTPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#deltap_{T}} #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPnPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{n}} #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaAlpha3DMuPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#alpha_{3D,#mu}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaAlpha3DqPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#alpha_{3D}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaAlphaTPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#delta#alpha_{T}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("RESTrueFineBinDeltaAlphaTPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#delta#alpha_{T}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPhiTPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#delta#phi_{T}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPhi3DPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#phi_{3D}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPnPerpPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{n#perp}}  #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPnPerpxPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{n#perp ,x}}  #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPnPerpyPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{n#perp ,y}}  #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPnParPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{n#parallel}}  #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-
-	//------------------------------//
-
-	// Pre FSI
-
-	// 1D
-	/*
-	PlotNames.push_back("NoFSITrueFineBinMuonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{#mu}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaPTPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#deltap_{T}} #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaPnPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{n}} #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaAlpha3DMuPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#alpha_{3D,#mu}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaAlpha3DqPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#alpha_{3D}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaAlphaTPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#delta#alpha_{T}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaPhiTPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#delta#phi_{T}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaPhi3DPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#phi_{3D}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaPnPerpPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{n#perp}} #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaPnPerpxPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{n#perp,x}} #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaPnPerpyPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{n#perp,y}} #left[10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	PlotNames.push_back("NoFSITrueFineBinDeltaPnParPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{n#parallel}} [10^{-38} #frac{cm^{2}}{(GeV/c) Ar}#right]");
-	*/
-
-	// 2D Post FSI
-
-	PlotNames.push_back("TrueFineBinDeltaAlphaT_DeltaPT_0_00To0_20Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#delta#alpha_{T}d#deltap_{T}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaAlphaT_DeltaPT_0_20To0_40Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#delta#alpha_{T}d#deltap_{T}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaAlphaT_DeltaPT_0_40To1_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#delta#alpha_{T}d#deltap_{T}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-
-	PlotNames.push_back("TrueFineBinDeltaAlpha3Dq_DeltaPn_0_00To0_20Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaAlpha3Dq_DeltaPn_0_20To0_40Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaAlpha3Dq_DeltaPn_0_40To1_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-
-	PlotNames.push_back("TrueFineBinDeltaAlpha3DMu_DeltaPn_0_00To0_20Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D,#mu}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaAlpha3DMu_DeltaPn_0_20To0_40Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D,#mu}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaAlpha3DMu_DeltaPn_0_40To1_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D,#mu}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-
-	PlotNames.push_back("TrueFineBinDeltaPT_DeltaAlphaT_0_00To45_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#delta#alpha_{T}d#deltap_{T}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPT_DeltaAlphaT_45_00To90_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#delta#alpha_{T}d#deltap_{T}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPT_DeltaAlphaT_90_00To135_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#delta#alpha_{T}d#deltap_{T}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPT_DeltaAlphaT_135_00To180_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#delta#alpha_{T}d#deltap_{T}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-
-	PlotNames.push_back("TrueFineBinDeltaPn_DeltaAlpha3Dq_0_00To45_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPn_DeltaAlpha3Dq_45_00To90_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPn_DeltaAlpha3Dq_90_00To135_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPn_DeltaAlpha3Dq_135_00To180_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-
-	PlotNames.push_back("TrueFineBinDeltaPn_DeltaAlpha3DMu_0_00To45_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D,#mu}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPn_DeltaAlpha3DMu_45_00To90_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D,#mu}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPn_DeltaAlpha3DMu_90_00To135_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D,#mu}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
-	PlotNames.push_back("TrueFineBinDeltaPn_DeltaAlpha3DMu_135_00To180_00Plot"); YAxisLabel.push_back("#frac{d^{2}#sigma}{d#alpha_{3D,#mu}dp_{n}} #left[10^{-38} #frac{cm^{2}}{deg GeV/c Ar}#right]");
+	PlotNames.push_back("TrueFineBinThetaZPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{Z}}  #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
 
 	//------------------------------//
 
@@ -221,7 +108,7 @@ void PdfOverlay(TString Tag = "") {
 
 	for (int iPlot = 0; iPlot < NPlots; iPlot++) {
 
-		TString CanvasName = "ThreeDKI_PdfOverlay_" + PlotNames[iPlot];
+		TString CanvasName = "Atmo_PdfOverlay_" + PlotNames[iPlot];
 		TCanvas* PlotCanvas = new TCanvas(CanvasName,CanvasName,205,34,1024,768);
 		PlotCanvas->cd();
 		PlotCanvas->SetTopMargin(0.15);
@@ -288,22 +175,6 @@ void PdfOverlay(TString Tag = "") {
 			TString ReducedPlotName = PlotNameDuplicate.ReplaceAll("TrueFineBin","") ;
 			textSlice->DrawLatexNDC(0.2, 0.8, LatexLabel[ReducedPlotName].ReplaceAll("All events",""));
 
-			if ( 
-			    PlotNames[iPlot] == "TrueFineBinDeltaPnPlot" ||
-			    PlotNames[iPlot] == "TrueFineBinDeltaAlpha3DqPlot" || 
-			    PlotNames[iPlot] == "TrueFineBinDeltaPhi3DPlot"
-			     ) {
-
-			  TLatex *textPanel = new TLatex();
-			  textPanel->SetTextFont(FontStyle);
-			  textPanel->SetTextSize(TextSize);
-
-			  if ( PlotNames[iPlot] == "TrueFineBinDeltaPnPlot") { textPanel->DrawLatexNDC(0.87, 0.8, "(a)"); }
-			  if ( PlotNames[iPlot] == "TrueFineBinDeltaAlpha3DqPlot") { textPanel->DrawLatexNDC(0.87, 0.8, "(b)"); }
-			  if ( PlotNames[iPlot] == "TrueFineBinDeltaPhi3DPlot") { textPanel->DrawLatexNDC(0.87, 0.8, "(c)"); }
-			
-			}
-
 			//----------------------------------------//					
 
 		} // End of the loop over the samples grabing the plots	
@@ -311,7 +182,7 @@ void PdfOverlay(TString Tag = "") {
 		PlotCanvas->cd();
 		leg->Draw();
 
-		PlotCanvas->SaveAs("/uboone/data/users/apapadop/FlatTTreePlots/"+Tag+CanvasName+".pdf");
+		PlotCanvas->SaveAs("/uboone/data/users/apapadop/Atmospherics/"+Tag+CanvasName+".pdf");
 		delete PlotCanvas;
 
 	} // End of the loop over the plots

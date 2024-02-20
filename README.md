@@ -24,3 +24,4 @@ root -b script_ThreeDimWienerSVD_OverlayGenerators.C
 # merge the 3D xsecs
 hadd -f OutputFiles/All_XSecs_3D_ECal.root OutputFiles/All_XSecs_3D_ECal_*
 
+script_PdfOverlay.cxx
