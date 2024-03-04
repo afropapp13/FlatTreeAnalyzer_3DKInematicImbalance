@@ -16,7 +16,7 @@
 #include <fstream>
 #include <stdlib.h>
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
+#include "../myClasses/Constants.h"
 
 using namespace std;
 using namespace Constants;
@@ -182,7 +182,7 @@ void PdfOverlay(TString Tag = "") {
 		PlotCanvas->cd();
 		leg->Draw();
 
-		PlotCanvas->SaveAs("/uboone/data/users/apapadop/Atmospherics/"+Tag+CanvasName+".pdf");
+		PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/Atmospherics/"+Tag+CanvasName+".pdf");
 		delete PlotCanvas;
 
 	} // End of the loop over the plots
