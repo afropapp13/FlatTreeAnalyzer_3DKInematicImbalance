@@ -210,10 +210,12 @@ void FlatTreeAnalyzer::Loop() {
 	  }
 
 	  int ProtonTagging = 0, ChargedPionTagging = 0, NeutralPionTagging = 0, MuonTagging = 0, TrueHeavierMesonCounter = 0;
+	  int ElectronTagging = 0, PhotonTagging = 0;
 	  vector <int> ProtonID; ProtonID.clear();
 	  vector <int> MuonID; MuonID.clear();		
 
 	  int NoFSIProtonTagging = 0, NoFSIChargedPionTagging = 0, NoFSINeutralPionTagging = 0, NoFSIMuonTagging = 0, NoFSITrueHeavierMesonCounter = 0;
+	  int NoFSIElectronTagging = 0, NoFSIPhotonTagging = 0;
 	  vector <int> NoFSIProtonID; NoFSIProtonID.clear();
 	  vector <int> NoFSIMuonID; NoFSIMuonID.clear();
 
@@ -250,6 +252,19 @@ void FlatTreeAnalyzer::Loop() {
 	      NeutralPionTagging ++;
 
 	    }
+
+	    if (fabs(pdg[i]) == 11)  {
+
+	      ElectronTagging ++;
+
+	    }
+
+	    if (fabs(pdg[i]) == 22)  {
+
+	      PhotonTagging ++;
+
+	    }
+
 
 	    if ( pdg[i] != NeutralPionPdg && fabs(pdg[i]) != AbsChargedPionPdg && tools.is_meson_or_antimeson(pdg[i]) ) { TrueHeavierMesonCounter++; }
 
@@ -290,6 +305,19 @@ void FlatTreeAnalyzer::Loop() {
 
 	    }
 
+	    if (fabs(pdg_vert[i]) == 11)  {
+
+	      NoFSIElectronTagging ++;
+
+	    }
+
+	    if (fabs(pdg_vert[i]) == 22)  {
+
+	      NoFSIPhotonTagging ++;
+
+	    }
+
+
 	    if ( pdg_vert[i] != NeutralPionPdg && fabs(pdg_vert[i]) != AbsChargedPionPdg && tools.is_meson_or_antimeson(pdg_vert[i]) ) { NoFSITrueHeavierMesonCounter++; }
 
 
@@ -327,7 +355,7 @@ void FlatTreeAnalyzer::Loop() {
 	  //----------------------------------------//	
 
 	  // If the signal definition post-FSI  is satisfied
-	  if ( ProtonTagging == 1 && ChargedPionTagging == 0 && NeutralPionTagging == 0 && MuonTagging == 1 && TrueHeavierMesonCounter == 0) { 
+	  if ( ProtonTagging == 1 && ChargedPionTagging == 0 && NeutralPionTagging == 0 && MuonTagging == 1 && TrueHeavierMesonCounter == 0 && ElectronTagging == 0 && PhotonTagging == 0) { 
 
 	    CounterEventsPassedSelection++;
 
@@ -401,7 +429,7 @@ void FlatTreeAnalyzer::Loop() {
 	  //----------------------------------------//
 
 	  // If the signal definition pre-FSI is satisfied
-	  if ( NoFSIProtonTagging == 1 && NoFSIChargedPionTagging == 0 && NoFSINeutralPionTagging == 0 && NoFSIMuonTagging == 1 && NoFSITrueHeavierMesonCounter == 0) { 
+	  if ( NoFSIProtonTagging == 1 && NoFSIChargedPionTagging == 0 && NoFSINeutralPionTagging == 0 && NoFSIMuonTagging == 1 && NoFSITrueHeavierMesonCounter == 0 && NoFSIElectronTagging == 0 && NoFSIPhotonTagging == 0) { 
 
 	    // Kinematics of muon & proton in the final state pre FSI
 

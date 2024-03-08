@@ -8,6 +8,10 @@ root -b script_GeneratorOverlay.cxx
 # Interaction breakdown
 root -b GeneratorInteBreakDown.cxx
 
+# Pdfs
+root -b script_PdfOverlay.cxx
+
+
 # XSecs with Ac multiplication
 root -b script_WienerSVD_OverlayGenerators.C
 
