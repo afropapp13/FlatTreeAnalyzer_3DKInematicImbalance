@@ -16,7 +16,7 @@
 #include <fstream>
 #include <stdlib.h>
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
 
 using namespace std;
 using namespace Constants;
@@ -45,20 +45,38 @@ void GeneratorOverlay(TString Tag = "") {
 	if (Tag == "") {
 
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18"); Colors.push_back(kBlack); LineStyle.push_back(kSolid);
-	  //Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v2_12_10.root"); Labels.push_back("Gv2"); Colors.push_back(kBlue); LineStyle.push_back(Gv2LineStyle);
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v2_12_10_MEC.root"); Labels.push_back("Gv2"); Colors.push_back(kBlue); LineStyle.push_back(Gv2LineStyle);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NEUT_5_4_0_1.root"); Labels.push_back("NEUT"); Colors.push_back(kMagenta); LineStyle.push_back(NEUTLineStyle); // kMagenta - 9
+	  //Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NEUT_5_4_0_1.root"); Labels.push_back("NEUT"); Colors.push_back(kMagenta); LineStyle.push_back(NEUTLineStyle); // kMagenta - 9
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NEUT_5_4_0_1.root"); Labels.push_back("NEUT"); Colors.push_back(kYellow-6); LineStyle.push_back(NEUTLineStyle); // kMagenta - 9
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NuWro_19_02_1.root"); Labels.push_back("NuWro"); Colors.push_back(NEUTColor); LineStyle.push_back(NuWroLineStyle);
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GiBUU_2021.root"); Labels.push_back("GiBUU"); Colors.push_back(GiBUUColor); LineStyle.push_back(GiBUULineStyle);
 
 	}
 
+	if (Tag == "Gv2") {
+
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18"); Colors.push_back(kBlack); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_02a_02_11a.root"); Labels.push_back("v3.4.0 G18_02a_02_11a");Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v2_12_10_MEC.root"); Labels.push_back("Gv2"); Colors.push_back(kBlue); LineStyle.push_back(Gv2LineStyle);
+  	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_v2_12_10_no_elastic.root"); Labels.push_back("v2.12.10 no elastic");Colors.push_back(GiBUUColor); LineStyle.push_back(kSolid);
+
+	}
+
+
+	if (Tag == "ANL_SF") {
+
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18"); Colors.push_back(kGreen+2); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_ANL_SF.root"); Labels.push_back("ANL SF"); Colors.push_back(kOrange+7); LineStyle.push_back(kDashed);
+
+	}
+
+
 	if (Tag == "GiBUU") {
 	  
-		Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GiBUU_2021.root"); Labels.push_back("2021 false"); Colors.push_back(GiBUUColor); LineStyle.push_back(GiBUULineStyle);
-        	Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GiBUU_2021_Inclusive.root"); Labels.push_back("2021 true"); Colors.push_back(kBlue); LineStyle.push_back(kSolid);
+		//Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GiBUU_2021.root"); Labels.push_back("2021 false"); Colors.push_back(GiBUUColor); LineStyle.push_back(GiBUULineStyle);
+        	//Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GiBUU_2021_Inclusive.root"); Labels.push_back("2021 true"); Colors.push_back(kBlue); LineStyle.push_back(kSolid);
 		Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GiBUU_2023.root"); Labels.push_back("2023"); Colors.push_back(kOrange+7); LineStyle.push_back(NEUTLineStyle);
-
+		Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GiBUU_2023_Patch1.root"); Labels.push_back("2023 Patch1"); Colors.push_back(NEUTColor); LineStyle.push_back(kSolid);
 
 	}
 
@@ -243,6 +261,7 @@ void GeneratorOverlay(TString Tag = "") {
 		TLegend* leg = new TLegend(0.17,0.855,0.99,0.985);
 		leg->SetBorderSize(0);
 		leg->SetNColumns(6);
+		if (Tag == "Gv2") { leg->SetNColumns(2); }
 		leg->SetTextSize(TextSize);	
 		leg->SetTextFont(FontStyle);						
 		leg->SetMargin(0.3);						
@@ -306,10 +325,10 @@ void GeneratorOverlay(TString Tag = "") {
 			  textPanel->SetTextFont(FontStyle);
 			  textPanel->SetTextSize(TextSize);
 
-			  if ( PlotNames[iPlot] == "TrueFineBinDeltaPnParPlot" || PlotNames[iPlot] == "TrueFineBinDeltaPnPerpxPlot" || PlotNames[iPlot] == "TrueFineBinDeltaAlpha3DqPlot" ) 
-			    { textPanel->DrawLatexNDC(0.87, 0.8, "(a)"); }
-			  if ( PlotNames[iPlot] == "TrueFineBinDeltaPnPerpPlot" || PlotNames[iPlot] == "TrueFineBinDeltaPnPerpyPlot" || PlotNames[iPlot] == "TrueFineBinDeltaAlphaTPlot") 
-			    { textPanel->DrawLatexNDC(0.87, 0.8, "(b)"); }
+			  //if ( PlotNames[iPlot] == "TrueFineBinDeltaPnParPlot" || PlotNames[iPlot] == "TrueFineBinDeltaPnPerpxPlot" || PlotNames[iPlot] == "TrueFineBinDeltaAlpha3DqPlot" ) 
+			  //  { textPanel->DrawLatexNDC(0.87, 0.8, "(a)"); }
+			  //if ( PlotNames[iPlot] == "TrueFineBinDeltaPnPerpPlot" || PlotNames[iPlot] == "TrueFineBinDeltaPnPerpyPlot" || PlotNames[iPlot] == "TrueFineBinDeltaAlphaTPlot") 
+			  //  { textPanel->DrawLatexNDC(0.87, 0.8, "(b)"); }
 			
 			}
 

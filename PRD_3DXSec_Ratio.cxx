@@ -18,9 +18,9 @@
 #include <sstream>
 #include <string>
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Util.h"
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Tools.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Util.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Tools.h"
 
 using namespace std;
 using namespace Constants;
@@ -367,7 +367,7 @@ void PRD_3DXSec_Ratio() {
 
 		//----------------------------------------//
 		
-		PlotCanvas->SaveAs("/uboone/data/users/apapadop/FlatTTreePlots/ThreeDXSec/"+PdfName+".pdf");
+		PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/FlatTTreePlots/ThreeDXSec/"+PdfName+".pdf");
 		//delete Canvas;					
 
 		//----------------------------------------//					

@@ -9,5 +9,8 @@
 	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators()");
 	//AltGen
 	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,true)");
+	//ANL SF
+	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,true)");
+
 
 }

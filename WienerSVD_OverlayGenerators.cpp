@@ -17,21 +17,21 @@
 #include <sstream>
 #include <string>
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/CenterAxisTitle.cpp"
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/SetOffsetAndSize.cpp"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/CenterAxisTitle.cpp"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/SetOffsetAndSize.cpp"
 #include "myFunctions.cpp"
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/MakeMyPlotPretty.cpp"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/MakeMyPlotPretty.cpp"
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
 
 using namespace std;
 using namespace Constants;
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Util.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Util.h"
 
 //----------------------------------------//
 
-void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotACHILLES = false) {
+void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotACHILLES = false, bool PlotANL_SF = false) {
 
 	//----------------------------------------//
 
@@ -40,7 +40,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	TH1D::SetDefaultSumw2();
 	gStyle->SetEndErrorSize(6);		
 
-	TString PathToFiles = "/uboone/data/users/apapadop/mySTVAnalysis/myXSec/v08_00_00_52/";
+	TString PathToFiles = "/exp/uboone/data/users/apapadop/mySTVAnalysis/myXSec/v08_00_00_52/";
 
 	//----------------------------------------//
 
@@ -48,10 +48,12 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	if (PlotGen) { Extra = "Gene"; }
 	if (PlotGENIE) { Extra = "Genie"; }
 	if (PlotACHILLES) { Extra = "ACHILLES"; }
+	if (PlotANL_SF) { Extra = "ANL_SF"; }
 
 	//----------------------------------------//
 
 	vector<TString> PlotNames;
+	PlotNames.push_back("DeltaPTPlot");
 	PlotNames.push_back("DeltaPnPerpPlot");
 	PlotNames.push_back("DeltaPnPerpxPlot");
 	PlotNames.push_back("DeltaPnPerpyPlot");
@@ -113,13 +115,26 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		}
 
+		//----------------------------------------//	
+
+		if (PlotANL_SF) {
+
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle);
+			//NameOfSamples.push_back("ANL_SF"); Colors.push_back(kOrange+7); Labels.push_back("ANL SF "); LineStyle.push_back(G21LineStyle);
+			//NameOfSamples.push_back("SF_noPB_hA"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hA "); LineStyle.push_back(G21LineStyle);
+			NameOfSamples.push_back("SF_noPB_hN"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hN "); LineStyle.push_back(G21LineStyle);
+
+
+		}
+
+
 		//----------------------------------------//		
 
 		if (PlotGen) {
 
 		  NameOfSamples.push_back("NuWro_19_02_1"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle);
 			NameOfSamples.push_back("GiBUU_2021"); Colors.push_back(GiBUUColor); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle);
-			NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kMagenta); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle);// kMagenta - 9
+			NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kYellow-6); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle);// kMagenta - 9
 
 		}	
 
@@ -544,7 +559,6 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			if (Runs[WhichRun] == "Run1") { tor860_wcut = Fulltor860_wcut_Run1; }
 			if (Runs[WhichRun] == "Run2") { tor860_wcut = Fulltor860_wcut_Run2; }
 			if (Runs[WhichRun] == "Run3") { tor860_wcut = Fulltor860_wcut_Run3; }
-			if (Runs[WhichRun] == "Run4") { tor860_wcut = Fulltor860_wcut_Run4; }
 			if (Runs[WhichRun] == "Run5") { tor860_wcut = Fulltor860_wcut_Run5; }
 			if (Runs[WhichRun] == "Combined") { tor860_wcut = Fulltor860_wcut_Combined; }
 			TString Label = ToString(tor860_wcut)+" POT";
@@ -589,8 +603,13 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			TLatex *textPanel = new TLatex();
 			textPanel->SetTextFont(FontStyle);
 			textPanel->SetTextSize(TextSize);
-			TString Panel = "(a)";
-			if (Extra == "Genie") { Panel = "(b)"; }
+
+			//TString Panel = "(a)";
+			//if (Extra == "Genie") { Panel = "(b)"; }
+			
+			TString Panel = "";
+			if (Extra == "Genie") { Panel = ""; }
+
 
 			if (
 			    PlotNames[WhichPlot] == "DeltaPnPerpPlot" ||

@@ -9,7 +9,7 @@
 #include <sstream>
 #include <cmath>
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
 
 using namespace std;
 using namespace Constants;
@@ -159,9 +159,6 @@ double PeLEE_ReturnBeamOnRunPOT(TString Run) {
 	if (Run == "Run1") { DataPOT = Fulltor860_wcut_Run1 ; }
 	if (Run == "Run2") { DataPOT = Fulltor860_wcut_Run2 ; }
 	if (Run == "Run3") { DataPOT = Fulltor860_wcut_Run3 ; }
-	if (Run == "Run4") { DataPOT = Fulltor860_wcut_Run4 ; }
-	if (Run == "Run4a") { DataPOT = Fulltor860_wcut_Run4a ; }	
-	if (Run == "Run4aRutgers") { DataPOT = Fulltor860_wcut_Run4aRutgers ; }
 	if (Run == "Run5") { DataPOT = Fulltor860_wcut_Run5 ; }
 	if (Run == "Combined") { DataPOT = Fulltor860_wcut_Combined ; }
 
@@ -178,7 +175,6 @@ double ReturnBeamOnRunPOT(TString Run) {
 	if (Run == "Run1") { DataPOT = tor860_wcut_Run1 ; }
 	if (Run == "Run2") { DataPOT = tor860_wcut_Run2 ; }
 	if (Run == "Run3") { DataPOT = tor860_wcut_Run3 ; }
-	if (Run == "Run4") { DataPOT = tor860_wcut_Run4 ; }
 	if (Run == "Run5") { DataPOT = tor860_wcut_Run5 ; }
 
 	return DataPOT;

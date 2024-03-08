@@ -17,17 +17,17 @@
 #include <sstream>
 #include <string>
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/CenterAxisTitle.cpp"
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/SetOffsetAndSize.cpp"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/CenterAxisTitle.cpp"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/SetOffsetAndSize.cpp"
 #include "myFunctions.cpp"
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/MakeMyPlotPretty.cpp"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/MakeMyPlotPretty.cpp"
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
 
 using namespace std;
 using namespace Constants;
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Util.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Util.h"
 
 //----------------------------------------//
 
@@ -258,7 +258,7 @@ void LogTwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = 
 
                   NameOfSamples.push_back("NuWro_19_02_1"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle);
 		  NameOfSamples.push_back("GiBUU_2021"); Colors.push_back(GiBUUColor); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle);
-		  NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kMagenta); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle);
+		  NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kYellow-6); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle);
 
                 }
 
@@ -853,7 +853,6 @@ void LogTwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = 
 				if (Runs[WhichRun] == "Run1") { tor860_wcut = Fulltor860_wcut_Run1; }
 				if (Runs[WhichRun] == "Run2") { tor860_wcut = Fulltor860_wcut_Run2; }
 				if (Runs[WhichRun] == "Run3") { tor860_wcut = Fulltor860_wcut_Run3; }
-				if (Runs[WhichRun] == "Run4") { tor860_wcut = Fulltor860_wcut_Run4; }
 				if (Runs[WhichRun] == "Run4a") { tor860_wcut = Fulltor860_wcut_Run4a; }				
 				if (Runs[WhichRun] == "Run5") { tor860_wcut = Fulltor860_wcut_Run5; }
 				if (Runs[WhichRun] == "Combined") { tor860_wcut = Fulltor860_wcut_Combined; }
@@ -882,8 +881,11 @@ void LogTwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = 
 				TLatex *textPanel = new TLatex();
 				textPanel->SetTextFont(FontStyle);
 				textPanel->SetTextSize(TextSize);
-				TString Panel = "(a)";
-				if (Extra == "Genie") { Panel = "(b)"; }
+				TString Panel = "";
+				if (Extra == "Genie") { Panel = ""; }
+
+				//TString Panel = "(a)";
+				//if (Extra == "Genie") { Panel = "(b)"; }
 
 				if (
 				    CanvasName == "SerialDeltaPn_DeltaAlpha3DqPlot_Slice_0" ||

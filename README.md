@@ -14,7 +14,7 @@ root -b GeneratorInteBreakDown.cxx
 root -b GeneratorFSIStudy.cxx
 
 # Graph overlay
-root -b GraphOverlay.cxx
+root -b script_GraphOverlay.cxx
 
 # XSecs with Ac multiplication
 root -b script_WienerSVD_OverlayGenerators.C

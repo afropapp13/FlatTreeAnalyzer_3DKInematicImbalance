@@ -2,16 +2,16 @@
 	vector<TString> WhichSample; vector<TString> WhichName;
 
 	//----------------------------------------//
-			
+       
+	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GiBUU_Samples/GiBUU2023_Patch1/GiBUU2023.flat.root"); WhichName.push_back("GiBUU_2023_Patch1"); 
+        WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GiBUU_Samples/GiBUU2023/GiBUU_2023_new.flat.root"); WhichName.push_back("GiBUU_2023"); 
+	//WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_ANL_SF/BNB_SF_Ar40.flat.root"); WhichName.push_back("ANL_SF");			 	
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.genie_v3_00_06.flat.root"); WhichName.push_back("GENIE_v3_0_6");			 
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.genie_v2_12_10.flat.root"); WhichName.push_back("GENIE_v2_12_10");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.genie_v2_12_10.mec.flat.root"); WhichName.push_back("GENIE_v2_12_10_MEC");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.nuwro_19_02_1.flat.root"); WhichName.push_back("NuWro_19_02_1");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.neut_5_4_0_1.flat.root"); WhichName.push_back("NEUT_5_4_0_1");		
         WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GiBUU_Samples/GiBUU_2021_BuildGeneratorProduction/GiBUU.flat.root"); WhichName.push_back("GiBUU_2021");
-        WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GiBUU_Samples/GiBUU2023/GiBUU2023.root"); WhichName.push_back("GiBUU_2023");
-        WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GiBUU_Samples/GiBUU2021/GiBUU2021_Inclusive.flat.root"); WhichName.push_back("GiBUU_2021_Inclusive");	
- 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GiBUU_Samples/GiBUU2023/GiBUU2023_ME_DOW.flat.root"); WhichName.push_back("GiBUU_2023_ME_DOW");	
         WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GiBUU_Samples/NoFSI_GiBUU_2021_BuildGeneratorProduction/GiBUU.flat.root"); WhichName.push_back("GiBUU_2021_NoFSI");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/gntp.0.gprep_EffSF.flat.root"); WhichName.push_back("GENIE_v3_0_6_EffSF");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/gntp.0.gprep_RFG.flat.root"); WhichName.push_back("GENIE_v3_0_6_RFG");
@@ -21,7 +21,7 @@
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/gntp.0.gprep_G21_11b_00_000.flat.root"); WhichName.push_back("GENIE_v3_0_6_G21_11b_00_000");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/gntp.0.ghep_v3_4_0_G18_10a_02_11a.prep.flat.root"); WhichName.push_back("GENIE_v3_4_0_G18_10a_02_11a");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/gntp.0.ghep_v3_4_0_G18_10a_02_11a_RS.prep.flat.root"); WhichName.push_back("GENIE_v3_4_0_G18_10a_02_11a_RS");
-	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/gntp.0.ghep_v3_4_0_G18_02a_02_11a.prep.flat.root"); WhichName.push_back("GENIE_v3_4_0_G18_02a_02_11a");
+	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_G18_02a_02_11a_CC/14_1000180400_CC_v3_4_0_G18_02a_02_11a.flat.root"); WhichName.push_back("GENIE_v3_4_0_G18_02a_02_11a");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_AR23_20i_00_000_CC/14_1000180400_CC_v3_4_0_AR23_20i_00_000.flat.root"); WhichName.push_back("GENIE_v3_4_0_AR23_20i_00_000");
 
 	WhichSample.push_back("/uboone/app/users/apapadop/BuildEventGenerators/microboone.achilles.flat.root"); WhichName.push_back("ACHILLES");
@@ -31,11 +31,16 @@
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_G18_10a_02_11a_CC_0_8GeV/14_1000180400_CC_v3_4_0_G18_10a_02_11a_0_8.flat.root"); WhichName.push_back("GENIE_v3_4_0_G18_10a_02_11a_0_8GeV");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_G18_10a_02_11a_CC_0_5GeV/14_1000180400_CC_v3_4_0_G18_10a_02_11a_0_5.flat.root"); WhichName.push_back("GENIE_v3_4_0_G18_10a_02_11a_0_5GeV");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_G18_10a_02_11a_CC_0_3GeV/14_1000180400_CC_v3_4_0_G18_10a_02_11a_0_3.flat.root"); WhichName.push_back("GENIE_v3_4_0_G18_10a_02_11a_0_3GeV");
-		
+
+        //WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/Noah_SF/BNB_SF_noPB_hA_Ar40.flat.root"); WhichName.push_back("SF_noPB_hA"); 	
+	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/Noah_SF/BNB_SF_noPB_hN_Ar40.flat.root"); WhichName.push_back("SF_noPB_hN"); 		
+
+//		WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v2_12_10_FSIElasBugFix/14_1000180400_CC_v2_12_10_.flat.root"); WhichName.push_back("v2_12_10_no_elastic");
+	
 	//----------------------------------------//
 
-        gROOT->ProcessLine(".L /uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Tools.cxx+");
-        gROOT->ProcessLine(".L /uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/STV_Tools.cxx+");
+        gROOT->ProcessLine(".L /exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Tools.cxx+");
+        gROOT->ProcessLine(".L /exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/STV_Tools.cxx+");
 	gROOT->ProcessLine(".L FlatTreeAnalyzer.cxx+");
 
 	for (int i =0;i < (int)(WhichSample.size()); i++) {

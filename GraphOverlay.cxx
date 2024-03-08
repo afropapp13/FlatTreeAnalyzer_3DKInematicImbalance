@@ -6,6 +6,8 @@
 #include <TLegendEntry.h>
 #include <TLatex.h>
 #include <TGraph.h>
+#include <TH1D.h>
+#include <TH2D.h>
 
 #include <iostream>
 #include <sstream>
@@ -115,7 +117,7 @@ void GraphOverlay(TString Tag = "G18") {
 	TLatex *textPanel = new TLatex();
 	textPanel->SetTextFont(FontStyle);
 	textPanel->SetTextSize(TextSize);
-	textPanel->DrawLatexNDC(0.17, 0.83, "(a)");
+	//textPanel->DrawLatexNDC(0.17, 0.83, "(a)");
 
 	PlotCanvas->SaveAs("/uboone/data/users/apapadop/FlatTTreePlots/"+Tag+CanvasName+".pdf");
 	delete PlotCanvas;
@@ -185,7 +187,7 @@ void GraphOverlay(TString Tag = "G18") {
 	TLatex *textPanelb = new TLatex();
 	textPanelb->SetTextFont(FontStyle);
 	textPanelb->SetTextSize(TextSize);
-	textPanelb->DrawLatexNDC(0.17, 0.83, "(b)");
+	//textPanelb->DrawLatexNDC(0.17, 0.83, "(b)");
 
 	CutPlotCanvas->SaveAs("/uboone/data/users/apapadop/FlatTTreePlots/"+Tag+CutCanvasName+".pdf");
 	delete CutPlotCanvas;

@@ -17,7 +17,7 @@
 #include <fstream>
 #include <stdlib.h>
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
 
 using namespace std;
 using namespace Constants;
@@ -287,7 +287,11 @@ void GeneratorInteBreakDown() {
 			PlotNames[iPlot] == "NoFSITrueFineBinDeltaPnPerpPlot" ||
 			PlotNames[iPlot] == "TrueFineBinDeltaPn_DeltaAlpha3Dq_0_00To45_00Plot" ||
 			PlotNames[iPlot] == "TrueFineBinDeltaAlpha3Dq_DeltaPn_0_00To0_20Plot"
-			 ) { textPanel->DrawLatexNDC(0.87, 0.8, "(a)"); }
+			 ) { 
+
+			//	textPanel->DrawLatexNDC(0.87, 0.8, "(a)"); 
+
+			}
 
 		    if ( 
 			PlotNames[iPlot] == "TrueFineBinDeltaPTPlot" || 
@@ -303,7 +307,11 @@ void GeneratorInteBreakDown() {
 			PlotNames[iPlot] == "NoFSITrueFineBinDeltaPnParPlot" ||
 			PlotNames[iPlot] == "TrueFineBinDeltaPn_DeltaAlpha3Dq_135_00To180_00Plot" ||
 			PlotNames[iPlot] == "TrueFineBinDeltaAlpha3Dq_DeltaPn_0_40To1_00Plot"
-			 ) { textPanel->DrawLatexNDC(0.87, 0.8, "(b)"); }
+			 ) { 
+
+				//textPanel->DrawLatexNDC(0.87, 0.8, "(b)"); 
+
+			}
 
 		  }
 

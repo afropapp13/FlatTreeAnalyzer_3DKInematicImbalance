@@ -16,9 +16,9 @@
 #include <iterator>
 #include <fstream>
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/STV_Tools.h"
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Tools.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/STV_Tools.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Tools.h"
 
 using namespace std;
 using namespace Constants;
@@ -586,7 +586,8 @@ void FlatTreeAnalyzer::Loop() {
 	  if (fOutputFile == "GiBUU_2021") { weight = weight/100.; } // To increase the stats, the GiBUU sample has been produced in 100 sample
 	  if (fOutputFile == "GiBUU_2021_Inclusive") { weight = weight/10.; } // To increase the stats, the GiBUU sample has been produced in 100 sample
 	  if (fOutputFile == "GiBUU_2023_ME_DOW") { weight = weight/5.; } // To increase the stats, the GiBUU sample has been produced in 100 sample
-	  if (fOutputFile == "GiBUU_2023") { weight = weight/50.; } // To increase the stats, the GiBUU sample has been produced in 50 samples	
+	  if (fOutputFile == "GiBUU_2023") { weight = weight/105.; } // To increase the stats, the GiBUU sample has been produced in 50 samples	
+	  if (fOutputFile == "GiBUU_2023_Patch1") { weight = weight/500.; } // To increase the stats, the GiBUU sample has been produced in 500 samples	
 	  if (fOutputFile == "GiBUU_2021_NoFSI") { weight = weight/100.; } // To increase the stats, Ben Bogart produced the no fsi GiBUU sample in 100 samples
 	  if (fOutputFile == "ACHILLES") { weight = weight*1000./(40./12.); } // ACHILLES scaling still under discussion
 
@@ -601,10 +602,12 @@ void FlatTreeAnalyzer::Loop() {
 	  }
 
 	  int ProtonTagging = 0, ChargedPionTagging = 0, NeutralPionTagging = 0, MuonTagging = 0, TrueHeavierMesonCounter = 0;
+	  int ElectronTagging = 0, PhotonTagging = 0;
 	  vector <int> ProtonID; ProtonID.clear();
 	  vector <int> MuonID; MuonID.clear();		
 
 	  int NoFSIProtonTagging = 0, NoFSIChargedPionTagging = 0, NoFSINeutralPionTagging = 0, NoFSIMuonTagging = 0, NoFSITrueHeavierMesonCounter = 0;
+	  int NoFSIElectronTagging = 0, NoFSIPhotonTagging = 0;
 	  vector <int> NoFSIProtonID; NoFSIProtonID.clear();
 	  vector <int> NoFSIMuonID; NoFSIMuonID.clear();
 
@@ -615,8 +618,8 @@ void FlatTreeAnalyzer::Loop() {
 	  for (int i = 0; i < nfsp; i++) {
 		
 	    double pf = TMath::Sqrt( px[i]*px[i] + py[i]*py[i] + pz[i]*pz[i]);
-	    
-              if (pdg[i] == 13 && (pf > 0.1 && pf < 1.2) ) {
+              
+	    if (pdg[i] == 13 && (pf > 0.1 && pf < 1.2) ) {
 
 	      MuonTagging ++;
 	      MuonID.push_back(i);
@@ -641,6 +644,19 @@ void FlatTreeAnalyzer::Loop() {
 	      NeutralPionTagging ++;
 
 	    }
+
+	    if (fabs(pdg[i]) == 11)  {
+
+	      ElectronTagging ++;
+
+	    }
+
+	    if (fabs(pdg[i]) == 22)  {
+
+	      PhotonTagging ++;
+
+	    }
+
 
 	    if ( pdg[i] != NeutralPionPdg && fabs(pdg[i]) != AbsChargedPionPdg && tools.is_meson_or_antimeson(pdg[i]) ) { TrueHeavierMesonCounter++; }
 
@@ -681,6 +697,19 @@ void FlatTreeAnalyzer::Loop() {
 
 	    }
 
+	    if (fabs(pdg[i]) == 11)  {
+
+	      NoFSIElectronTagging ++;
+
+	    }
+
+	    if (fabs(pdg[i]) == 22)  {
+
+	      NoFSIPhotonTagging ++;
+
+	    }
+
+
 	    if ( pdg_vert[i] != NeutralPionPdg && fabs(pdg_vert[i]) != AbsChargedPionPdg && tools.is_meson_or_antimeson(pdg_vert[i]) ) { NoFSITrueHeavierMesonCounter++; }
 
 
@@ -718,7 +747,7 @@ void FlatTreeAnalyzer::Loop() {
 	  //----------------------------------------//	
 
 	  // If the signal definition post-FSI  is satisfied
-	  if ( ProtonTagging == 1 && ChargedPionTagging == 0 && NeutralPionTagging == 0 && MuonTagging == 1 && TrueHeavierMesonCounter == 0) { 
+	  if ( ProtonTagging == 1 && ChargedPionTagging == 0 && NeutralPionTagging == 0 && MuonTagging == 1 && TrueHeavierMesonCounter == 0 && ElectronTagging == 0 && PhotonTagging == 0) { 
 
 	    CounterEventsPassedSelection++;
 
@@ -1069,7 +1098,7 @@ void FlatTreeAnalyzer::Loop() {
 	  //----------------------------------------//
 
 	  // If the signal definition pre-FSI is satisfied
-	  if ( NoFSIProtonTagging == 1 && NoFSIChargedPionTagging == 0 && NoFSINeutralPionTagging == 0 && NoFSIMuonTagging == 1 && NoFSITrueHeavierMesonCounter == 0) { 
+	  if ( NoFSIProtonTagging == 1 && NoFSIChargedPionTagging == 0 && NoFSINeutralPionTagging == 0 && NoFSIMuonTagging == 1 && NoFSITrueHeavierMesonCounter == 0 && NoFSIElectronTagging == 0 && NoFSIPhotonTagging == 0) { 
 
 	    // Kinematics of muon & proton in the final state pre FSI
 

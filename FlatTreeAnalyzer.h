@@ -32,25 +32,25 @@ public :
    Float_t         ELep;
    Float_t         CosLep;
    Int_t           nfsp;
-   Float_t         px[26];   //[nfsp]
-   Float_t         py[26];   //[nfsp]
-   Float_t         pz[26];   //[nfsp]
-   Float_t         E[26];   //[nfsp]
-   Int_t           pdg[26];   //[nfsp]
+   Float_t         px[100];   //[nfsp]
+   Float_t         py[100];   //[nfsp]
+   Float_t         pz[100];   //[nfsp]
+   Float_t         E[100];   //[nfsp]
+   Int_t           pdg[100];   //[nfsp]
    Float_t         Weight;
    Double_t        fScaleFactor;
    Int_t           ninitp;
-   Float_t         px_init[2];   //[ninitp]
-   Float_t         py_init[2];   //[ninitp]
-   Float_t         pz_init[2];   //[ninitp]
-   Float_t         E_init[2];   //[ninitp]
-   Int_t           pdg_init[2];   //[ninitp]
+   Float_t         px_init[10];   //[ninitp]
+   Float_t         py_init[10];   //[ninitp]
+   Float_t         pz_init[10];   //[ninitp]
+   Float_t         E_init[10];   //[ninitp]
+   Int_t           pdg_init[10];   //[ninitp]
    Int_t           nvertp;
-   Float_t         px_vert[18];   //[nvertp]
-   Float_t         py_vert[18];   //[nvertp]
-   Float_t         pz_vert[18];   //[nvertp]
-   Float_t         E_vert[18];   //[nvertp]
-   Int_t           pdg_vert[18];   //[nvertp]
+   Float_t         px_vert[100];   //[nvertp]
+   Float_t         py_vert[100];   //[nvertp]
+   Float_t         pz_vert[100];   //[nvertp]
+   Float_t         E_vert[100];   //[nvertp]
+   Int_t           pdg_vert[100];   //[nvertp]
 
    // List of branches
    TBranch        *b_Mode;   //!

@@ -16,7 +16,7 @@
 #include <fstream>
 #include <stdlib.h>
 
-#include "/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
+#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
 
 using namespace std;
 using namespace Constants;
@@ -68,12 +68,10 @@ void GeneratorOverlay2D3D(TString Tag = "") {
 	if (Tag == "") {
 
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18"); Colors.push_back(kBlack);
-	  //Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v2_12_10.root"); Labels.push_back("Gv2"); Colors.push_back(kBlue);
-	  //Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v2_12_10_MEC.root"); Labels.push_back("Gv2"); Colors.push_back(kBlue);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NEUT_5_4_0_1.root"); Labels.push_back("NEUT"); Colors.push_back(kMagenta-9);
+	  //Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NEUT_5_4_0_1.root"); Labels.push_back("NEUT"); Colors.push_back(kMagenta-9);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NEUT_5_4_0_1.root"); Labels.push_back("NEUT"); Colors.push_back(kYellow-6);
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NuWro_19_02_1.root"); Labels.push_back("NuWro"); Colors.push_back(NEUTColor);
-	  //  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GiBUU_2021.root"); Labels.push_back("GiBUU"); Colors.push_back(GiBUUColor);
-
+	
 	}
 
 
@@ -100,8 +98,13 @@ void GeneratorOverlay2D3D(TString Tag = "") {
 	// 1D
 
 	//PlotNames.push_back("TrueFineBinDeltaPTPlot"); PanelLabel.push_back("(a)"); XaxisLabel.push_back("Missing Momentum [GeV/c]");
-	PlotNames.push_back("TrueFineBinDeltaAlphaTPlot"); PanelLabel.push_back("(a)"); XaxisLabel.push_back("Struck Nucleon - Missing Momentum Angle [deg]");
-	PlotNames.push_back("TrueFineBinDeltaPhiTPlot"); PanelLabel.push_back("(b)"); XaxisLabel.push_back("Proton - Missing Momentum Angle [deg]");
+
+	//PlotNames.push_back("TrueFineBinDeltaAlphaTPlot"); PanelLabel.push_back("(a)"); XaxisLabel.push_back("Struck Nucleon - Missing Momentum Angle [deg]");
+	//PlotNames.push_back("TrueFineBinDeltaPhiTPlot"); PanelLabel.push_back("(b)"); XaxisLabel.push_back("Proton - Missing Momentum Angle [deg]");
+
+	PlotNames.push_back("TrueFineBinDeltaAlphaTPlot"); PanelLabel.push_back(""); XaxisLabel.push_back("Struck Nucleon - Missing Momentum Angle [deg]");
+	PlotNames.push_back("TrueFineBinDeltaPhiTPlot"); PanelLabel.push_back(""); XaxisLabel.push_back("Proton - Missing Momentum Angle [deg]");
+
 
 	//------------------------------//
 

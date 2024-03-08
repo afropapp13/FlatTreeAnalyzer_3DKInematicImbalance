@@ -8,5 +8,9 @@
 	gROOT->ProcessLine("GeneratorOverlay(\"Weights\")");
 	gROOT->ProcessLine("GeneratorOverlay(\"DUNE\")");
 	gROOT->ProcessLine("GeneratorOverlay(\"EnergyIndependence\")");
+	gROOT->ProcessLine("GeneratorOverlay(\"ANL_SF\")");
+	gROOT->ProcessLine("GeneratorOverlay(\"Gv2\")");
+
+
 
 };
