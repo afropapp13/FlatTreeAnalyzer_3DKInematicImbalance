@@ -697,13 +697,13 @@ void FlatTreeAnalyzer::Loop() {
 
 	    }
 
-	    if (fabs(pdg[i]) == 11)  {
+	    if (fabs(pdg_vert[i]) == 11)  {
 
 	      NoFSIElectronTagging ++;
 
 	    }
 
-	    if (fabs(pdg[i]) == 22)  {
+	    if (fabs(pdg_vert[i]) == 22)  {
 
 	      NoFSIPhotonTagging ++;
 
