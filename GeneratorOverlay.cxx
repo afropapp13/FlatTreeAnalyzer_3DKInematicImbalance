@@ -45,7 +45,7 @@ void GeneratorOverlay(TString Tag = "") {
 	if (Tag == "") {
 
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18"); Colors.push_back(kBlack); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_AR23_20i_00_000.root"); Labels.push_back("AR23"); Colors.push_back(kBlue); LineStyle.push_back(Gv2LineStyle);
+	  //Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_AR23_20i_00_000.root"); Labels.push_back("AR23"); Colors.push_back(kBlue); LineStyle.push_back(Gv2LineStyle);
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NEUT_5_4_0_1.root"); Labels.push_back("NEUT"); Colors.push_back(kMagenta); LineStyle.push_back(NEUTLineStyle); // kMagenta - 9
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NuWro_19_02_1.root"); Labels.push_back("NuWro"); Colors.push_back(NEUTColor); LineStyle.push_back(NuWroLineStyle);
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GiBUU_2023.root"); Labels.push_back("GiBUU"); Colors.push_back(GiBUUColor); LineStyle.push_back(GiBUULineStyle);
@@ -106,8 +106,8 @@ void GeneratorOverlay(TString Tag = "") {
 
 	PlotNames.push_back("TrueFineBinMuonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{#mu}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
 	PlotNames.push_back("TrueFineBinProtonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{p}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
-	PlotNames.push_back("TrueFineBinThetaZPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{Z}}  #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
-	PlotNames.push_back("TrueFineBinCosThetaZPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{Z}}  #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
+	PlotNames.push_back("TrueFineBinThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{vis}}  #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
+	PlotNames.push_back("TrueFineBinCosThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{vis}}  #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
 
 	//------------------------------//
 

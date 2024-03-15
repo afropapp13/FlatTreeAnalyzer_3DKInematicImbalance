@@ -82,7 +82,7 @@ void PdfOverlay(TString Tag = "") {
 
 	// 1D
 
-	PlotNames.push_back("TrueFineBinThetaZPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{Z}}  #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
+	PlotNames.push_back("TrueFineBinThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{vis}}  #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
 
 	//------------------------------//
 
