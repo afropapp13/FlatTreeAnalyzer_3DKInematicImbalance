@@ -68,6 +68,7 @@ void FlatTreeAnalyzer::Loop() {
 	TH1D* TrueFineBinProtonCosThetaPlot[NInte];
 	TH1D* TrueFineBinThetaVisPlot[NInte];
 	TH1D* TrueFineBinCosThetaVisPlot[NInte];
+	TH1D* TrueFineBinEvPlot[NInte];
 
 	// 1D Nominal Binning
 
@@ -110,6 +111,7 @@ void FlatTreeAnalyzer::Loop() {
 	  TrueFineBinProtonCosThetaPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinProtonCosThetaPlot",";cos#theta_{p}",20,-1.,1.);
 	  TrueFineBinThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
 	  TrueFineBinCosThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinCosThetaVisPlot",";cos#theta_{vis}",25,ArrayNBinsCosThetaVis[0],ArrayNBinsCosThetaVis[NBinsCosThetaVis]);
+	  TrueFineBinEvPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinEvPlot",";E_{#nu}",20,0.2,1.8);
 
 	  // 1D Nominal Binning
 
@@ -392,6 +394,7 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueFineBinProtonCosThetaPlot[0]->Fill(ProtonCosTheta,weight);
 	    TrueFineBinThetaVisPlot[0]->Fill(ThetaVis,weight);
 	    TrueFineBinCosThetaVisPlot[0]->Fill(CosThetaVis,weight);
+	    TrueFineBinEvPlot[0]->Fill(Enu_true,weight);
 
 	    // filling in the histo based on the interaction mode
 
@@ -401,6 +404,7 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueFineBinProtonCosThetaPlot[genie_mode]->Fill(ProtonCosTheta,weight);
 	    TrueFineBinThetaVisPlot[genie_mode]->Fill(ThetaVis,weight);
 	    TrueFineBinCosThetaVisPlot[genie_mode]->Fill(CosThetaVis,weight);
+	    TrueFineBinEvPlot[genie_mode]->Fill(Enu_true,weight);
 
 	    //----------------------------------------//
 
@@ -509,6 +513,7 @@ void FlatTreeAnalyzer::Loop() {
 		Reweight(TrueFineBinProtonCosThetaPlot[inte]);
 		Reweight(TrueFineBinThetaVisPlot[inte]);
 		Reweight(TrueFineBinCosThetaVisPlot[inte]);
+		Reweight(TrueFineBinEvPlot[inte]);
 
 	        // Pre FSI
 
