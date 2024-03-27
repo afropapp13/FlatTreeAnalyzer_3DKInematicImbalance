@@ -135,7 +135,6 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 		if (closure) {
 
 			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weights.push_back("");
-			//NameOfSamples.push_back("GENIE_v3_4_0_G18_10a_02_11a"); Colors.push_back(kOrange+7); Labels.push_back("G18T default "); LineStyle.push_back(G21LineStyle); weights.push_back("Weights");
 			NameOfSamples.push_back("NoTuneOverlay9"); Colors.push_back(kOrange+7); Labels.push_back("G18D "); LineStyle.push_back(G21LineStyle); weights.push_back("");
 
 
