@@ -11,6 +11,9 @@
 	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,true)");
 	//ANL SF
 	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,true)");
+	//Closure test
+	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,false,true)");
+
 
 
 }

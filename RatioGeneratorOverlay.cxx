@@ -282,7 +282,7 @@ void RatioGeneratorOverlay(TString Tag = "") {
 		PlotCanvas->cd();
 		leg->Draw();
 
-		PlotCanvas->SaveAs("/uboone/data/users/apapadop/FlatTTreePlots/"+Tag+CanvasName+".pdf");
+		PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/FlatTTreePlots/"+Tag+CanvasName+".pdf");
 		delete PlotCanvas;
 
 		//----------------------------------------//					
@@ -330,7 +330,7 @@ void RatioGeneratorOverlay(TString Tag = "") {
 		RatioPlotCanvas->cd();
 		ratioleg->Draw();
 
-		RatioPlotCanvas->SaveAs("/uboone/data/users/apapadop/FlatTTreePlots/"+Tag+RatioCanvasName+".pdf");
+		RatioPlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/FlatTTreePlots/"+Tag+RatioCanvasName+".pdf");
 		delete RatioPlotCanvas;
 
 	} // End of the loop over the plots

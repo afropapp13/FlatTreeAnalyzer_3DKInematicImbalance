@@ -251,7 +251,7 @@ void GeneratorOverlay2D3D(TString Tag = "") {
 		leg->Draw("same");
 		legTKI->Draw("same");
 
-		PlotCanvas->SaveAs("/uboone/data/users/apapadop/FlatTTreePlots/"+Tag+CanvasName+".pdf");
+		PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/FlatTTreePlots/"+Tag+CanvasName+".pdf");
 		delete PlotCanvas;
 
 	} // End of the loop over the plots

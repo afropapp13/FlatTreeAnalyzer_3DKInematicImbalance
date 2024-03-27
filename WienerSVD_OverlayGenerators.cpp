@@ -31,7 +31,7 @@ using namespace Constants;
 
 //----------------------------------------//
 
-void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotACHILLES = false, bool PlotANL_SF = false) {
+void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotACHILLES = false, bool PlotANL_SF = false, bool closure = false) {
 
 	//----------------------------------------//
 
@@ -49,10 +49,12 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	if (PlotGENIE) { Extra = "Genie"; }
 	if (PlotACHILLES) { Extra = "ACHILLES"; }
 	if (PlotANL_SF) { Extra = "ANL_SF"; }
+	if (closure) { Extra = "Closure"; }
 
 	//----------------------------------------//
 
 	vector<TString> PlotNames;
+	PlotNames.push_back("MuonCosThetaPlot");
 	PlotNames.push_back("DeltaPTPlot");
 	PlotNames.push_back("DeltaPnPerpPlot");
 	PlotNames.push_back("DeltaPnPerpxPlot");
@@ -100,18 +102,19 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 		vector<int> Colors; Colors.clear();		
 		vector<TString> Labels; Labels.clear();
 		vector<int> LineStyle; LineStyle.clear();
-
+		vector<TString> weights; weights.clear();
+	
 		// CV
 
-		NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle);
+		NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weights.push_back("");
 
 		//----------------------------------------//	
 
 		if (PlotGENIE) {
 
-			NameOfSamples.push_back("GENIE_v2_12_10_MEC");	Colors.push_back(kBlue); Labels.push_back("Gv2 ");LineStyle.push_back(Gv2LineStyle);
-			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kBlack); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle);
-			NameOfSamples.push_back("GENIE_v3_0_6_G21_11b_00_000"); Colors.push_back(kOrange+6); Labels.push_back("G21 "); LineStyle.push_back(G21LineStyle);
+			NameOfSamples.push_back("GENIE_v2_12_10_MEC");	Colors.push_back(kBlue); Labels.push_back("Gv2 ");LineStyle.push_back(Gv2LineStyle); weights.push_back("");
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kBlack); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weights.push_back("");
+			NameOfSamples.push_back("GENIE_v3_0_6_G21_11b_00_000"); Colors.push_back(kOrange+6); Labels.push_back("G21 "); LineStyle.push_back(G21LineStyle); weights.push_back("");
 
 		}
 
@@ -119,22 +122,32 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (PlotANL_SF) {
 
-			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle);
-			//NameOfSamples.push_back("ANL_SF"); Colors.push_back(kOrange+7); Labels.push_back("ANL SF "); LineStyle.push_back(G21LineStyle);
-			//NameOfSamples.push_back("SF_noPB_hA"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hA "); LineStyle.push_back(G21LineStyle);
-			NameOfSamples.push_back("SF_noPB_hN"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hN "); LineStyle.push_back(G21LineStyle);
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weights.push_back("");
+			//NameOfSamples.push_back("ANL_SF"); Colors.push_back(kOrange+7); Labels.push_back("ANL SF "); LineStyle.push_back(G21LineStyle); weights.push_back("");
+			//NameOfSamples.push_back("SF_noPB_hA"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hA "); LineStyle.push_back(G21LineStyle); weights.push_back("");
+			NameOfSamples.push_back("SF_noPB_hN"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hN "); LineStyle.push_back(G21LineStyle); weights.push_back("");
 
 
 		}
 
+		//----------------------------------------//	
+
+		if (closure) {
+
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weights.push_back("");
+			//NameOfSamples.push_back("GENIE_v3_4_0_G18_10a_02_11a"); Colors.push_back(kOrange+7); Labels.push_back("G18T default "); LineStyle.push_back(G21LineStyle); weights.push_back("Weights");
+			NameOfSamples.push_back("NoTuneOverlay9"); Colors.push_back(kOrange+7); Labels.push_back("G18D "); LineStyle.push_back(G21LineStyle); weights.push_back("");
+
+
+		}
 
 		//----------------------------------------//		
 
 		if (PlotGen) {
 
-		  NameOfSamples.push_back("NuWro_19_02_1"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle);
-			NameOfSamples.push_back("GiBUU_2021"); Colors.push_back(GiBUUColor); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle);
-			NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kYellow-6); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle);// kMagenta - 9
+			NameOfSamples.push_back("NuWro_19_02_1"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle); weights.push_back("");
+			NameOfSamples.push_back("GiBUU_2021"); Colors.push_back(GiBUUColor); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weights.push_back("");
+			NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kYellow-6); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle); weights.push_back("");
 
 		}	
 
@@ -142,7 +155,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (PlotACHILLES) {
 
-		  NameOfSamples.push_back("ACHILLES"); Colors.push_back(NEUTColor); Labels.push_back("ACHILLES "); LineStyle.push_back(NuWroLineStyle);
+		  NameOfSamples.push_back("ACHILLES"); Colors.push_back(NEUTColor); Labels.push_back("ACHILLES "); LineStyle.push_back(NuWroLineStyle); weights.push_back("");
 			
 		}	
 
@@ -214,10 +227,53 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 				}
 
 			}
+			else if (NameOfSamples[WhichSample] == "NoTuneOverlay9") { // CV with statistical uncertainties only for now
+
+				TString FileSampleName = PathToFiles+"/NoTuneOverlay9WienerSVD_ExtractedXSec_Overlay9_"+Runs[WhichRun]+"_"+UBCodeVersion+".root"; 
+				FileSample.push_back(TFile::Open(FileSampleName,"readonly")); 
+
+				for (int WhichPlot = 0; WhichPlot < N1DPlots; WhichPlot ++) {
+
+					TH1D* histTotalReco = (TH1D*)(FileSample[WhichSample]->Get("StatReco"+PlotNames[WhichPlot]));
+					CurrentPlotsTotalReco.push_back(histTotalReco);
+
+					TH1D* histXSecReco = (TH1D*)(FileSample[WhichSample]->Get("XSecReco"+PlotNames[WhichPlot]));
+					CurrentPlotsXSecReco.push_back(histXSecReco);
+
+					TH1D* histFullUncReco = (TH1D*)(FileSample[WhichSample]->Get("RecoFullUnc"+PlotNames[WhichPlot]));
+					CurrentPlotsFullUncReco.push_back(histFullUncReco);										
+
+					TH1D* histNormOnly = (TH1D*)(FileSample[WhichSample]->Get("NormOnlyReco"+PlotNames[WhichPlot]));
+					CurrentPlotsNormOnly.push_back(histNormOnly);					
+
+					TH1D* histReco = (TH1D*)(FileSample[WhichSample]->Get("Reco"+PlotNames[WhichPlot]));
+					if (PlotNames[WhichPlot] == "MuonCosThetaSingleBinPlot") { histReco = (TH1D*)(FileSample[WhichSample]->Get("RecoFullUnc"+PlotNames[WhichPlot])); }
+					CurrentPlotsReco.push_back(histReco);
+
+					TString TrueString = "NoSmearAltTrue";
+
+					TH1D* histTrue = (TH1D*)(FileSample[WhichSample]->Get(TrueString+PlotNames[WhichPlot]));
+					Rm_reweight(histTrue);
+					CurrentPlotsTrue.push_back(histTrue);
+
+					TH1D* QEhistTrue = (TH1D*)(FileSample[WhichSample]->Get("QE"+TrueString+PlotNames[WhichPlot]));
+					QECurrentPlotsTrue.push_back(QEhistTrue);
+					TH1D* MEChistTrue = (TH1D*)(FileSample[WhichSample]->Get("MEC"+TrueString+PlotNames[WhichPlot]));
+					MECCurrentPlotsTrue.push_back(MEChistTrue);
+					TH1D* REShistTrue = (TH1D*)(FileSample[WhichSample]->Get("RES"+TrueString+PlotNames[WhichPlot]));
+					RESCurrentPlotsTrue.push_back(REShistTrue);
+					TH1D* DIShistTrue = (TH1D*)(FileSample[WhichSample]->Get("DIS"+TrueString+PlotNames[WhichPlot]));
+					DISCurrentPlotsTrue.push_back(DIShistTrue);
+					TH1D* COHhistTrue = (TH1D*)(FileSample[WhichSample]->Get("COH"+TrueString+PlotNames[WhichPlot]));
+					COHCurrentPlotsTrue.push_back(COHhistTrue);																								     
+		
+				}
+
+			}
 
 			else {
 		
-			  FileSample.push_back(TFile::Open("OutputFiles/FlatTreeAnalyzerOutput_"+NameOfSamples[WhichSample]+".root")); 
+			  FileSample.push_back(TFile::Open("OutputFiles/"+weights[WhichSample]+"FlatTreeAnalyzerOutput_"+NameOfSamples[WhichSample]+".root")); 
 
 				for (int WhichPlot = 0; WhichPlot < N1DPlots; WhichPlot ++) {
 
@@ -260,7 +316,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 		
 				}
 
-			}
+			} // end of opening the files
 
 			PlotsXSecReco.push_back(CurrentPlotsXSecReco);
 			PlotsFullUncReco.push_back(CurrentPlotsFullUncReco);			
@@ -629,7 +685,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 			// Saving the canvas with the data (total uncertainties) vs overlay & generator predictions
 
-			PlotCanvas->SaveAs("/uboone/data/users/apapadop/FlatTTreePlots/"+Extra+"XSections_"+PlotNames[WhichPlot]+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
+			PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/FlatTTreePlots/"+Extra+"XSections_"+PlotNames[WhichPlot]+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
 			delete PlotCanvas;
 
 			//----------------------------------------//

@@ -108,6 +108,14 @@ void PdfOverlay(TString Tag = "") {
 
 	}
 
+	if (Tag == "uBDUNEFDND") {
+
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_G18_DUNE_FD.root"); Labels.push_back("DUNE FD");Colors.push_back(kGreen+1); LineStyle.push_back(kSolid);	
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_G18_DUNE_ND.root"); Labels.push_back("DUNE ND");Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a.root"); Labels.push_back("MicroBooNE");Colors.push_back(kAzure-4); LineStyle.push_back(kSolid);
+
+	}
+
 
 	const int NSamples = Names.size();
 	const int NColors = Colors.size();

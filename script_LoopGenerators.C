@@ -36,7 +36,11 @@
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/Noah_SF/BNB_SF_noPB_hN_Ar40.flat.root"); WhichName.push_back("SF_noPB_hN"); 		
 
 //		WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v2_12_10_FSIElasBugFix/14_1000180400_CC_v2_12_10_.flat.root"); WhichName.push_back("v2_12_10_no_elastic");
-	
+	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_G18_10a_02_11a_CC_DUNEFD/14_1000180400_CC_v3_4_0_G18_10a_02_11a.flat.root"); WhichName.push_back("G18_DUNE_FD"); 		
+	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_G18_10a_02_11a_CC_DUNEND/14_1000180400_CC_v3_4_0_G18_10a_02_11a.flat.root"); WhichName.push_back("G18_DUNE_ND");
+
+
+
 	//----------------------------------------//
 
         gROOT->ProcessLine(".L /exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Tools.cxx+");

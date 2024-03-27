@@ -10,4 +10,6 @@
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,true)");
 	//ANL_SF
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,true)");
+	//Closure
+	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,false,true)");
 }

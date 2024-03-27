@@ -16,11 +16,11 @@ root -b GeneratorFSIStudy.cxx
 # Graph overlay
 root -b script_GraphOverlay.cxx
 
+root -b script_PRD_3DXSec.C
+root -b script_RatioGeneratorOverlay.cxx
+
 # XSecs with Ac multiplication
 root -b script_WienerSVD_OverlayGenerators.C
 root -b script_TwoDimWienerSVD_OverlayGenerators.C
-root -b script_ThreeDimWienerSVD_OverlayGenerators.C
-
-# merge the 3D xsecs
-hadd -f OutputFiles/All_XSecs_3D_ECal.root OutputFiles/All_XSecs_3D_ECal_*
+root -b script_Log_TwoDimWienerSVD_OverlayGenerators.C
 

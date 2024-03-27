@@ -57,7 +57,9 @@ void GeneratorInteBreakDown() {
 	//Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_NoCoulomb.root"); Labels.push_back("v3.0.6 NoCoulomb");
 	//Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_RFG.root"); Labels.push_back("v3.0.6 RFG");
 	//Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_EffSF.root"); Labels.push_back("v3.0.6 EffSF");
-
+	Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_G18_DUNE_ND.root"); Labels.push_back("G18 DUNE ND");
+	Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_G18_DUNE_FD.root"); Labels.push_back("G18 DUNE FD");
+	
 	const int NSamples = Names.size();
 	const int NColors = Colors.size();
 	const int NProcesses = Process.size();
@@ -318,7 +320,7 @@ void GeneratorInteBreakDown() {
 
 		  gPad->RedrawAxis();
 
-		  PlotCanvas->SaveAs("/uboone/data/users/apapadop/FlatTTreePlots/"+CanvasName+".pdf");
+		  PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/FlatTTreePlots/"+CanvasName+".pdf");
 		  delete PlotCanvas;
 
 		} // End of the loop over the samples grabing the plots	

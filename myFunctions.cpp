@@ -16,6 +16,47 @@ using namespace Constants;
 
 //----------------------------------------//
 
+void TV2H(const TVectorD vec, TH1D* histo)
+{
+    // Fill vector to histogram,
+    for(Int_t i=0; i<vec.GetNrows(); i++)
+    {
+        histo->SetBinContent(i+1, vec(i));
+    }
+}
+
+//----------------------------------------//
+
+void TH2M(const TH2D* histo, TMatrixD& mat, bool rowcolumn) {
+
+    // Fill 2D histogram into matrix
+    // If TH2D(i, j) = Matrix(i, j), rowcolumn = kTRUE, else rowcolumn = kFALSE
+
+    for (Int_t i=0; i<histo->GetNbinsX(); i++) {
+
+        for (Int_t j=0; j<histo->GetNbinsY(); j++) {
+
+            if (rowcolumn) { mat(i, j) = histo->GetBinContent(i+1, j+1); }
+            else { mat(j, i) = histo->GetBinContent(i+1, j+1); }
+
+        }
+
+    }
+
+}
+
+//----------------------------------------//
+
+void TH2V(const TH1D* histo, TVectorD& vec)
+{
+    // Fill 1D histogram into matrix
+    for(Int_t i=0; i<histo->GetNbinsX(); i++)
+    {
+        vec(i) = histo->GetBinContent(i+1);
+    }
+}
+//----------------------------------------//
+
 int LocateBinWithValue(TH1D* h, double Value) {
 
   int NBins = h->GetXaxis()->GetNbins();
@@ -45,11 +86,11 @@ TH1D* Multiply(TH1D* True, TH2D* SmearMatrix) {
   TVectorD signal(XBins);
   TMatrixD response(XBins,XBins);
 
-  H2V(TrueClone, signal);
-  H2M(SmearMatrix, response, kTRUE);
+  TH2V(TrueClone, signal);
+  TH2M(SmearMatrix, response, kTRUE);
 
   TVectorD RecoSpace = response * signal;
-  V2H(RecoSpace, TrueClone);
+  TV2H(RecoSpace, TrueClone);
 
   return TrueClone;
 
@@ -230,6 +271,27 @@ void Reweight(TH1D* h, double SF) {
 
 }
 
+// -------------------------------------------------------------------------------------------------------------------------------------
+
+void Rm_reweight(TH1D* h, double SF = 1.) {
+
+	int NBins = h->GetXaxis()->GetNbins();
+
+	for (int i = 0; i < NBins; i++) {
+
+		double CurrentEntry = h->GetBinContent(i+1);
+		double NewEntry = CurrentEntry * SF * h->GetBinWidth(i+1);
+
+		double CurrentError = h->GetBinError(i+1);
+		double NewError = CurrentError * SF * h->GetBinWidth(i+1);
+
+		h->SetBinContent(i+1,NewEntry); 
+//		h->SetBinError(i+1,NewError); 
+		h->SetBinError(i+1,0.000001); 
+
+	}
+
+}
 // -------------------------------------------------------------------------------------------------------------------------------------
 
 double round(double var,int acc = 0) 
