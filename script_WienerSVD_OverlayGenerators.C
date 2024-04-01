@@ -6,4 +6,6 @@
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators()");
 	//AltGen
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,true)");
+	//Closure test
+	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,true)");
 }
