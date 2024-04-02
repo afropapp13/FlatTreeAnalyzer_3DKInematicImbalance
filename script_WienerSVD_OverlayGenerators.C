@@ -8,4 +8,6 @@
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,true)");
 	//Closure test
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,true)");
+	//NuWro closure test
+	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,true)");
 }

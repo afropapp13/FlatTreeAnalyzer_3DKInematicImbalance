@@ -39,6 +39,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 	TH1D::SetDefaultSumw2();
 	gStyle->SetEndErrorSize(6);		
+	gStyle->SetOptStat(0);
 
         TString PathToFiles = "/exp/uboone/data/users/apapadop/Atmospherics/myXSec/v08_00_00_70/";
 
@@ -59,6 +60,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 	// 2D analysis
 
 	PlotNames.push_back("ThetaVis_ECalPlot"); 
+	PlotNames.push_back("ThetaVis_DeltaPnPlot"); 
 	
 	//----------------------------------------//	
 
@@ -276,18 +278,18 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 			    TH1D* histCC1pReco = nullptr;
 			    CurrentPlotsCC1pReco.push_back(histCC1pReco);
 
-			    TH1D* histTrue = (TH1D*)(FileSample[WhichSample]->Get("SerialTrue"+PlotNames[WhichPlot]));
+			    TH1D* histTrue = (TH1D*)(FileSample[WhichSample]->Get("TrueSerial"+PlotNames[WhichPlot]));
 			    CurrentPlotsTrue.push_back(histTrue);
 
-			    TH1D* QEhistTrue = (TH1D*)(FileSample[WhichSample]->Get("QESerialTrue"+PlotNames[WhichPlot]));
+			    TH1D* QEhistTrue = (TH1D*)(FileSample[WhichSample]->Get("QETrueSerial"+PlotNames[WhichPlot]));
 			    QECurrentPlotsTrue.push_back(QEhistTrue);
-			    TH1D* MEChistTrue = (TH1D*)(FileSample[WhichSample]->Get("MECSerialTrue"+PlotNames[WhichPlot]));
+			    TH1D* MEChistTrue = (TH1D*)(FileSample[WhichSample]->Get("MECTrueSerial"+PlotNames[WhichPlot]));
 			    MECCurrentPlotsTrue.push_back(MEChistTrue);
-			    TH1D* REShistTrue = (TH1D*)(FileSample[WhichSample]->Get("RESSerialTrue"+PlotNames[WhichPlot]));
+			    TH1D* REShistTrue = (TH1D*)(FileSample[WhichSample]->Get("RESTrueSerial"+PlotNames[WhichPlot]));
 			    RESCurrentPlotsTrue.push_back(REShistTrue);
-			    TH1D* DIShistTrue = (TH1D*)(FileSample[WhichSample]->Get("DISSerialTrue"+PlotNames[WhichPlot]));
+			    TH1D* DIShistTrue = (TH1D*)(FileSample[WhichSample]->Get("DISTrueSerial"+PlotNames[WhichPlot]));
 			    DISCurrentPlotsTrue.push_back(DIShistTrue);
-			    TH1D* COHhistTrue = (TH1D*)(FileSample[WhichSample]->Get("COHSerialTrue"+PlotNames[WhichPlot]));
+			    TH1D* COHhistTrue = (TH1D*)(FileSample[WhichSample]->Get("COHTrueSerial"+PlotNames[WhichPlot]));
 			    COHCurrentPlotsTrue.push_back(COHhistTrue);
 
 			  }
@@ -339,6 +341,13 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 				SliceDiscriminators.push_back(TwoDArrayNBinsECal); 
 				SliceBinning.push_back(TwoDArrayNBinsThetaVisInECalSlices);
+
+			}
+
+			if (PlotNames[WhichPlot] == "ThetaVis_DeltaPnPlot") {
+
+				SliceDiscriminators.push_back(TwoDArrayNBinsDeltaPn); 
+				SliceBinning.push_back(TwoDArrayNBinsThetaVisInDeltaPnSlices);
 
 			}
 
@@ -812,7 +821,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				
 				// Saving the canvas with the data (total uncertainties) vs overlay & generator predictions
 
-				PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/FlatTTreePlots/Atmospherics/"+Extra+"TwoDXSections_"+CanvasName+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
+				PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/FlatTTreePlots/Atmospherics/"+Extra+"XSections_"+CanvasName+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
 
 				delete PlotCanvas;
 				
