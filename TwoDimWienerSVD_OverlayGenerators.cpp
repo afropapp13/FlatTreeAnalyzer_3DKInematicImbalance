@@ -662,7 +662,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				for (int WhichSample = 1; WhichSample < NSamples; WhichSample++) {
 
 				  MC[WhichPlot][NDimSlice][WhichSample] = tools.GetHistoBins(PlotsTrue[WhichSample][WhichPlot],SerialVectorLowBin.at(NDimSlice),SerialVectorHighBin.at(NDimSlice), MultiDimScaleFactor[ MapUncorCor[ NameCopy ] ], SerialSliceBinning, NameOfSamples[WhichSample]);
-				  MC[WhichPlot][NDimSlice][WhichSample]->SetLineStyle(LineStyle[WhichSample]);
+				  MC[WhichPlot][NDimSlice][WhichSample]->SetLineStyle(kSolid);
 					MC[WhichPlot][NDimSlice][WhichSample]->SetLineColor(Colors[WhichSample]);
 					MC[WhichPlot][NDimSlice][WhichSample]->SetMarkerColor(Colors[WhichSample]);
 					MC[WhichPlot][NDimSlice][WhichSample]->SetLineWidth(3);

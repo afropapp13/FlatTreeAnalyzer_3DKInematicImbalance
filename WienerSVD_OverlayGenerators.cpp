@@ -102,7 +102,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (PlotGENIE) {
 
-			NameOfSamples.push_back("GENIE_v2_12_10_MEC");	Colors.push_back(kBlue); Labels.push_back("Gv2 ");LineStyle.push_back(Gv2LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("GENIE_v3_4_0_AR23_20i_00_000");  Colors.push_back(GENIEv2Color); Labels.push_back("AR23 "); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kBlack); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6_G21_11b_00_000"); Colors.push_back(kOrange+6); Labels.push_back("G21 "); LineStyle.push_back(G21LineStyle); weighted.push_back("");
 
@@ -473,19 +473,8 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			
 			if (
 
-				PlotNames[WhichPlot] == "DeltaPnParPlot" ||
-				PlotNames[WhichPlot] == "DeltaPnPerpxPlot" ||
-				PlotNames[WhichPlot] == "DeltaPnPerpyPlot" ||
-				PlotNames[WhichPlot] == "SerialDeltaAlpha3Dq_DeltaPnPlot" ||
-				PlotNames[WhichPlot] == "SerialDeltaPn_DeltaAlpha3DqPlot" ||
-				PlotNames[WhichPlot] == "DeltaAlpha3DqPlot" /*||
-				PlotNames[WhichPlot] == "DeltaAlpha3DMuPlot" ||				
-				PlotNames[WhichPlot] == "DeltaAlphaT_ProtonCosTheta_0_75To1_00Plot" ||		
-				PlotNames[WhichPlot] == "ProtonCosTheta_MuonCosTheta_Minus1_00To0_00Plot" ||
-				PlotNames[WhichPlot] == "ProtonCosTheta_MuonCosTheta_0_00To0_50Plot" ||
-				PlotNames[WhichPlot] == "ProtonCosTheta_MuonCosTheta_0_50To0_75Plot" ||
-				PlotNames[WhichPlot] == "ProtonCosTheta_MuonCosTheta_0_75To1_00Plot" ||	
-				PlotNames[WhichPlot] == "DeltaPn_DeltaPT_0_40To1_00Plot"*/
+				PlotNames[WhichPlot] == "SerialThetaVis_ECalPlot" ||
+				PlotNames[WhichPlot] == "MuonCosThetaPlot"
 				) { 
 				
 			  leg = new TLegend(0.22,0.69,0.55,0.85);	
@@ -592,7 +581,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			PrettyPlot(PlotsTrue[0][WhichPlot]); // includes scaling factor for multi dimensional analysis
 			PlotsTrue[0][WhichPlot]->SetLineColor(Colors[0]);
 			PlotsTrue[0][WhichPlot]->SetMarkerColor(Colors[0]);
-			PlotsTrue[0][WhichPlot]->SetLineStyle(LineStyle[0]);
+			PlotsTrue[0][WhichPlot]->SetLineStyle(kSolid);
 
 			// -----------------------------------------------------------------------------------------------------------------
 
@@ -628,7 +617,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 				//Clone[WhichSample-1] = PlotsTrue[WhichSample][WhichPlot];				
 				Clone[WhichSample-1]->SetLineColor(Colors[WhichSample]);
-				Clone[WhichSample-1]->SetLineStyle(LineStyle[WhichSample]);
+				Clone[WhichSample-1]->SetLineStyle(kSolid);
 				Clone[WhichSample-1]->SetMarkerColor(Colors[WhichSample]);
 
 				PrettyPlot(Clone[WhichSample-1]); // includes scaling factor for multi dimensional analysis
