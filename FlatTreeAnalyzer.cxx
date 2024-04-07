@@ -86,6 +86,10 @@ void FlatTreeAnalyzer::Loop() {
 	TH1D* TrueThetaVis_InDeltaPnTwoDPlot[NInte][TwoDNBinsDeltaPn];
 	TH1D* SerialTrueThetaVis_InDeltaPnPlot[NInte];
 
+	// Relate pL_GKI to pL_vis = pT * tan(theta_vis)
+	
+	TH2D* PLGKIvsPLVis[NInte]; 
+
 	//----------------------------------------//
 
 	// Pre FSI
@@ -111,6 +115,10 @@ void FlatTreeAnalyzer::Loop() {
 
 	TH1D* NoFSITrueThetaVis_InDeltaPnTwoDPlot[NInte][TwoDNBinsDeltaPn];
 	TH1D* NoFSISerialTrueThetaVis_InDeltaPnPlot[NInte];
+
+	// Relate pL_GKI to pL_vis = pT * tan(theta_vis)
+	
+	TH2D* NoFSIPLGKIvsPLVis[NInte]; 
 
 	//----------------------------------------//
 
@@ -156,6 +164,7 @@ void FlatTreeAnalyzer::Loop() {
 
 	 SerialTrueThetaVis_InDeltaPnPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueSerialThetaVis_DeltaPnPlot",LabelXAxisThetaVis,tools.Return2DNBins(TwoDArrayNBinsThetaVisInDeltaPnSlices),&tools.Return2DBinIndices(TwoDArrayNBinsThetaVisInDeltaPnSlices)[0]);
 
+	PLGKIvsPLVis[inte] = new TH2D(InteractionLabels[inte]+"PLGKIvsPLVis",";p_{L}^{GKI} [GeV/c];p_{L}^{vis} [GeV/c]",20,-0.5,0.5,20,-0.5,0.5); 
 
 	  //--------------------------------------------------//
 
@@ -192,6 +201,8 @@ void FlatTreeAnalyzer::Loop() {
 	  }	
 
 	 NoFSISerialTrueThetaVis_InDeltaPnPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueSerialThetaVis_DeltaPnPlot",LabelXAxisThetaVis,tools.Return2DNBins(TwoDArrayNBinsThetaVisInDeltaPnSlices),&tools.Return2DBinIndices(TwoDArrayNBinsThetaVisInDeltaPnSlices)[0]);
+
+	NoFSIPLGKIvsPLVis[inte] = new TH2D(InteractionLabels[inte]+"NoFSIPLGKIvsPLVis",";p_{L}^{GKI} [GeV/c];p_{L}^{vis} [GeV/c]",20,-0.5,0.5,20,-0.5,0.5); 
 
 	  //--------------------------------------------------//
 
@@ -456,11 +467,15 @@ void FlatTreeAnalyzer::Loop() {
 	    double MuonCosTheta = Muon4Vector.CosTheta();
 	    double ProtonCosTheta = Proton4Vector.CosTheta();
 	    double DeltaPT = reco_stv_tool.ReturnPt();
+	    TVector3 DeltaPT_vec = reco_stv_tool.ReturnPt_vec();
+	    int pty_sgn = (DeltaPT_vec.Y() > 0) ? 1 : ( (DeltaPT_vec.Y() < 0) ? -1 : 0);
+	    double DeltaPL = reco_stv_tool.ReturnPL();
 	    double DeltaPn = reco_stv_tool.ReturnPn();
 	    double DeltaAlphaT = reco_stv_tool.ReturnDeltaAlphaT();
 	    double ECal = reco_stv_tool.ReturnECalMB();
 	    double ThetaVis = reco_stv_tool.ReturnThetaVis(); // deg
 	    double CosThetaVis = TMath::Cos(ThetaVis * TMath::Pi() / 180.);
+	    double PLVis = DeltaPT * TMath::Tan(ThetaVis * TMath::Pi() / 180.) + ECal;
 
 	    //----------------------------------------//	
 
@@ -495,6 +510,7 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueFineBinThetaVisPlot[0]->Fill(ThetaVis,weight);
 	    TrueFineBinCosThetaVisPlot[0]->Fill(CosThetaVis,weight);
 	    TrueFineBinEvPlot[0]->Fill(Enu_true,weight);
+	    PLGKIvsPLVis[0]->Fill(DeltaPL,PLVis,weight);
 
 	    // filling in the histo based on the interaction mode
 
@@ -505,6 +521,7 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueFineBinThetaVisPlot[genie_mode]->Fill(ThetaVis,weight);
 	    TrueFineBinCosThetaVisPlot[genie_mode]->Fill(CosThetaVis,weight);
 	    TrueFineBinEvPlot[genie_mode]->Fill(Enu_true,weight);
+	    PLGKIvsPLVis[genie_mode]->Fill(DeltaPL,PLVis,weight);
 
 	    //----------------------------------------//
 
@@ -571,6 +588,11 @@ void FlatTreeAnalyzer::Loop() {
             double ECal = reco_stv_tool.ReturnECalMB();
             double ThetaVis = reco_stv_tool.ReturnThetaVis(); // deg
 	    double CosThetaVis = TMath::Cos(ThetaVis * TMath::Pi() / 180.);
+	    TVector3 DeltaPT_vec = reco_stv_tool.ReturnPt_vec();
+	    int pty_sgn = (DeltaPT_vec.Y() > 0) ? 1 : ( (DeltaPT_vec.Y() < 0) ? -1 : 0);
+	    double DeltaPL = reco_stv_tool.ReturnPL();
+	    //double PLVis = pty_sgn * DeltaPT * TMath::Tan(ThetaVis * TMath::Pi() / 180.);
+	    double PLVis = DeltaPT * TMath::Tan(ThetaVis * TMath::Pi() / 180. - TMath::Pi()/2.);
 
 	    //----------------------------------------//	
 
@@ -604,6 +626,7 @@ void FlatTreeAnalyzer::Loop() {
 	    NoFSITrueFineBinProtonCosThetaPlot[0]->Fill(ProtonCosTheta,weight);
 	    NoFSITrueFineBinThetaVisPlot[0]->Fill(ThetaVis,weight);
 	    NoFSITrueFineBinCosThetaVisPlot[0]->Fill(CosThetaVis,weight);
+	    NoFSIPLGKIvsPLVis[0]->Fill(DeltaPL,PLVis,weight);
 
 	    // filling in the histo based on the interaction mode
 
@@ -636,6 +659,7 @@ void FlatTreeAnalyzer::Loop() {
 	    NoFSITrueProtonCosThetaPlot[genie_mode]->Fill(ProtonCosTheta,weight);
 	    NoFSITrueThetaVisPlot[genie_mode]->Fill(ThetaVis,weight);
 	    NoFSITrueCosThetaVisPlot[genie_mode]->Fill(CosThetaVis,weight);
+	    NoFSIPLGKIvsPLVis[genie_mode]->Fill(DeltaPL,PLVis,weight);
 
 	    // 2D
 
