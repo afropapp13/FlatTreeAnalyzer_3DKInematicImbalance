@@ -475,7 +475,7 @@ void FlatTreeAnalyzer::Loop() {
 	    double ECal = reco_stv_tool.ReturnECalMB();
 	    double ThetaVis = reco_stv_tool.ReturnThetaVis(); // deg
 	    double CosThetaVis = TMath::Cos(ThetaVis * TMath::Pi() / 180.);
-	    double PLVis = DeltaPT * TMath::Tan(ThetaVis * TMath::Pi() / 180.) + ECal;
+	    double PLVis = DeltaPT / TMath::Tan(ThetaVis * TMath::Pi() / 180.) - ECal;
 
 	    //----------------------------------------//	
 
@@ -591,8 +591,7 @@ void FlatTreeAnalyzer::Loop() {
 	    TVector3 DeltaPT_vec = reco_stv_tool.ReturnPt_vec();
 	    int pty_sgn = (DeltaPT_vec.Y() > 0) ? 1 : ( (DeltaPT_vec.Y() < 0) ? -1 : 0);
 	    double DeltaPL = reco_stv_tool.ReturnPL();
-	    //double PLVis = pty_sgn * DeltaPT * TMath::Tan(ThetaVis * TMath::Pi() / 180.);
-	    double PLVis = DeltaPT * TMath::Tan(ThetaVis * TMath::Pi() / 180. - TMath::Pi()/2.);
+	    double PLVis = DeltaPT / TMath::Tan(ThetaVis * TMath::Pi() / 180.) - ECal;
 
 	    //----------------------------------------//	
 

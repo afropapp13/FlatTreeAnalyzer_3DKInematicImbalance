@@ -4,7 +4,7 @@
 	//----------------------------------------//
 			
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.genie_v3_00_06.flat.root"); WhichName.push_back("GENIE_v3_0_6");			 
-	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.genie_v2_12_10.mec.flat.root"); WhichName.push_back("GENIE_v2_12_10_MEC");
+	/*WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.genie_v2_12_10.mec.flat.root"); WhichName.push_back("GENIE_v2_12_10_MEC");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.nuwro_19_02_1.flat.root"); WhichName.push_back("NuWro_19_02_1");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.neut_5_4_0_1.flat.root"); WhichName.push_back("NEUT_5_4_0_1");		
         WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GiBUU_Samples/GiBUU2023_Patch1/GiBUU2023.flat.root"); WhichName.push_back("GiBUU_2023");
@@ -18,7 +18,7 @@
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_AR23_20i_00_000_CC/14_1000180400_CC_v3_4_0_AR23_20i_00_000.flat.root"); WhichName.push_back("GENIE_v3_4_0_AR23_20i_00_000");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_G18_10a_02_11a_CC_HondaAtmo/14_1000180400_CC_v3_4_0_G18_10a_02_11a.flat.root"); WhichName.push_back("GENIE_v3_4_0_G18_10a_02_11a_Honda");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.genie_v3_00_06.flat.root"); WhichName.push_back("GENIE_v3_0_6_BNBToHonda");			 
-		
+	*/	
 	//----------------------------------------//
 
         gROOT->ProcessLine(".L ../myClasses/Tools.cxx+");

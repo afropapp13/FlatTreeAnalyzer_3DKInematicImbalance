@@ -55,8 +55,8 @@ void PdfOverlay(TString Tag = "") {
 
 	if (Tag == "Honda") {
 
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18 BNB");Colors.push_back(kBlack); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a_Honda.root"); Labels.push_back("G18 Honda"); Colors.push_back(NEUTColor); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("BNB");Colors.push_back(kBlack); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a_Honda.root"); Labels.push_back("Honda"); Colors.push_back(NEUTColor); LineStyle.push_back(kSolid);
 
 	}
 	

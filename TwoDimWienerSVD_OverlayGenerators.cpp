@@ -109,8 +109,8 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		if (PlotGENIE) {
 
-			NameOfSamples.push_back("GENIE_v2_12_10_MEC");	Colors.push_back(kBlue); Labels.push_back("Gv2 ");LineStyle.push_back(Gv2LineStyle); weighted.push_back("");
-			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kBlack); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("GENIE_v3_4_0_AR23_20i_00_000"); Colors.push_back(kBlue); Labels.push_back("AR23 ");LineStyle.push_back(Gv2LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6_G21_11b_00_000"); Colors.push_back(kOrange+6); Labels.push_back("G21 "); LineStyle.push_back(G21LineStyle); weighted.push_back("");
 
 		}
@@ -140,7 +140,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 		if (PlotGen) {
 
 			NameOfSamples.push_back("NuWro_19_02_1"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle); weighted.push_back("");
-			NameOfSamples.push_back("GiBUU_2023"); Colors.push_back(GiBUUColor); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
+			NameOfSamples.push_back("GiBUU_2023"); Colors.push_back(kMagenta+1); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
 			NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kYellow-6); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle); weighted.push_back("");
 
 		}	
@@ -592,7 +592,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				PlotCanvas->SetBottomMargin(0.14);
 				PlotCanvas->SetTopMargin(0.12);
 				PlotCanvas->SetLeftMargin(0.19);
-				PlotCanvas->SetRightMargin(0.03);				
+				PlotCanvas->SetRightMargin(0.02);				
 
 				TLegend* leg = new TLegend(0.38,0.69,0.72,0.85);
 				TLegend* legMC = new TLegend(0.7,0.69,0.93,0.85);
