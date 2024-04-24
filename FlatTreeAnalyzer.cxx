@@ -317,7 +317,7 @@ void FlatTreeAnalyzer::Loop() {
 		
 	    double pf = TMath::Sqrt( px[i]*px[i] + py[i]*py[i] + pz[i]*pz[i]);
 	    
-              if (pdg[i] == 13 && (pf > 0.1 && pf < 1.2) ) {
+            if (pdg[i] == 13 && (pf > 0.1 && pf < 1.2) ) {
 
 	      MuonTagging ++;
 	      MuonID.push_back(i);
@@ -328,6 +328,9 @@ void FlatTreeAnalyzer::Loop() {
 
 	      ProtonTagging ++;
 	      ProtonID.push_back(i);
+
+	      double eff_mass = TMath::Sqrt(E[i]*E[i] - pf*pf);
+	      if ( string( fOutputFile ).find("GiBUU") != std::string::npos && eff_mass < ProtonMass_GeV) { cout << "eff_mass = " << eff_mass << endl; }
 
 	    }
 
