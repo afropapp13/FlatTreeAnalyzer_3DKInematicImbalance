@@ -79,6 +79,7 @@ void GeneratorInteBreakDown() {
 	PlotNames.push_back("TrueFineBinMuonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{#mu}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
 	PlotNames.push_back("TrueFineBinThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{vis}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
 	PlotNames.push_back("TrueFineBinEvPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE_{v}} #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
+	PlotNames.push_back("TrueFineBinMTildePlot"); YAxisLabel.push_back("#frac{d#sigma}{d#tilde{m}} #left[10^{-38} #frac{cm^{2}}{GeV/c^{2} Ar}#right]");
 
 	//------------------------------//
 

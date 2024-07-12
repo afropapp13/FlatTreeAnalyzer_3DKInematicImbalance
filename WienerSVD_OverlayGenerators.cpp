@@ -27,7 +27,7 @@ using namespace Constants;
 
 //----------------------------------------//
 
-void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool plot_closure = false, bool plot_nuwro = false, bool PlotACHILLES = false, bool PlotANL_SF = false) {
+void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool plot_closure = false, bool plot_nuwro = false, bool PlotACHILLES = false, bool PlotANL_SF = false, bool plot_nuclear = false, bool plot_mec = false, bool plot_gibuu = false) {
 
 	//----------------------------------------//
 
@@ -47,6 +47,9 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	if (PlotANL_SF) { Extra = "ANL_SF"; }
 	if (plot_closure) { Extra = "Closure"; }
 	if (plot_nuwro) { Extra = "NuWro"; }
+	if (plot_gibuu) { Extra = "gibuu"; }
+	if (plot_mec) { Extra = "mec"; }
+	if (plot_nuclear) { Extra = "nuclear"; }
 
 	//----------------------------------------//
 
@@ -154,6 +157,34 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		}
 
+		//----------------------------------------//		
+
+		if (plot_gibuu) {
+
+			NameOfSamples.push_back("GiBUU_2023_medium"); Colors.push_back(kOrange+7); Labels.push_back("GiBUU in medium "); LineStyle.push_back(kSolid); weighted.push_back(""); 
+			NameOfSamples.push_back("GiBUU_2023"); Colors.push_back(kGreen+1); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
+
+		}	
+
+		//----------------------------------------//		
+
+		if (plot_mec) {
+
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kMagenta+1); Labels.push_back("Nieves "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
+			NameOfSamples.push_back("GENIE_v3_0_6_Empirical"); Colors.push_back(kGreen+1); Labels.push_back("Empirical "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
+			NameOfSamples.push_back("GENIE_v3_0_6_SuSAv2"); Colors.push_back(kOrange+7); Labels.push_back("SuSAv2 "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
+
+		}	
+
+		//----------------------------------------//		
+
+		if (plot_nuclear) {
+
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kMagenta+1); Labels.push_back("LFG "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
+			NameOfSamples.push_back("G18_10a_02_11a_SF_Fortran"); Colors.push_back(kGreen+1); Labels.push_back("SF "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
+			NameOfSamples.push_back("GENIE_v3_0_6_RFG"); Colors.push_back(kOrange+7); Labels.push_back("RFG "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
+
+		}	
 
 		//----------------------------------------//
 
@@ -468,27 +499,16 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			midPad->SetRightMargin(0.03);			
 			midPad->Draw();
 
-			TLegend* leg = new TLegend(0.39,0.69,0.72,0.85);
-			TLegend* legMC = new TLegend(0.7,0.69,0.8,0.85);
+			TLegend* leg = new TLegend(0.25,0.69,0.58,0.85);
+			TLegend* legMC = new TLegend(0.56,0.69,0.66,0.85);
 			
 			if (
 
-				PlotNames[WhichPlot] == "SerialThetaVis_ECalPlot" ||
 				PlotNames[WhichPlot] == "MuonCosThetaPlot"
 				) { 
 				
-			  leg = new TLegend(0.22,0.69,0.55,0.85);	
-			  legMC = new TLegend(0.53,0.69,0.63,0.85);
-
-			}
-
-			if (
-
-				PlotNames[WhichPlot] == "DeltaAlpha3DqPlot"
-			) { 
-
-			  leg = new TLegend(0.22,0.69,0.55,0.85);					
-			  legMC = new TLegend(0.22,0.53,0.38,0.69);
+			  leg = new TLegend(0.15,0.69,0.48,0.85);	
+			  legMC = new TLegend(0.46,0.69,0.56,0.85);
 
 			}
 
@@ -524,7 +544,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			PlotsReco[0][WhichPlot]->SetMarkerStyle(20);
 			PlotsReco[0][WhichPlot]->SetLineWidth(1);	
 			PlotsReco[0][WhichPlot]->GetYaxis()->SetTitle(VarLabel[PlotNames[WhichPlot]]);					
-
+		
 			midPad->cd();
 			
 			//------------------------------//
@@ -583,6 +603,10 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			PlotsTrue[0][WhichPlot]->SetMarkerColor(Colors[0]);
 			PlotsTrue[0][WhichPlot]->SetLineStyle(kSolid);
 
+			// Area normalize MC to Data
+			double sf = PlotsTotalReco[0][WhichPlot]->Integral("width") / PlotsTrue[0][WhichPlot]->Integral("width");
+			//PlotsTrue[0][WhichPlot]->Scale(sf);
+
 			// -----------------------------------------------------------------------------------------------------------------
 
 			// arrays for NSamples
@@ -613,7 +637,16 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 				Reweight(MECPlotsTrue[WhichSample][WhichPlot],1.);
 				Reweight(RESPlotsTrue[WhichSample][WhichPlot],1.);
 				Reweight(DISPlotsTrue[WhichSample][WhichPlot],1.);
-				Reweight(COHPlotsTrue[WhichSample][WhichPlot],1.);																		
+				Reweight(COHPlotsTrue[WhichSample][WhichPlot],1.);			
+
+				// Area normalize MC to data															
+				double mc_sf = PlotsTotalReco[0][WhichPlot]->Integral() / Clone[WhichSample-1]->Integral();
+				//Clone[WhichSample-1]->Scale(mc_sf);				
+				//QEPlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);				
+				//MECPlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);				
+				//RESPlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);				
+				//DISPlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);				
+				//COHPlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);				
 
 				//Clone[WhichSample-1] = PlotsTrue[WhichSample][WhichPlot];				
 				Clone[WhichSample-1]->SetLineColor(Colors[WhichSample]);
@@ -645,7 +678,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			if (Runs[WhichRun] == "Run3") { tor860_wcut = Fulltor860_wcut_Run3; }
 			if (Runs[WhichRun] == "Run5") { tor860_wcut = Fulltor860_wcut_Run5; }
 			if (Runs[WhichRun] == "Combined") { tor860_wcut = Fulltor860_wcut_Combined; }
-			TString Label = ToString(tor860_wcut)+" POT";
+			TString Label = ToString(tor860_wcut).ReplaceAll("e"," #times 10").ReplaceAll("+","^{")+"} POT";	
 
 			// ---------------------------------------------------------------------------------------------------------
 
@@ -672,7 +705,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			leg->AddEntry(PlotsReco[0][WhichPlot],"MicroBooNE Data","");
 			leg->AddEntry(PlotsReco[0][WhichPlot],Label,"");
 			leg->AddEntry(PlotsReco[0][WhichPlot],"Stat #oplus Shape","ep");			
-			leg->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm","f"); 
+			//leg->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm","f"); 
 			leg->Draw();			
 
 			legMC->Draw();			

@@ -69,6 +69,8 @@ void FlatTreeAnalyzer::Loop() {
 	TH1D* TrueFineBinThetaVisPlot[NInte];
 	TH1D* TrueFineBinCosThetaVisPlot[NInte];
 	TH1D* TrueFineBinEvPlot[NInte];
+	TH1D* TrueFineBinECalPlot[NInte];
+	TH1D* TrueFineBinMTildePlot[NInte];
 
 	// 1D Nominal Binning
 
@@ -88,7 +90,9 @@ void FlatTreeAnalyzer::Loop() {
 
 	// Relate pL_GKI to pL_vis = pT * tan(theta_vis)
 	
-	TH2D* PLGKIvsPLVis[NInte]; 
+	TH2D* PnGKIvsPnVis[NInte]; 
+	TH2D* PnGKIvsPnTrue[NInte]; 
+	TH2D* ThetaVisvsNeutronTheta[NInte]; 
 
 	//----------------------------------------//
 
@@ -137,6 +141,8 @@ void FlatTreeAnalyzer::Loop() {
 	  TrueFineBinThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
 	  TrueFineBinCosThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinCosThetaVisPlot",";cos#theta_{vis}",25,ArrayNBinsCosThetaVis[0],ArrayNBinsCosThetaVis[NBinsCosThetaVis]);
 	  TrueFineBinEvPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinEvPlot",";E_{#nu} [GeV]",NBinsEv,ArrayNBinEv);
+	  TrueFineBinECalPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinECalPlot",";E^{Cal} [GeV]",NBinsEv,ArrayNBinEv);
+	  TrueFineBinMTildePlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinMTildePlot",";#tilde{m} [GeV/c^{2}]",20,-0.5,0.5);
 
 	  // 1D Nominal Binning
 
@@ -164,7 +170,10 @@ void FlatTreeAnalyzer::Loop() {
 
 	 SerialTrueThetaVis_InDeltaPnPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueSerialThetaVis_DeltaPnPlot",LabelXAxisThetaVis,tools.Return2DNBins(TwoDArrayNBinsThetaVisInDeltaPnSlices),&tools.Return2DBinIndices(TwoDArrayNBinsThetaVisInDeltaPnSlices)[0]);
 
-	PLGKIvsPLVis[inte] = new TH2D(InteractionLabels[inte]+"PLGKIvsPLVis",";p_{L}^{GKI} [GeV/c];p_{L}^{vis} [GeV/c]",20,-0.5,0.5,20,-0.5,0.5); 
+	PnGKIvsPnVis[inte] = new TH2D(InteractionLabels[inte]+"PnGKIvsPnVis",";p_{n}^{GKI} [GeV/c];p_{n}^{vis} [GeV/c]",20,0.,0.85,20,0.,0.85); 
+	PnGKIvsPnTrue[inte] = new TH2D(InteractionLabels[inte]+"PnGKIvsPnTrue",";p_{n}^{GKI} [GeV/c];p_{n}^{true} [GeV/c]",20,0.,0.85,20,0.,0.85); 
+	ThetaVisvsNeutronTheta[inte] = new TH2D(InteractionLabels[inte]+"ThetaVisvsNeutronTheta",";#theta_{vis}^{reco} [deg];#theta_{n}^{true} [deg]",20,0.,180,20,0.,180); 
+
 
 	  //--------------------------------------------------//
 
@@ -242,7 +251,16 @@ void FlatTreeAnalyzer::Loop() {
 
 		TFile* fspline = new TFile("OutputFiles/spline.root","readonly");
 		hspline = (TH1D*)(fspline->Get("TrueFineBinEvPlot"));
+
 	}
+
+	if (fOutputFile == "GENIE_v3_0_6_BNBToHondaECal") {
+
+		TFile* fspline = new TFile("OutputFiles/spline.root","readonly");
+		hspline = (TH1D*)(fspline->Get("TrueFineBinECalPlot"));
+
+	}
+
 
 	//----------------------------------------//
 	
@@ -286,7 +304,8 @@ void FlatTreeAnalyzer::Loop() {
 	  //	  cout << "fScaleFactor = " << fScaleFactor << ", Weight = " << Weight << endl;
 
 	  //double weight = 1.;	
-	  if (fOutputFile == "GiBUU_2023") { weight = weight/500.; } // To increase the stats, the GiBUU sample has been produced in 50 samples	
+	  if (fOutputFile == "GiBUU_2023") { weight = weight/105.; } // To increase the stats, the GiBUU sample has been produced in 105 samples	
+	  if (fOutputFile == "GiBUU_2023_medium") { weight = weight/150.; } // To increase the stats, the GiBUU sample has been produced in 73 samples	
 	  if (fOutputFile == "ACHILLES") { weight = weight*1000./(40./12.); } // ACHILLES scaling still under discussion
 
 	  //----------------------------------------//	
@@ -311,12 +330,23 @@ void FlatTreeAnalyzer::Loop() {
 
 	  //----------------------------------------//	
 
+	  // Loop over the particles before the interaction
+	  int neutron_index = -1;
+	  for (int i = 0; i < ninitp; i++) {
+
+		if (pdg_init[i] == 2112) { neutron_index = i; }
+
+	  }
+
+	  TVector3 init_neutron(px_init[neutron_index], py_init[neutron_index], pz_init[neutron_index]);
+	  double pn_true = init_neutron.Mag();
+
 	  // Loop over the final state particles / post FSI
 
 	  for (int i = 0; i < nfsp; i++) {
 		
 	    double pf = TMath::Sqrt( px[i]*px[i] + py[i]*py[i] + pz[i]*pz[i]);
-	    
+	  
             if (pdg[i] == 13 && (pf > 0.1 && pf < 1.2) ) {
 
 	      MuonTagging ++;
@@ -330,7 +360,7 @@ void FlatTreeAnalyzer::Loop() {
 	      ProtonID.push_back(i);
 
 	      double eff_mass = TMath::Sqrt(E[i]*E[i] - pf*pf);
-	      if ( string( fOutputFile ).find("GiBUU") != std::string::npos && eff_mass < ProtonMass_GeV) { cout << "eff_mass = " << eff_mass << endl; }
+	      //if ( string( fOutputFile ).find("GiBUU") != std::string::npos && eff_mass < ProtonMass_GeV) { cout << "eff_mass = " << eff_mass << endl; }
 
 	    }
 
@@ -479,7 +509,11 @@ void FlatTreeAnalyzer::Loop() {
 	    double ThetaVis = reco_stv_tool.ReturnThetaVis(); // deg
 	    double CosThetaVis = TMath::Cos(ThetaVis * TMath::Pi() / 180.);
 	    double PLVis = DeltaPT / TMath::Tan(ThetaVis * TMath::Pi() / 180.) - ECal;
-
+	    TVector3 beam_vec = reco_stv_tool.ReturnBeamVector();
+	    double PnVis = TMath::Sqrt( beam_vec.Mag2() + ECal*ECal - 2*ECal*beam_vec.Mag()*CosThetaVis );
+	    double init_neutron_theta_vis = init_neutron.Theta() *180./TMath::Pi() ;	
+	    double mtilde = reco_stv_tool.ReturnMTilde(); // GeV/c^2
+	   
 	    //----------------------------------------//	
 
 	    // Underflow / overflow
@@ -513,7 +547,11 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueFineBinThetaVisPlot[0]->Fill(ThetaVis,weight);
 	    TrueFineBinCosThetaVisPlot[0]->Fill(CosThetaVis,weight);
 	    TrueFineBinEvPlot[0]->Fill(Enu_true,weight);
-	    PLGKIvsPLVis[0]->Fill(DeltaPL,PLVis,weight);
+	    TrueFineBinECalPlot[0]->Fill(ECal,weight);
+	    PnGKIvsPnVis[0]->Fill(DeltaPn,PnVis,weight);
+	    PnGKIvsPnTrue[0]->Fill(DeltaPn,pn_true,weight);
+	    ThetaVisvsNeutronTheta[0]->Fill(ThetaVis,init_neutron_theta_vis,weight);
+	    TrueFineBinMTildePlot[0]->Fill(mtilde,weight);
 
 	    // filling in the histo based on the interaction mode
 
@@ -524,7 +562,11 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueFineBinThetaVisPlot[genie_mode]->Fill(ThetaVis,weight);
 	    TrueFineBinCosThetaVisPlot[genie_mode]->Fill(CosThetaVis,weight);
 	    TrueFineBinEvPlot[genie_mode]->Fill(Enu_true,weight);
-	    PLGKIvsPLVis[genie_mode]->Fill(DeltaPL,PLVis,weight);
+	    TrueFineBinECalPlot[genie_mode]->Fill(ECal,weight);
+	    PnGKIvsPnVis[genie_mode]->Fill(DeltaPn,PnVis,weight);
+	    PnGKIvsPnTrue[genie_mode]->Fill(DeltaPn,pn_true,weight);
+	    ThetaVisvsNeutronTheta[genie_mode]->Fill(ThetaVis,init_neutron_theta_vis,weight);
+	    TrueFineBinMTildePlot[genie_mode]->Fill(mtilde,weight);
 
 	    //----------------------------------------//
 
@@ -702,6 +744,7 @@ void FlatTreeAnalyzer::Loop() {
 		Reweight(TrueFineBinThetaVisPlot[inte]);
 		Reweight(TrueFineBinCosThetaVisPlot[inte]);
 		Reweight(TrueFineBinEvPlot[inte]);
+		Reweight(TrueFineBinECalPlot[inte]);
 
 	        // 1D Fine Binning Pre FSI
 

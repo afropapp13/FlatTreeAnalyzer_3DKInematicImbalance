@@ -27,7 +27,7 @@ using namespace Constants;
 
 //----------------------------------------//
 
-void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotANL_SF = false, bool closure = false) {
+void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotANL_SF = false, bool closure = false, bool plot_nuclear = false, bool plot_mec = false, bool plot_gibuu = false) {
 
 	//----------------------------------------//
 
@@ -48,6 +48,10 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 	if (PlotGENIE) { Extra = "Genie"; }
 	if (PlotANL_SF) { Extra = "ANL_SF"; }
 	if (closure) { Extra = "Closure"; }
+	if (plot_gibuu) { Extra = "gibuu"; }
+	if (plot_mec) { Extra = "mec"; }
+	if (plot_nuclear) { Extra = "nuclear"; }
+
 
 	//----------------------------------------//
 
@@ -142,6 +146,35 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 			NameOfSamples.push_back("NuWro_19_02_1"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GiBUU_2023"); Colors.push_back(kMagenta+1); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
 			NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kYellow-6); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle); weighted.push_back("");
+
+		}	
+
+		//----------------------------------------//		
+
+		if (plot_gibuu) {
+
+			NameOfSamples.push_back("GiBUU_2023_medium"); Colors.push_back(kOrange+7); Labels.push_back("GiBUU in medium "); LineStyle.push_back(kSolid); weighted.push_back(""); 
+			NameOfSamples.push_back("GiBUU_2023"); Colors.push_back(kGreen+1); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
+
+		}	
+
+		//----------------------------------------//		
+
+		if (plot_mec) {
+
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kMagenta+1); Labels.push_back("Nieves "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
+			NameOfSamples.push_back("GENIE_v3_0_6_Empirical"); Colors.push_back(kGreen+1); Labels.push_back("Empirical "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
+			NameOfSamples.push_back("GENIE_v3_0_6_SuSAv2"); Colors.push_back(kOrange+7); Labels.push_back("SuSAv2 "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
+
+		}	
+
+		//----------------------------------------//		
+
+		if (plot_nuclear) {
+
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kMagenta+1); Labels.push_back("LFG "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
+			NameOfSamples.push_back("G18_10a_02_11a_SF_Fortran"); Colors.push_back(kGreen+1); Labels.push_back("SF "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
+			NameOfSamples.push_back("GENIE_v3_0_6_RFG"); Colors.push_back(kOrange+7); Labels.push_back("RFG "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
 
 		}	
 
@@ -530,7 +563,16 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				MECPlotsTrue[WhichSample][WhichPlot] = Multiply(MECPlotsTrue[WhichSample][WhichPlot],Ac);
 				RESPlotsTrue[WhichSample][WhichPlot] = Multiply(RESPlotsTrue[WhichSample][WhichPlot],Ac);
 				DISPlotsTrue[WhichSample][WhichPlot] = Multiply(DISPlotsTrue[WhichSample][WhichPlot],Ac);
-				COHPlotsTrue[WhichSample][WhichPlot] = Multiply(COHPlotsTrue[WhichSample][WhichPlot],Ac);																					
+				COHPlotsTrue[WhichSample][WhichPlot] = Multiply(COHPlotsTrue[WhichSample][WhichPlot],Ac);																				
+				// Area normalize MC to data
+				double mc_sf = PlotsReco[0][WhichPlot]->Integral("width") / PlotsTrue[WhichSample][WhichPlot]->Integral("width");
+				//PlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);
+				//QEPlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);
+				//MECPlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);
+				//RESPlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);
+				//DISPlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);
+				//COHPlotsTrue[WhichSample][WhichPlot]->Scale(mc_sf);
+	
 			}							
 
 			//------------------------------------//
@@ -592,7 +634,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				PlotCanvas->SetBottomMargin(0.14);
 				PlotCanvas->SetTopMargin(0.12);
 				PlotCanvas->SetLeftMargin(0.19);
-				PlotCanvas->SetRightMargin(0.02);				
+				PlotCanvas->SetRightMargin(0.05);				
 
 				TLegend* leg = new TLegend(0.38,0.69,0.72,0.85);
 				TLegend* legMC = new TLegend(0.7,0.69,0.93,0.85);
@@ -684,6 +726,10 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				
 				//------------------------------//
 
+				// Area normalize MC to data
+				double sf = PlotsReco[0][WhichPlot]->Integral("width") / PlotsTrue[0][WhichPlot]->Integral("width");
+				//PlotsTrue[0][WhichPlot]->Scale(sf);
+	
 				// Overlay
 				
 				MC[WhichPlot][NDimSlice][0] = tools.GetHistoBins(PlotsTrue[0][WhichPlot],SerialVectorLowBin.at(NDimSlice),SerialVectorHighBin.at(NDimSlice), MultiDimScaleFactor[ MapUncorCor[ NameCopy ] ], SerialSliceBinning,"Overlay");
@@ -759,7 +805,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				if (Runs[WhichRun] == "Run3") { tor860_wcut = Fulltor860_wcut_Run3; }
 				if (Runs[WhichRun] == "Run5") { tor860_wcut = Fulltor860_wcut_Run5; }
 				if (Runs[WhichRun] == "Combined") { tor860_wcut = Fulltor860_wcut_Combined; }
-				TString Label = ToString(tor860_wcut)+" POT";			
+				TString Label = ToString(tor860_wcut).ReplaceAll("e"," #times10").ReplaceAll("+","^{")+"} POT";	
 				
 				// ---------------------------------------------------------------------------------------------------------
 				// ---------------------------------------------------------------------------------------------------------
@@ -767,7 +813,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				leg->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"MicroBooNE Data","");
 				leg->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],Label,"");
 				leg->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"Stat #oplus Shape","ep");
-				leg->AddEntry(BeamOnNormOnly[WhichPlot][NDimSlice],"Norm Unc","f");
+				//leg->AddEntry(BeamOnNormOnly[WhichPlot][NDimSlice],"Norm Unc","f");
 				leg->Draw();			
 
 				legMC->Draw();

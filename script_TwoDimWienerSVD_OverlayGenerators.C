@@ -13,5 +13,11 @@
 	//gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,true)");
 	//Closure
 	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,false,true)");
+	//nuclear
+	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,false,false,true)");
+	//mec
+	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,false,false,false,true)");
+	//gibuu
+	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,false,false,false,false,true)");
 
 }
