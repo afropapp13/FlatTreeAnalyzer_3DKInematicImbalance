@@ -59,6 +59,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	PlotNames.push_back("MuonCosThetaSingleBinPlot");
 	PlotNames.push_back("SerialThetaVis_ECalPlot");
 	PlotNames.push_back("SerialThetaVis_DeltaPnPlot");
+	PlotNames.push_back("SerialThetaVis_PMissPlot");
 
 	const int N1DPlots = PlotNames.size();
 	cout << "Number of 1D Plots = " << N1DPlots << endl;
@@ -161,7 +162,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (plot_gibuu) {
 
-			NameOfSamples.push_back("GiBUU_2023_medium"); Colors.push_back(kOrange+7); Labels.push_back("GiBUU in medium "); LineStyle.push_back(kSolid); weighted.push_back(""); 
+			NameOfSamples.push_back("GiBUU_2023_medium"); Colors.push_back(kOrange+7); Labels.push_back("in medium "); LineStyle.push_back(kSolid); weighted.push_back(""); 
 			NameOfSamples.push_back("GiBUU_2023"); Colors.push_back(kGreen+1); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
 
 		}	

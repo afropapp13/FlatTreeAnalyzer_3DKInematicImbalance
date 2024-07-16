@@ -126,6 +126,7 @@ void GeneratorOverlay(TString Tag = "") {
 	PlotNames.push_back("TrueFineBinCosThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{vis}}  #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
 	PlotNames.push_back("TrueFineBinEvPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE_{#nu}}  #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
 	PlotNames.push_back("TrueFineBinECalPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE^{Cal}}  #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
+	PlotNames.push_back("TrueFineBinPMissPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{miss}}  #left[10^{-38} #frac{cm^{2}}{GeV/c Ar}#right]");
 
 	//------------------------------//
 

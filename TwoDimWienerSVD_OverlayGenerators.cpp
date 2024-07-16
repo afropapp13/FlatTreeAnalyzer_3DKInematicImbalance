@@ -65,6 +65,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 	PlotNames.push_back("ThetaVis_ECalPlot"); 
 	PlotNames.push_back("ThetaVis_DeltaPnPlot"); 
+	PlotNames.push_back("ThetaVis_PMissPlot"); 
 	
 	//----------------------------------------//	
 
@@ -153,7 +154,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		if (plot_gibuu) {
 
-			NameOfSamples.push_back("GiBUU_2023_medium"); Colors.push_back(kOrange+7); Labels.push_back("GiBUU in medium "); LineStyle.push_back(kSolid); weighted.push_back(""); 
+			NameOfSamples.push_back("GiBUU_2023_medium"); Colors.push_back(kOrange+7); Labels.push_back("in medium "); LineStyle.push_back(kSolid); weighted.push_back(""); 
 			NameOfSamples.push_back("GiBUU_2023"); Colors.push_back(kGreen+1); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
 
 		}	
@@ -383,6 +384,14 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				SliceBinning.push_back(TwoDArrayNBinsThetaVisInDeltaPnSlices);
 
 			}
+
+			if (PlotNames[WhichPlot] == "ThetaVis_PMissPlot") {
+
+				SliceDiscriminators.push_back(TwoDArrayNBinsPMiss); 
+				SliceBinning.push_back(TwoDArrayNBinsThetaVisInPMissSlices);
+
+			}
+
 
 			//----------------------------------------//
 

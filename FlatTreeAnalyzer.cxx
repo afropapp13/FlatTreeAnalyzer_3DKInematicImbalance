@@ -70,7 +70,7 @@ void FlatTreeAnalyzer::Loop() {
 	TH1D* TrueFineBinCosThetaVisPlot[NInte];
 	TH1D* TrueFineBinEvPlot[NInte];
 	TH1D* TrueFineBinECalPlot[NInte];
-	TH1D* TrueFineBinMTildePlot[NInte];
+	TH1D* TrueFineBinPMissPlot[NInte];
 
 	// 1D Nominal Binning
 
@@ -79,6 +79,7 @@ void FlatTreeAnalyzer::Loop() {
 	TH1D* TrueProtonCosThetaPlot[NInte];
 	TH1D* TrueThetaVisPlot[NInte];
 	TH1D* TrueCosThetaVisPlot[NInte];
+	TH1D* TruePMissPlot[NInte];
 
 	// 2D plots
 
@@ -87,6 +88,10 @@ void FlatTreeAnalyzer::Loop() {
 
 	TH1D* TrueThetaVis_InDeltaPnTwoDPlot[NInte][TwoDNBinsDeltaPn];
 	TH1D* SerialTrueThetaVis_InDeltaPnPlot[NInte];
+
+	TH1D* TrueThetaVis_InPMissTwoDPlot[NInte][TwoDNBinsPMiss];
+	TH1D* SerialTrueThetaVis_InPMissPlot[NInte];
+
 
 	// Relate pL_GKI to pL_vis = pT * tan(theta_vis)
 	
@@ -104,6 +109,7 @@ void FlatTreeAnalyzer::Loop() {
 	TH1D* NoFSITrueFineBinProtonCosThetaPlot[NInte];
 	TH1D* NoFSITrueFineBinThetaVisPlot[NInte];
 	TH1D* NoFSITrueFineBinCosThetaVisPlot[NInte];
+	TH1D* NoFSITrueFineBinPMissPlot[NInte];
 
 	// 1D Nominal Binning
 
@@ -111,6 +117,7 @@ void FlatTreeAnalyzer::Loop() {
 	TH1D* NoFSITrueProtonCosThetaPlot[NInte];
 	TH1D* NoFSITrueThetaVisPlot[NInte];
 	TH1D* NoFSITrueCosThetaVisPlot[NInte];
+	TH1D* NoFSITruePMissPlot[NInte];
 
 	// 2D plots
 
@@ -119,6 +126,10 @@ void FlatTreeAnalyzer::Loop() {
 
 	TH1D* NoFSITrueThetaVis_InDeltaPnTwoDPlot[NInte][TwoDNBinsDeltaPn];
 	TH1D* NoFSISerialTrueThetaVis_InDeltaPnPlot[NInte];
+
+	TH1D* NoFSITrueThetaVis_InPMissTwoDPlot[NInte][TwoDNBinsPMiss];
+	TH1D* NoFSISerialTrueThetaVis_InPMissPlot[NInte];
+
 
 	// Relate pL_GKI to pL_vis = pT * tan(theta_vis)
 	
@@ -142,7 +153,7 @@ void FlatTreeAnalyzer::Loop() {
 	  TrueFineBinCosThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinCosThetaVisPlot",";cos#theta_{vis}",25,ArrayNBinsCosThetaVis[0],ArrayNBinsCosThetaVis[NBinsCosThetaVis]);
 	  TrueFineBinEvPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinEvPlot",";E_{#nu} [GeV]",NBinsEv,ArrayNBinEv);
 	  TrueFineBinECalPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinECalPlot",";E^{Cal} [GeV]",NBinsEv,ArrayNBinEv);
-	  TrueFineBinMTildePlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinMTildePlot",";#tilde{m} [GeV/c^{2}]",20,-0.5,0.5);
+	  TrueFineBinPMissPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinPMissPlot",";p_{miss} [GeV/c]",20,ArrayNBinsPMiss[0],ArrayNBinsPMiss[NBinsPMiss]);
 
 	  // 1D Nominal Binning
 
@@ -151,6 +162,7 @@ void FlatTreeAnalyzer::Loop() {
 	  TrueProtonCosThetaPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueProtonCosThetaPlot",";cos#theta_{p}",NBinsProtonCosTheta,ArrayNBinsProtonCosTheta);
 	  TrueThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueThetaVisPlot","#theta_{vis} [deg]",NBinsThetaVis,ArrayNBinsThetaVis);
 	  TrueCosThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueCosThetaVisPlot","cos#theta_{vis}",NBinsCosThetaVis,ArrayNBinsCosThetaVis);
+	  TruePMissPlot[inte] = new TH1D(InteractionLabels[inte]+"TruePMissPlot","p_{miss} [GeV/c]",NBinsPMiss,ArrayNBinsPMiss);
 
 	  for (int WhichECal = 0; WhichECal < TwoDNBinsECal; WhichECal++) {
 
@@ -161,6 +173,8 @@ void FlatTreeAnalyzer::Loop() {
 
 	 SerialTrueThetaVis_InECalPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueSerialThetaVis_ECalPlot",LabelXAxisThetaVis,tools.Return2DNBins(TwoDArrayNBinsThetaVisInECalSlices),&tools.Return2DBinIndices(TwoDArrayNBinsThetaVisInECalSlices)[0]);
 
+	  //--------------------------------------------------//
+
 	  for (int WhichDeltaPn = 0; WhichDeltaPn < TwoDNBinsDeltaPn; WhichDeltaPn++) {
 
 		TString ThetaVisTwoDInDeltaPnLabel = "ThetaVis_DeltaPn_"+tools.ConvertToString(TwoDArrayNBinsDeltaPn[WhichDeltaPn])+"To"+tools.ConvertToString(TwoDArrayNBinsDeltaPn[WhichDeltaPn+1])+"Plot";			
@@ -169,6 +183,20 @@ void FlatTreeAnalyzer::Loop() {
 	  }	
 
 	 SerialTrueThetaVis_InDeltaPnPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueSerialThetaVis_DeltaPnPlot",LabelXAxisThetaVis,tools.Return2DNBins(TwoDArrayNBinsThetaVisInDeltaPnSlices),&tools.Return2DBinIndices(TwoDArrayNBinsThetaVisInDeltaPnSlices)[0]);
+
+	//--------------------------------------------------//
+	
+	for (int WhichPMiss = 0; WhichPMiss < TwoDNBinsPMiss; WhichPMiss++) {
+
+		TString ThetaVisTwoDInPMissLabel = "ThetaVis_PMiss_"+tools.ConvertToString(TwoDArrayNBinsPMiss[WhichPMiss])+"To"+tools.ConvertToString(TwoDArrayNBinsPMiss[WhichPMiss+1])+"Plot";			
+		TrueThetaVis_InPMissTwoDPlot[inte][WhichPMiss] = new TH1D(InteractionLabels[inte]+"True"+ThetaVisTwoDInPMissLabel,LabelXAxisThetaVis,TwoDArrayNBinsThetaVisInPMissSlices[WhichPMiss].size()-1,&TwoDArrayNBinsThetaVisInPMissSlices[WhichPMiss][0]);
+
+	  }	
+
+	 SerialTrueThetaVis_InPMissPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueSerialThetaVis_PMissPlot",LabelXAxisThetaVis,tools.Return2DNBins(TwoDArrayNBinsThetaVisInPMissSlices),&tools.Return2DBinIndices(TwoDArrayNBinsThetaVisInPMissSlices)[0]);
+
+
+	//--------------------------------------------------//
 
 	PnGKIvsPnVis[inte] = new TH2D(InteractionLabels[inte]+"PnGKIvsPnVis",";p_{n}^{GKI} [GeV/c];p_{n}^{vis} [GeV/c]",20,0.,0.85,20,0.,0.85); 
 	PnGKIvsPnTrue[inte] = new TH2D(InteractionLabels[inte]+"PnGKIvsPnTrue",";p_{n}^{GKI} [GeV/c];p_{n}^{true} [GeV/c]",20,0.,0.85,20,0.,0.85); 
@@ -185,6 +213,7 @@ void FlatTreeAnalyzer::Loop() {
 	  NoFSITrueFineBinProtonCosThetaPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueFineBinProtonCosThetaPlot",";cos#theta_{p}",20,-1.,1.);
 	  NoFSITrueFineBinThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueFineBinThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
 	  NoFSITrueFineBinCosThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueFineBinCosThetaVisPlot",";cos#theta_{vis}",25,ArrayNBinsCosThetaVis[0],ArrayNBinsCosThetaVis[NBinsCosThetaVis]);
+	  NoFSITrueFineBinPMissPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueFineBinPMissPlot",";p_{miss} [GeV/c]",20,ArrayNBinsPMiss[0],ArrayNBinsPMiss[NBinsPMiss]);
 
 	  // 1D Nominal Binning
 
@@ -192,6 +221,9 @@ void FlatTreeAnalyzer::Loop() {
 	  NoFSITrueProtonCosThetaPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueProtonCosThetaPlot",";cos#theta_{p}",NBinsProtonCosTheta,ArrayNBinsProtonCosTheta[0],ArrayNBinsProtonCosTheta[NBinsProtonCosTheta]);
 	  NoFSITrueThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueThetaVisPlot",";#theta_{vis} [deg]",NBinsThetaVis,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
 	  NoFSITrueCosThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueCosThetaVisPlot",";cos#theta_{vis}",NBinsCosThetaVis,ArrayNBinsCosThetaVis[0],ArrayNBinsCosThetaVis[NBinsCosThetaVis]);
+	  NoFSITruePMissPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITruePMissPlot",";p_{miss} [GeV/c]",NBinsPMiss,ArrayNBinsPMiss[0],ArrayNBinsPMiss[NBinsPMiss]);
+
+	  //--------------------------------------------------//
 
 	  for (int WhichECal = 0; WhichECal < TwoDNBinsECal; WhichECal++) {
 
@@ -201,6 +233,8 @@ void FlatTreeAnalyzer::Loop() {
 	  }	
 
 	 NoFSISerialTrueThetaVis_InECalPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueSerialThetaVis_ECalPlot",LabelXAxisThetaVis,tools.Return2DNBins(TwoDArrayNBinsThetaVisInECalSlices),&tools.Return2DBinIndices(TwoDArrayNBinsThetaVisInECalSlices)[0]);
+
+	  //--------------------------------------------------//
 
 	  for (int WhichDeltaPn = 0; WhichDeltaPn < TwoDNBinsDeltaPn; WhichDeltaPn++) {
 
@@ -212,6 +246,17 @@ void FlatTreeAnalyzer::Loop() {
 	 NoFSISerialTrueThetaVis_InDeltaPnPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueSerialThetaVis_DeltaPnPlot",LabelXAxisThetaVis,tools.Return2DNBins(TwoDArrayNBinsThetaVisInDeltaPnSlices),&tools.Return2DBinIndices(TwoDArrayNBinsThetaVisInDeltaPnSlices)[0]);
 
 	NoFSIPLGKIvsPLVis[inte] = new TH2D(InteractionLabels[inte]+"NoFSIPLGKIvsPLVis",";p_{L}^{GKI} [GeV/c];p_{L}^{vis} [GeV/c]",20,-0.5,0.5,20,-0.5,0.5); 
+
+	  //--------------------------------------------------//
+
+	  for (int WhichPMiss = 0; WhichPMiss < TwoDNBinsPMiss; WhichPMiss++) {
+
+		TString ThetaVisTwoDInPMissLabel = "ThetaVis_PMiss_"+tools.ConvertToString(TwoDArrayNBinsPMiss[WhichPMiss])+"To"+tools.ConvertToString(TwoDArrayNBinsPMiss[WhichPMiss+1])+"Plot";			
+		NoFSITrueThetaVis_InPMissTwoDPlot[inte][WhichPMiss] = new TH1D(InteractionLabels[inte]+"NoFSITrue"+ThetaVisTwoDInPMissLabel,LabelXAxisThetaVis,TwoDArrayNBinsThetaVisInPMissSlices[WhichPMiss].size()-1,&TwoDArrayNBinsThetaVisInPMissSlices[WhichPMiss][0]);
+
+	  }	
+
+	 NoFSISerialTrueThetaVis_InPMissPlot[inte] = new TH1D(InteractionLabels[inte]+"NoFSITrueSerialThetaVis_PMissPlot",LabelXAxisThetaVis,tools.Return2DNBins(TwoDArrayNBinsThetaVisInPMissSlices),&tools.Return2DBinIndices(TwoDArrayNBinsThetaVisInPMissSlices)[0]);
 
 	  //--------------------------------------------------//
 
@@ -512,7 +557,7 @@ void FlatTreeAnalyzer::Loop() {
 	    TVector3 beam_vec = reco_stv_tool.ReturnBeamVector();
 	    double PnVis = TMath::Sqrt( beam_vec.Mag2() + ECal*ECal - 2*ECal*beam_vec.Mag()*CosThetaVis );
 	    double init_neutron_theta_vis = init_neutron.Theta() *180./TMath::Pi() ;	
-	    double mtilde = reco_stv_tool.ReturnMTilde(); // GeV/c^2
+	    double pmiss = reco_stv_tool.ReturnMTilde(); // GeV/c^2
 	   
 	    //----------------------------------------//	
 
@@ -526,6 +571,9 @@ void FlatTreeAnalyzer::Loop() {
             if (DeltaPn < ArrayNBinsDeltaPn[0]) { DeltaPn = (ArrayNBinsDeltaPn[0] + ArrayNBinsDeltaPn[1])/2.; }
             if (DeltaPn > ArrayNBinsDeltaPn[NBinsDeltaPn]) { DeltaPn = (ArrayNBinsDeltaPn[NBinsDeltaPn] + ArrayNBinsDeltaPn[NBinsDeltaPn-1])/2.; }
 
+            if (pmiss < ArrayNBinsPMiss[0]) { pmiss = (ArrayNBinsPMiss[0] + ArrayNBinsPMiss[1])/2.; }
+            if (pmiss > ArrayNBinsPMiss[NBinsPMiss]) { pmiss = (ArrayNBinsPMiss[NBinsPMiss] + ArrayNBinsPMiss[NBinsPMiss-1])/2.; }
+
 	    //----------------------------------------//	
 
 	    // 2D indices
@@ -535,6 +583,9 @@ void FlatTreeAnalyzer::Loop() {
 
 	    int DeltaPnTwoDIndex = tools.ReturnIndex(DeltaPn, TwoDArrayNBinsDeltaPn);
 	    int SerialThetaVisInDeltaPnIndex = tools.ReturnIndexIn2DList(TwoDArrayNBinsThetaVisInDeltaPnSlices,DeltaPnTwoDIndex,ThetaVis);
+
+	    int PMissTwoDIndex = tools.ReturnIndex( TMath::Abs(pmiss), TwoDArrayNBinsPMiss);
+	    int SerialThetaVisInPMissIndex = tools.ReturnIndexIn2DList(TwoDArrayNBinsThetaVisInPMissSlices,PMissTwoDIndex,ThetaVis);
 
 	    //----------------------------------------//
 
@@ -551,7 +602,7 @@ void FlatTreeAnalyzer::Loop() {
 	    PnGKIvsPnVis[0]->Fill(DeltaPn,PnVis,weight);
 	    PnGKIvsPnTrue[0]->Fill(DeltaPn,pn_true,weight);
 	    ThetaVisvsNeutronTheta[0]->Fill(ThetaVis,init_neutron_theta_vis,weight);
-	    TrueFineBinMTildePlot[0]->Fill(mtilde,weight);
+	    TrueFineBinPMissPlot[0]->Fill(pmiss,weight);
 
 	    // filling in the histo based on the interaction mode
 
@@ -566,7 +617,7 @@ void FlatTreeAnalyzer::Loop() {
 	    PnGKIvsPnVis[genie_mode]->Fill(DeltaPn,PnVis,weight);
 	    PnGKIvsPnTrue[genie_mode]->Fill(DeltaPn,pn_true,weight);
 	    ThetaVisvsNeutronTheta[genie_mode]->Fill(ThetaVis,init_neutron_theta_vis,weight);
-	    TrueFineBinMTildePlot[genie_mode]->Fill(mtilde,weight);
+	    TrueFineBinPMissPlot[genie_mode]->Fill(pmiss,weight);
 
 	    //----------------------------------------//
 
@@ -579,6 +630,7 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueProtonCosThetaPlot[0]->Fill(ProtonCosTheta,weight);
 	    TrueThetaVisPlot[0]->Fill(ThetaVis,weight);
 	    TrueCosThetaVisPlot[0]->Fill(CosThetaVis,weight);
+	    TruePMissPlot[0]->Fill(pmiss,weight);
 
 	    // 2D
 
@@ -586,6 +638,7 @@ void FlatTreeAnalyzer::Loop() {
 	    SerialTrueThetaVis_InECalPlot[0]->Fill(SerialThetaVisInECalIndex,weight);								
 	    TrueThetaVis_InDeltaPnTwoDPlot[0][DeltaPnTwoDIndex]->Fill(ThetaVis,weight);
 	    SerialTrueThetaVis_InDeltaPnPlot[0]->Fill(SerialThetaVisInDeltaPnIndex,weight);							
+	    SerialTrueThetaVis_InPMissPlot[0]->Fill(SerialThetaVisInPMissIndex,weight);	
 
 	    // filling in the histo based on the interaction mode
 
@@ -596,6 +649,7 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueProtonCosThetaPlot[genie_mode]->Fill(ProtonCosTheta,weight);
 	    TrueThetaVisPlot[genie_mode]->Fill(ThetaVis,weight);
 	    TrueCosThetaVisPlot[genie_mode]->Fill(CosThetaVis,weight);
+	    TruePMissPlot[genie_mode]->Fill(pmiss,weight);
 
 	    // 2D
 
@@ -603,6 +657,7 @@ void FlatTreeAnalyzer::Loop() {
 	    SerialTrueThetaVis_InECalPlot[genie_mode]->Fill(SerialThetaVisInECalIndex,weight);								
 	    TrueThetaVis_InDeltaPnTwoDPlot[genie_mode][DeltaPnTwoDIndex]->Fill(ThetaVis,weight);
 	    SerialTrueThetaVis_InDeltaPnPlot[genie_mode]->Fill(SerialThetaVisInDeltaPnIndex,weight);							
+	    SerialTrueThetaVis_InPMissPlot[genie_mode]->Fill(SerialThetaVisInPMissIndex,weight);
 
 	    //----------------------------------------//
 
@@ -637,7 +692,8 @@ void FlatTreeAnalyzer::Loop() {
 	    int pty_sgn = (DeltaPT_vec.Y() > 0) ? 1 : ( (DeltaPT_vec.Y() < 0) ? -1 : 0);
 	    double DeltaPL = reco_stv_tool.ReturnPL();
 	    double PLVis = DeltaPT / TMath::Tan(ThetaVis * TMath::Pi() / 180.) - ECal;
-
+	    double pmiss = reco_stv_tool.ReturnMTilde();
+	
 	    //----------------------------------------//	
 
 	    // Underflow / overflow
@@ -650,6 +706,9 @@ void FlatTreeAnalyzer::Loop() {
             if (DeltaPn < ArrayNBinsDeltaPn[0]) { DeltaPn = (ArrayNBinsDeltaPn[0] + ArrayNBinsDeltaPn[1])/2.; }
             if (DeltaPn > ArrayNBinsDeltaPn[NBinsDeltaPn]) { DeltaPn = (ArrayNBinsDeltaPn[NBinsDeltaPn] + ArrayNBinsDeltaPn[NBinsDeltaPn-1])/2.; }
 
+            if (pmiss < ArrayNBinsPMiss[0]) { pmiss = (ArrayNBinsPMiss[0] + ArrayNBinsPMiss[1])/2.; }
+            if (pmiss > ArrayNBinsPMiss[NBinsPMiss]) { pmiss = (ArrayNBinsPMiss[NBinsPMiss] + ArrayNBinsPMiss[NBinsPMiss-1])/2.; }
+
 	    //----------------------------------------//	
 
 	    // 2D indices
@@ -659,6 +718,10 @@ void FlatTreeAnalyzer::Loop() {
 
 	    int DeltaPnTwoDIndex = tools.ReturnIndex(DeltaPn, TwoDArrayNBinsDeltaPn);
 	    int SerialThetaVisInDeltaPnIndex = tools.ReturnIndexIn2DList(TwoDArrayNBinsThetaVisInDeltaPnSlices,DeltaPnTwoDIndex,ThetaVis);
+
+	    int PMissTwoDIndex = tools.ReturnIndex( TMath::Abs(pmiss), TwoDArrayNBinsPMiss);
+	    int SerialThetaVisInPMissIndex = tools.ReturnIndexIn2DList(TwoDArrayNBinsThetaVisInPMissSlices,PMissTwoDIndex,ThetaVis);
+
 
 	    //----------------------------------------//
 
@@ -670,6 +733,7 @@ void FlatTreeAnalyzer::Loop() {
 	    NoFSITrueFineBinProtonCosThetaPlot[0]->Fill(ProtonCosTheta,weight);
 	    NoFSITrueFineBinThetaVisPlot[0]->Fill(ThetaVis,weight);
 	    NoFSITrueFineBinCosThetaVisPlot[0]->Fill(CosThetaVis,weight);
+	    NoFSITrueFineBinPMissPlot[0]->Fill(pmiss,weight);
 	    NoFSIPLGKIvsPLVis[0]->Fill(DeltaPL,PLVis,weight);
 
 	    // filling in the histo based on the interaction mode
@@ -680,6 +744,7 @@ void FlatTreeAnalyzer::Loop() {
 	    NoFSITrueFineBinProtonCosThetaPlot[genie_mode]->Fill(ProtonCosTheta,weight);
 	    NoFSITrueFineBinThetaVisPlot[genie_mode]->Fill(ThetaVis,weight);
 	    NoFSITrueFineBinCosThetaVisPlot[genie_mode]->Fill(CosThetaVis,weight);
+	    NoFSITrueFineBinPMissPlot[genie_mode]->Fill(pmiss,weight);
 
 	    //----------------------------------------//
 
@@ -689,11 +754,13 @@ void FlatTreeAnalyzer::Loop() {
 	    NoFSITrueProtonCosThetaPlot[0]->Fill(ProtonCosTheta,weight);
 	    NoFSITrueThetaVisPlot[0]->Fill(ThetaVis,weight);
 	    NoFSITrueCosThetaVisPlot[0]->Fill(CosThetaVis,weight);
+	    NoFSITruePMissPlot[0]->Fill(pmiss,weight);
 
 	    NoFSITrueThetaVis_InECalTwoDPlot[0][ECalTwoDIndex]->Fill(ThetaVis,weight);
 	    NoFSISerialTrueThetaVis_InECalPlot[0]->Fill(SerialThetaVisInECalIndex,weight);								
 	    NoFSITrueThetaVis_InDeltaPnTwoDPlot[0][DeltaPnTwoDIndex]->Fill(ThetaVis,weight);
 	    NoFSISerialTrueThetaVis_InDeltaPnPlot[0]->Fill(SerialThetaVisInDeltaPnIndex,weight);							
+	    NoFSISerialTrueThetaVis_InPMissPlot[0]->Fill(SerialThetaVisInPMissIndex,weight);							
 
 	    // filling in the histo based on the interaction mode
 
@@ -703,6 +770,7 @@ void FlatTreeAnalyzer::Loop() {
 	    NoFSITrueProtonCosThetaPlot[genie_mode]->Fill(ProtonCosTheta,weight);
 	    NoFSITrueThetaVisPlot[genie_mode]->Fill(ThetaVis,weight);
 	    NoFSITrueCosThetaVisPlot[genie_mode]->Fill(CosThetaVis,weight);
+	    NoFSITruePMissPlot[genie_mode]->Fill(pmiss,weight);
 	    NoFSIPLGKIvsPLVis[genie_mode]->Fill(DeltaPL,PLVis,weight);
 
 	    // 2D
@@ -711,6 +779,7 @@ void FlatTreeAnalyzer::Loop() {
 	    NoFSISerialTrueThetaVis_InECalPlot[genie_mode]->Fill(SerialThetaVisInECalIndex,weight);								
 	    NoFSITrueThetaVis_InDeltaPnTwoDPlot[genie_mode][DeltaPnTwoDIndex]->Fill(ThetaVis,weight);
 	    NoFSISerialTrueThetaVis_InDeltaPnPlot[genie_mode]->Fill(SerialThetaVisInDeltaPnIndex,weight);							
+	    NoFSISerialTrueThetaVis_InPMissPlot[genie_mode]->Fill(SerialThetaVisInPMissIndex,weight);							
 
 	  } // End of the post-FSI selection
 
@@ -745,6 +814,7 @@ void FlatTreeAnalyzer::Loop() {
 		Reweight(TrueFineBinCosThetaVisPlot[inte]);
 		Reweight(TrueFineBinEvPlot[inte]);
 		Reweight(TrueFineBinECalPlot[inte]);
+		Reweight(TrueFineBinPMissPlot[inte]);
 
 	        // 1D Fine Binning Pre FSI
 
@@ -752,6 +822,7 @@ void FlatTreeAnalyzer::Loop() {
 		Reweight(NoFSITrueFineBinProtonCosThetaPlot[inte]);
 		Reweight(NoFSITrueFineBinThetaVisPlot[inte]);
 		Reweight(NoFSITrueFineBinCosThetaVisPlot[inte]);
+		Reweight(NoFSITrueFineBinPMissPlot[inte]);
 
 		// 2D analysis
 
@@ -768,6 +839,14 @@ void FlatTreeAnalyzer::Loop() {
 			Reweight(NoFSITrueThetaVis_InDeltaPnTwoDPlot[inte][ideltapn]);
 
 		}
+
+		for (int ipmiss = 0; ipmiss < TwoDNBinsPMiss; ipmiss++) {
+
+			Reweight(TrueThetaVis_InPMissTwoDPlot[inte][ipmiss]);
+			Reweight(NoFSITrueThetaVis_InPMissTwoDPlot[inte][ipmiss]);
+
+		}
+
 
 		//----------------------------------------//
 
