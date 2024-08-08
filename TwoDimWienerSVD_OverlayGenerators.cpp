@@ -41,7 +41,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 	gStyle->SetEndErrorSize(6);		
 	gStyle->SetOptStat(0);
 
-        TString PathToFiles = "/exp/uboone/data/users/apapadop/Atmospherics/myXSec/v08_00_00_70/";
+        TString PathToFiles = "/exp/uboone/data/users/"+UserID+"/Atmospherics/myXSec/v08_00_00_70/";
 
 	TString Extra = "";
 	if (PlotGen) { Extra = "Gene"; }
@@ -822,7 +822,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				leg->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"MicroBooNE Data","");
 				leg->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],Label,"");
 				leg->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"Stat #oplus Shape","ep");
-				//leg->AddEntry(BeamOnNormOnly[WhichPlot][NDimSlice],"Norm Unc","f");
+				leg->AddEntry(BeamOnNormOnly[WhichPlot][NDimSlice],"Norm Unc","f");
 				leg->Draw();			
 
 				legMC->Draw();
@@ -876,7 +876,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				
 				// Saving the canvas with the data (total uncertainties) vs overlay & generator predictions
 
-				PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/FlatTTreePlots/Atmospherics/"+Extra+"XSections_"+CanvasName+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
+				PlotCanvas->SaveAs("/exp/uboone/data/users/"+UserID+"/FlatTTreePlots/Atmospherics/"+Extra+"XSections_"+CanvasName+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
 
 				delete PlotCanvas;
 				

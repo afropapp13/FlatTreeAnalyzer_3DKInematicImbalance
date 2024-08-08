@@ -36,7 +36,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	TH1D::SetDefaultSumw2();
 	gStyle->SetEndErrorSize(6);		
 
-	TString PathToFiles = "/exp/uboone/data/users/apapadop/Atmospherics/myXSec/v08_00_00_70/";
+	TString PathToFiles = "/exp/uboone/data/users/"+UserID+"/Atmospherics/myXSec/v08_00_00_70/";
 
 	//----------------------------------------//
 
@@ -562,7 +562,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 				TString YaxisTitle = VarLabel[PlotNames[WhichPlot]];
 				YaxisTitle.ReplaceAll("deg","");
-				YaxisTitle.ReplaceAll("GeV/c","");
+				YaxisTitle.ReplaceAll("(GeV/c)","");
 				YaxisTitle.ReplaceAll("GeV","");
 				YaxisTitle.ReplaceAll("/c","");
 				//YaxisTitle.ReplaceAll("^{2}","");												
@@ -706,7 +706,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			leg->AddEntry(PlotsReco[0][WhichPlot],"MicroBooNE Data","");
 			leg->AddEntry(PlotsReco[0][WhichPlot],Label,"");
 			leg->AddEntry(PlotsReco[0][WhichPlot],"Stat #oplus Shape","ep");			
-			//leg->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm","f"); 
+			leg->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm","f"); 
 			leg->Draw();			
 
 			legMC->Draw();			
@@ -747,7 +747,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 			// Saving the canvas with the data (total uncertainties) vs overlay & generator predictions
 
-			PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/FlatTTreePlots/Atmospherics/"+Extra+"XSections_"+PlotNames[WhichPlot]+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
+			PlotCanvas->SaveAs("/exp/uboone/data/users/"+UserID+"/FlatTTreePlots/Atmospherics/"+Extra+"XSections_"+PlotNames[WhichPlot]+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
 			delete PlotCanvas;
 
 			//----------------------------------------//

@@ -91,7 +91,7 @@ void create_spline() {
 		PlotCanvas->cd();
 		spline->Draw("hist");
 
-		PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/PeLEETuples_Atmospherics/FlatTTreePlots/"+CanvasName+".pdf");
+		PlotCanvas->SaveAs("/exp/uboone/data/users/"+UserID+"/PeLEETuples_Atmospherics/FlatTTreePlots/"+CanvasName+".pdf");
 		delete PlotCanvas;
 		
 		f_spline->cd();

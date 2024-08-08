@@ -182,7 +182,7 @@ void PdfOverlay(TString Tag = "") {
 		PlotCanvas->cd();
 		leg->Draw();
 
-		PlotCanvas->SaveAs("/exp/uboone/data/users/apapadop/PeLEETuples_Atmospherics/FlatTTreePlots/"+Tag+CanvasName+".pdf");
+		PlotCanvas->SaveAs("/exp/uboone/data/users/"+UserID+"/PeLEETuples_Atmospherics/FlatTTreePlots/"+Tag+CanvasName+".pdf");
 		delete PlotCanvas;
 
 	} // End of the loop over the plots
