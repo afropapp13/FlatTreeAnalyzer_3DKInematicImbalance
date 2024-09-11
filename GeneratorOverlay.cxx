@@ -120,6 +120,7 @@ void GeneratorOverlay(TString Tag = "") {
 
 	// 1D
 
+	PlotNames.push_back("TrueFineBinNeutronMultiplicityPlot"); YAxisLabel.push_back("#sigma #left[10^{-38} #frac{cm^{2}}{Ar}#right]");	
 	PlotNames.push_back("TrueFineBinMuonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{#mu}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
 	PlotNames.push_back("TrueFineBinProtonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{p}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
 	PlotNames.push_back("TrueFineBinThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{vis}}  #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");

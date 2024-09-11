@@ -64,6 +64,7 @@ void FlatTreeAnalyzer::Loop() {
 
 	// 1D Fine Binning
 
+	TH1D* TrueFineBinNeutronMultiplicityPlot[NInte];
 	TH1D* TrueFineBinMuonCosThetaPlot[NInte];
 	TH1D* TrueFineBinProtonCosThetaPlot[NInte];
 	TH1D* TrueFineBinThetaVisPlot[NInte];
@@ -147,6 +148,7 @@ void FlatTreeAnalyzer::Loop() {
 
 	  // 1D Fine Binning
 
+	  TrueFineBinNeutronMultiplicityPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinNeutronMultiplicityPlot",";# neutrons",6,-0.5,5.5);
 	  TrueFineBinMuonCosThetaPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinMuonCosThetaPlot",";cos#theta_{#mu}",20,-1.,1.);
 	  TrueFineBinProtonCosThetaPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinProtonCosThetaPlot",";cos#theta_{p}",20,-1.,1.);
 	  TrueFineBinThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
@@ -364,7 +366,7 @@ void FlatTreeAnalyzer::Loop() {
 	  }
 
 	  int ProtonTagging = 0, ChargedPionTagging = 0, NeutralPionTagging = 0, MuonTagging = 0, TrueHeavierMesonCounter = 0;
-	  int ElectronTagging = 0, PhotonTagging = 0;
+	  int ElectronTagging = 0, PhotonTagging = 0, neutron_counter = 0;
 	  vector <int> ProtonID; ProtonID.clear();
 	  vector <int> MuonID; MuonID.clear();		
 
@@ -408,6 +410,8 @@ void FlatTreeAnalyzer::Loop() {
 	      //if ( string( fOutputFile ).find("GiBUU") != std::string::npos && eff_mass < ProtonMass_GeV) { cout << "eff_mass = " << eff_mass << endl; }
 
 	    }
+
+	    if (pdg[i] == 2112 ) { neutron_counter++; }
 
 	    if (fabs(pdg[i]) == 211 && pf > 0.07)  {
 
@@ -593,6 +597,7 @@ void FlatTreeAnalyzer::Loop() {
 
 	    // 1D Fine Binning
 
+	    TrueFineBinNeutronMultiplicityPlot[0]->Fill(neutron_counter,weight);
 	    TrueFineBinMuonCosThetaPlot[0]->Fill(MuonCosTheta,weight);
 	    TrueFineBinProtonCosThetaPlot[0]->Fill(ProtonCosTheta,weight);
 	    TrueFineBinThetaVisPlot[0]->Fill(ThetaVis,weight);
@@ -608,6 +613,7 @@ void FlatTreeAnalyzer::Loop() {
 
 	    // 1D Fine Binning
 
+	    TrueFineBinNeutronMultiplicityPlot[genie_mode]->Fill(neutron_counter,weight);	
 	    TrueFineBinMuonCosThetaPlot[genie_mode]->Fill(MuonCosTheta,weight);
 	    TrueFineBinProtonCosThetaPlot[genie_mode]->Fill(ProtonCosTheta,weight);
 	    TrueFineBinThetaVisPlot[genie_mode]->Fill(ThetaVis,weight);
