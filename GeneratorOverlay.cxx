@@ -125,7 +125,7 @@ void GeneratorOverlay(TString Tag = "") {
 	PlotNames.push_back("TrueFineBinProtonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{p}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
 	PlotNames.push_back("TrueFineBinThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{vis}}  #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
 	PlotNames.push_back("TrueFineBinCosThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{vis}}  #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
-	PlotNames.push_back("TrueFineBinEvPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE_{#nu}}  #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
+	PlotNames.push_back("TrueFineBinEvPlot"); YAxisLabel.push_back("#frac{#sigma}{E_{#nu}}  #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
 	PlotNames.push_back("TrueFineBinECalPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE^{Cal}}  #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
 	PlotNames.push_back("TrueFineBinPMissPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{miss}}  #left[10^{-38} #frac{cm^{2}}{GeV/c Ar}#right]");
 
@@ -163,8 +163,10 @@ void GeneratorOverlay(TString Tag = "") {
 		PlotCanvas->Draw();	
 
 		TLegend* leg = new TLegend(0.17,0.855,0.99,0.985);
+		if (Tag == "Honda" && PlotNames[iPlot] == "TrueFineBinEvPlot") { leg = new TLegend(0.75,0.7,0.9,0.8);  }
 		leg->SetBorderSize(0);
 		leg->SetNColumns(6);
+		if (Tag == "Honda" && PlotNames[iPlot] == "TrueFineBinEvPlot") { leg->SetNColumns(1); }
 		leg->SetTextSize(TextSize);	
 		leg->SetTextFont(FontStyle);						
 		leg->SetMargin(0.3);						
