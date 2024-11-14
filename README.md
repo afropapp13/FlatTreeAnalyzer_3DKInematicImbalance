@@ -14,4 +14,4 @@ root -b script_PdfOverlay.cxx
 
 # XSecs with Ac multiplication
 root -b script_WienerSVD_OverlayGenerators.C
-
+root -b script_TwoDimWienerSVD_OverlayGenerators.C
