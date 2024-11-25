@@ -645,8 +645,8 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				PlotCanvas->SetLeftMargin(0.19);
 				PlotCanvas->SetRightMargin(0.05);				
 
-				TLegend* leg = new TLegend(0.38,0.69,0.72,0.85);
-				TLegend* legMC = new TLegend(0.7,0.69,0.93,0.85);
+				TLegend* leg = new TLegend(0.55,0.67,0.9,0.85);
+				TLegend* legMC = new TLegend(0.55,0.49,0.90,.67);
 			       
 				leg->SetBorderSize(0);
 				leg->SetTextSize(0.05);
@@ -814,7 +814,9 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				if (Runs[WhichRun] == "Run3") { tor860_wcut = Fulltor860_wcut_Run3; }
 				if (Runs[WhichRun] == "Run5") { tor860_wcut = Fulltor860_wcut_Run5; }
 				if (Runs[WhichRun] == "Combined") { tor860_wcut = Fulltor860_wcut_Combined; }
+
 				TString Label = ToString(tor860_wcut).ReplaceAll("e"," #times10").ReplaceAll("+","^{")+"} POT";	
+				if (Runs[WhichRun] == "Combined") { Label = "1.30 #times 10^{21} POT"; }
 				
 				// ---------------------------------------------------------------------------------------------------------
 				// ---------------------------------------------------------------------------------------------------------
@@ -879,7 +881,139 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				PlotCanvas->SaveAs("/exp/uboone/data/users/"+UserID+"/FlatTTreePlots/Atmospherics/"+Extra+"XSections_"+CanvasName+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
 
 				delete PlotCanvas;
-				
+				//----------------------------------------//
+				//----------------------------------------//
+
+				// interaction breakdown canvas			
+				// start of the loop over the mc samples
+
+				for (int WhichSample = 0; WhichSample < NSamples; WhichSample++) {
+			
+					// Canvas with interaction breakdown for each generator
+			
+					TCanvas* inte_can = new TCanvas(NameOfSamples[WhichSample]+"_" + PlotNames[WhichPlot]+"_"+Runs[WhichRun],NameOfSamples[WhichSample]+"_" + PlotNames[WhichPlot]+"_"+Runs[WhichRun],205,34,1024,768);
+					inte_can->cd();
+					inte_can->SetBottomMargin(0.14);
+					inte_can->SetLeftMargin(0.18);
+
+					//----------------------------------------//
+
+					TLegend* ilegmc = new TLegend(0.43,0.52,0.83,0.85);
+					ilegmc->SetBorderSize(0);
+					ilegmc->SetTextSize(0.05);
+					ilegmc->SetTextFont(FontStyle);
+					ilegmc->SetNColumns(2);
+					ilegmc->SetMargin(0.18);
+					ilegmc->SetFillStyle(0);
+
+					//----------------------------------------//
+
+					TString THStackName = NameOfSamples[WhichSample] + "THStack_" + PlotNames[WhichPlot]+"_"+Runs[WhichRun];
+					THStack* thstack = new THStack(THStackName,"");	
+
+					//----------------------------------------//
+
+					// plot data for the first time
+
+					BeamOnStatShape[WhichPlot][NDimSlice]->GetYaxis()->SetTitleOffset(1.3);
+					BeamOnStatShape[WhichPlot][NDimSlice]->Draw("e1x0 same"); // BeamOn Stat Total
+
+					//----------------------------------------//
+
+					// QE
+
+					QEMC[WhichPlot][NDimSlice][WhichSample]->SetLineColor(OverlayColor);
+					QEMC[WhichPlot][NDimSlice][WhichSample]->SetFillColor(OverlayColor);
+					thstack->Add(QEMC[WhichPlot][NDimSlice][WhichSample],"hist");
+					thstack->Draw("same");
+
+					//----------------------------------------//
+
+					// MEC
+
+					MECMC[WhichPlot][NDimSlice][WhichSample]->SetLineColor(kOrange-3);
+					MECMC[WhichPlot][NDimSlice][WhichSample]->SetFillColor(kOrange-3);
+					thstack->Add(MECMC[WhichPlot][NDimSlice][WhichSample],"hist");
+					thstack->Draw("same");
+
+					//----------------------------------------//
+
+					// RES
+
+					RESMC[WhichPlot][NDimSlice][WhichSample]->SetLineColor(kGreen+1);
+					RESMC[WhichPlot][NDimSlice][WhichSample]->SetFillColor(kGreen+1);
+					thstack->Add(RESMC[WhichPlot][NDimSlice][WhichSample],"hist");
+					thstack->Draw("same");
+
+					//----------------------------------------//
+
+					// DIS
+
+					DISMC[WhichPlot][NDimSlice][WhichSample]->SetLineColor(kRed+1);
+					DISMC[WhichPlot][NDimSlice][WhichSample]->SetFillColor(kRed+1);
+					thstack->Add(DISMC[WhichPlot][NDimSlice][WhichSample],"hist");
+					thstack->Draw("same");
+
+					//----------------------------------------//
+
+					// plot the data points again so that they can be on top
+
+					BeamOnStatShape[WhichPlot][NDimSlice]->Draw("e1x0 same"); // BeamOn Stat Total
+					BeamOnStatOnly[WhichPlot][NDimSlice]->Draw("e1x0 same"); // Stat Only
+					BeamOnNormOnly[WhichPlot][NDimSlice]->Draw("e2 hist same"); // norm only	
+
+					//----------------------------------------//
+
+					TH1D* hstack = (TH1D*)(thstack->GetStack()->Last());
+
+					double qe_frac = QEMC[WhichPlot][NDimSlice][WhichSample]->Integral() / hstack->Integral() * 100.;
+					TLegendEntry* lqe = ilegmc->AddEntry(QEMC[WhichPlot][NDimSlice][WhichSample],"QE (" + to_string_with_precision(qe_frac,1.) + "%)","f");
+					lqe->SetTextColor(OverlayColor);	
+
+					double mec_frac = MECMC[WhichPlot][NDimSlice][WhichSample]->Integral() / hstack->Integral() * 100.;
+					TLegendEntry* lmec = ilegmc->AddEntry(MECMC[WhichPlot][NDimSlice][WhichSample],"MEC (" + to_string_with_precision(mec_frac,1.) + "%)","f");
+					lmec->SetTextColor(kOrange-3);	
+
+					double res_frac = RESMC[WhichPlot][NDimSlice][WhichSample]->Integral() / hstack->Integral() * 100.;
+					TLegendEntry* lres = ilegmc->AddEntry(RESMC[WhichPlot][NDimSlice][WhichSample],"RES (" + to_string_with_precision(res_frac,1.) + "%)","f");
+					lres->SetTextColor(kGreen+1);	
+
+					double dis_frac = DISMC[WhichPlot][NDimSlice][WhichSample]->Integral() / hstack->Integral() * 100.;
+					TLegendEntry* ldis = ilegmc->AddEntry(DISMC[WhichPlot][NDimSlice][WhichSample],"DIS (" + to_string_with_precision(dis_frac,1.) + "%)","f");
+					ldis->SetTextColor(kRed+1);	
+
+					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"Stat#oplusShape","ep");
+
+					ilegmc->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm","f");
+
+					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"MicroBooNE Data","");	
+
+					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
+
+					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"1.30 #times 10^{21} POT","");
+
+					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
+
+					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"#chi^{2}/ndf = " + to_string_with_precision(Chi2[WhichSample],1.) + "/"+ to_string_with_precision(Ndof[WhichSample],0) ,"");
+
+					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
+
+					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"p-value = " + to_string_with_precision(pval[WhichSample],1.),"");
+
+					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
+
+					ilegmc->Draw();
+
+					//----------------------------------------//
+
+					// Save canvas with interaction breakdown
+
+					gPad->RedrawAxis();
+					inte_can->SaveAs("/exp/uboone/data/users/"+UserID+"/FlatTTreePlots/Atmospherics/intebreak_" + NameOfSamples[WhichSample] + "_XSections_"+CanvasName+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
+					delete inte_can;
+
+				} // end of the loop over the mc samples
+
 				//------------------------------------//
 
 				// Update the starting index to move to the next slice

@@ -500,16 +500,16 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			midPad->SetRightMargin(0.03);			
 			midPad->Draw();
 
-			TLegend* leg = new TLegend(0.25,0.69,0.58,0.85);
-			TLegend* legMC = new TLegend(0.56,0.69,0.66,0.85);
+			TLegend* leg = new TLegend(0.26,0.68,0.59,0.85);
+			TLegend* legMC = new TLegend(0.59,0.68,0.69,0.85);
 			
 			if (
-
-				PlotNames[WhichPlot] == "MuonCosThetaPlot"
-				) { 
+				PlotNames[WhichPlot] == "MuonCosThetaPlot" || 
+				PlotNames[WhichPlot].Contains("Serial")
+			) { 
 				
-			  leg = new TLegend(0.15,0.69,0.48,0.85);	
-			  legMC = new TLegend(0.46,0.69,0.56,0.85);
+			  leg = new TLegend(0.24,0.68,0.57,0.85);	
+			  legMC = new TLegend(0.56,0.68,0.66,0.85);
 
 			}
 
@@ -679,7 +679,9 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			if (Runs[WhichRun] == "Run3") { tor860_wcut = Fulltor860_wcut_Run3; }
 			if (Runs[WhichRun] == "Run5") { tor860_wcut = Fulltor860_wcut_Run5; }
 			if (Runs[WhichRun] == "Combined") { tor860_wcut = Fulltor860_wcut_Combined; }
+
 			TString Label = ToString(tor860_wcut).ReplaceAll("e"," #times 10").ReplaceAll("+","^{")+"} POT";	
+			if (Runs[WhichRun] == "Combined") { Label = "1.30 #times 10^{21} POT"; }
 
 			// ---------------------------------------------------------------------------------------------------------
 
@@ -749,6 +751,139 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 			PlotCanvas->SaveAs("/exp/uboone/data/users/"+UserID+"/FlatTTreePlots/Atmospherics/"+Extra+"XSections_"+PlotNames[WhichPlot]+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
 			delete PlotCanvas;
+
+			//----------------------------------------//
+			//----------------------------------------//
+
+			// interaction breakdown canvas			
+			// start of the loop over the mc samples
+
+			for (int WhichSample = 0; WhichSample < NSamples; WhichSample++) {
+			
+				// Canvas with interaction breakdown for each generator
+			
+				TCanvas* inte_can = new TCanvas(NameOfSamples[WhichSample]+"_" + PlotNames[WhichPlot]+"_"+Runs[WhichRun],NameOfSamples[WhichSample]+"_" + PlotNames[WhichPlot]+"_"+Runs[WhichRun],205,34,1024,768);
+				inte_can->cd();
+				inte_can->SetBottomMargin(0.14);
+				inte_can->SetLeftMargin(0.16);
+
+				//----------------------------------------//
+
+				TLegend* ilegmc = new TLegend(0.43,0.52,0.83,0.85);
+				ilegmc->SetBorderSize(0);
+				ilegmc->SetTextSize(0.05);
+				ilegmc->SetTextFont(FontStyle);
+				ilegmc->SetNColumns(2);
+				ilegmc->SetMargin(0.18);
+				ilegmc->SetFillStyle(0);
+
+				//----------------------------------------//
+				
+				TString THStackName = NameOfSamples[WhichSample] + "THStack_" + PlotNames[WhichPlot]+"_"+Runs[WhichRun];
+				THStack* thstack = new THStack(THStackName,"");	
+
+				//----------------------------------------//
+
+				// plot data for the first time
+				
+				PlotsReco[0][WhichPlot]->GetYaxis()->SetTitleOffset(1.1);
+				PlotsReco[0][WhichPlot]->Draw("e1x0 same"); // BeamOn Stat Total
+
+				//----------------------------------------//
+
+				// QE
+
+				QEPlotsTrue[WhichSample][WhichPlot]->SetLineColor(OverlayColor);
+				QEPlotsTrue[WhichSample][WhichPlot]->SetFillColor(OverlayColor);
+				thstack->Add(QEPlotsTrue[WhichSample][WhichPlot],"hist");
+				thstack->Draw("same");
+
+				//----------------------------------------//
+
+				// MEC
+
+				MECPlotsTrue[WhichSample][WhichPlot]->SetLineColor(kOrange-3);
+				MECPlotsTrue[WhichSample][WhichPlot]->SetFillColor(kOrange-3);
+				thstack->Add(MECPlotsTrue[WhichSample][WhichPlot],"hist");
+				thstack->Draw("same");
+
+				//----------------------------------------//
+
+				// RES
+
+				RESPlotsTrue[WhichSample][WhichPlot]->SetLineColor(kGreen+1);
+				RESPlotsTrue[WhichSample][WhichPlot]->SetFillColor(kGreen+1);
+				thstack->Add(RESPlotsTrue[WhichSample][WhichPlot],"hist");
+				thstack->Draw("same");
+
+				//----------------------------------------//
+
+				// DIS
+
+				DISPlotsTrue[WhichSample][WhichPlot]->SetLineColor(kRed+1);
+				DISPlotsTrue[WhichSample][WhichPlot]->SetFillColor(kRed+1);
+				thstack->Add(DISPlotsTrue[WhichSample][WhichPlot],"hist");
+				thstack->Draw("same");
+
+				//----------------------------------------//
+				
+				// plot the data points again so that they can be on top
+
+				PlotsReco[0][WhichPlot]->Draw("e1x0 same"); // BeamOn Stat Total
+				PlotsTotalReco[0][WhichPlot]->Draw("e1x0 same"); // Stat Only
+				PlotsNormOnly[0][WhichPlot]->Draw("e2 hist same"); // orm only	
+
+				//----------------------------------------//
+			
+				TH1D* hstack = (TH1D*)(thstack->GetStack()->Last());
+	
+				double qe_frac = QEPlotsTrue[WhichSample][WhichPlot]->Integral() / hstack->Integral() * 100.;
+				TLegendEntry* lqe = ilegmc->AddEntry(QEPlotsTrue[WhichSample][WhichPlot],"QE (" + to_string_with_precision(qe_frac,1.) + "%)","f");
+				lqe->SetTextColor(OverlayColor);	
+
+				double mec_frac = MECPlotsTrue[WhichSample][WhichPlot]->Integral() / hstack->Integral() * 100.;
+				TLegendEntry* lmec = ilegmc->AddEntry(MECPlotsTrue[WhichSample][WhichPlot],"MEC (" + to_string_with_precision(mec_frac,1.) + "%)","f");
+				lmec->SetTextColor(kOrange-3);	
+
+				double res_frac = RESPlotsTrue[WhichSample][WhichPlot]->Integral() / hstack->Integral() * 100.;
+				TLegendEntry* lres = ilegmc->AddEntry(RESPlotsTrue[WhichSample][WhichPlot],"RES (" + to_string_with_precision(res_frac,1.) + "%)","f");
+				lres->SetTextColor(kGreen+1);	
+
+				double dis_frac = DISPlotsTrue[WhichSample][WhichPlot]->Integral() / hstack->Integral() * 100.;
+				TLegendEntry* ldis = ilegmc->AddEntry(DISPlotsTrue[WhichSample][WhichPlot],"DIS (" + to_string_with_precision(dis_frac,1.) + "%)","f");
+				ldis->SetTextColor(kRed+1);	
+
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"Stat#oplusShape","ep");
+			
+				ilegmc->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm","f");
+	
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"MicroBooNE Data","");	
+				
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
+				
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"1.30 #times 10^{21} POT","");
+				
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
+	
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"#chi^{2}/ndf = " + to_string_with_precision(Chi2[WhichSample],1.) + "/"+ to_string_with_precision(Ndof[WhichSample],0) ,"");
+				
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
+	
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"p-value = " + to_string_with_precision(pval[WhichSample],1.),"");
+				
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
+				
+				ilegmc->Draw();
+
+				//----------------------------------------//
+
+				// Save canvas with interaction breakdown
+	
+				gPad->RedrawAxis();
+				inte_can->SaveAs("/exp/uboone/data/users/"+UserID+"/FlatTTreePlots/Atmospherics/intebreak_" + NameOfSamples[WhichSample] + "_XSections_"+PlotNames[WhichPlot]+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".pdf");
+				delete inte_can;
+
+			} // end of the loop over the mc samples
 
 			//----------------------------------------//
 
