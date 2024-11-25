@@ -126,7 +126,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (PlotGen) {
 
-			NameOfSamples.push_back("NuWro_19_02_1"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle); weighted.push_back("");
+			NameOfSamples.push_back("NuWro_21_09_02"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GiBUU_2023"); Colors.push_back(kMagenta+1); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
 			NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kYellow-6); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle); weighted.push_back("");
 
@@ -153,7 +153,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (plot_nuwro) {
 
-			NameOfSamples.push_back("NuWro_19_02_1"); Colors.push_back(kGreen+2); Labels.push_back("NuWro "); LineStyle.push_back(G18LineStyle);
+			NameOfSamples.push_back("NuWro_21_09_02"); Colors.push_back(kGreen+2); Labels.push_back("NuWro "); LineStyle.push_back(G18LineStyle);
 			NameOfSamples.push_back("Overlay9NuWro"); Colors.push_back(kOrange+7); Labels.push_back("NuWro Ov "); LineStyle.push_back(G21LineStyle);
 
 		}
