@@ -690,9 +690,9 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			TString Chi2NdofNom = "(" + to_string_with_precision(Chi2[0],1) + "/" + TString(std::to_string(Ndof[0])) +")";
 			if (PlotNames[WhichPlot] == "MuonCosThetaSingleBinPlot") { Chi2NdofNom = ""; }
 			// Shape + Stat Chi2
-			CalcChiSquared(PlotsTrue[0][WhichPlot],PlotsReco[0][WhichPlot],ShapeCovClone,ShapeChi2[0],Ndof[0],pval[0],sigma[0]);
-			TString ShapeChi2NdofNom = "(" + to_string_with_precision(ShapeChi2[0],1) + "/" + TString(std::to_string(Ndof[0])) +")";	
-			if (PlotNames[WhichPlot] == "MuonCosThetaSingleBinPlot") { ShapeChi2NdofNom = ""; }			
+			//CalcChiSquared(PlotsTrue[0][WhichPlot],PlotsReco[0][WhichPlot],ShapeCovClone,ShapeChi2[0],Ndof[0],pval[0],sigma[0]);
+			//TString ShapeChi2NdofNom = "(" + to_string_with_precision(ShapeChi2[0],1) + "/" + TString(std::to_string(Ndof[0])) +")";	
+			//if (PlotNames[WhichPlot] == "MuonCosThetaSingleBinPlot") { ShapeChi2NdofNom = ""; }			
 
 			TLegendEntry* lGenie_GenieOverlay = legMC->AddEntry(PlotsTrue[0][WhichPlot],Labels[0]+Chi2NdofNom,"l");
 			PlotsTrue[0][WhichPlot]->SetLineWidth(3); 
@@ -769,7 +769,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 				//----------------------------------------//
 
-				TLegend* ilegmc = new TLegend(0.43,0.52,0.83,0.85);
+				TLegend* ilegmc = new TLegend(0.39,0.59,0.83,0.89);
 				ilegmc->SetBorderSize(0);
 				ilegmc->SetTextSize(0.05);
 				ilegmc->SetTextFont(FontStyle);
@@ -837,6 +837,22 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			
 				TH1D* hstack = (TH1D*)(thstack->GetStack()->Last());
 	
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"MicroBooNE Data","");	
+				
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
+				
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"1.30 #times 10^{21} POT","");
+				
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
+
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"Stat#oplusShape","ep");
+			
+				ilegmc->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm","f");
+	
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"#chi^{2}/ndf = " + to_string_with_precision(Chi2[WhichSample],1.) + "/"+ to_string_with_precision(Ndof[WhichSample],0) ,"");
+				
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"p-value = " + to_string_with_precision(pval[WhichSample],2.),"");
+				
 				double qe_frac = QEPlotsTrue[WhichSample][WhichPlot]->Integral() / hstack->Integral() * 100.;
 				TLegendEntry* lqe = ilegmc->AddEntry(QEPlotsTrue[WhichSample][WhichPlot],"QE (" + to_string_with_precision(qe_frac,1.) + "%)","f");
 				lqe->SetTextColor(OverlayColor);	
@@ -853,26 +869,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 				TLegendEntry* ldis = ilegmc->AddEntry(DISPlotsTrue[WhichSample][WhichPlot],"DIS (" + to_string_with_precision(dis_frac,1.) + "%)","f");
 				ldis->SetTextColor(kRed+1);	
 
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"Stat#oplusShape","ep");
 			
-				ilegmc->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm","f");
-	
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"MicroBooNE Data","");	
-				
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
-				
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"1.30 #times 10^{21} POT","");
-				
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
-	
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"#chi^{2}/ndf = " + to_string_with_precision(Chi2[WhichSample],1.) + "/"+ to_string_with_precision(Ndof[WhichSample],0) ,"");
-				
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
-	
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"p-value = " + to_string_with_precision(pval[WhichSample],1.),"");
-				
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
-				
 				ilegmc->Draw();
 
 				//----------------------------------------//

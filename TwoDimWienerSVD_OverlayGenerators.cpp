@@ -898,7 +898,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 					//----------------------------------------//
 
-					TLegend* ilegmc = new TLegend(0.43,0.52,0.83,0.85);
+					TLegend* ilegmc = new TLegend(0.39,0.59,0.83,0.89);
 					ilegmc->SetBorderSize(0);
 					ilegmc->SetTextSize(0.05);
 					ilegmc->SetTextFont(FontStyle);
@@ -955,7 +955,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 					thstack->Draw("same");
 
 					//----------------------------------------//
-
+					
 					// plot the data points again so that they can be on top
 
 					BeamOnStatShape[WhichPlot][NDimSlice]->Draw("e1x0 same"); // BeamOn Stat Total
@@ -963,10 +963,26 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 					BeamOnNormOnly[WhichPlot][NDimSlice]->Draw("e2 hist same"); // norm only	
 
 					//----------------------------------------//
-
+				
 					TH1D* hstack = (TH1D*)(thstack->GetStack()->Last());
+		
+					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"MicroBooNE Data","");	
+					
+					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"","");	
+					
+					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"1.30 #times 10^{21} POT","");
+					
+					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"","");	
+		
+					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"Stat#oplusShape","ep");
+				
+					ilegmc->AddEntry(BeamOnNormOnly[WhichPlot][NDimSlice],"Norm","f");
 
-					double qe_frac = QEMC[WhichPlot][NDimSlice][WhichSample]->Integral() / hstack->Integral() * 100.;
+					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"#chi^{2}/ndf = " + to_string_with_precision(Chi2[WhichSample],1.) + "/"+ to_string_with_precision(Ndof[WhichSample],0) ,"");
+					
+					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"p-value = " + to_string_with_precision(pval[WhichSample],2.),"");
+		
+  					double qe_frac = QEMC[WhichPlot][NDimSlice][WhichSample]->Integral() / hstack->Integral() * 100.;
 					TLegendEntry* lqe = ilegmc->AddEntry(QEMC[WhichPlot][NDimSlice][WhichSample],"QE (" + to_string_with_precision(qe_frac,1.) + "%)","f");
 					lqe->SetTextColor(OverlayColor);	
 
@@ -981,29 +997,11 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 					double dis_frac = DISMC[WhichPlot][NDimSlice][WhichSample]->Integral() / hstack->Integral() * 100.;
 					TLegendEntry* ldis = ilegmc->AddEntry(DISMC[WhichPlot][NDimSlice][WhichSample],"DIS (" + to_string_with_precision(dis_frac,1.) + "%)","f");
 					ldis->SetTextColor(kRed+1);	
-
-					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"Stat#oplusShape","ep");
-
-					ilegmc->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm","f");
-
-					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"MicroBooNE Data","");	
-
-					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
-
-					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"1.30 #times 10^{21} POT","");
-
-					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
-
-					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"#chi^{2}/ndf = " + to_string_with_precision(Chi2[WhichSample],1.) + "/"+ to_string_with_precision(Ndof[WhichSample],0) ,"");
-
-					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
-
-					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"p-value = " + to_string_with_precision(pval[WhichSample],1.),"");
-
-					ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
-
+				
 					ilegmc->Draw();
 
+					textSlice->DrawLatexNDC(0.24, 0.93, LatexLabel[ MapUncorCor[ReducedPlotName] ] );
+					
 					//----------------------------------------//
 
 					// Save canvas with interaction breakdown
