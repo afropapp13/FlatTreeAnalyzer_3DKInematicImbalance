@@ -62,6 +62,19 @@ void FlatTreeAnalyzer::Loop() {
 
 	// Post FSI
 
+	// Neutron breakdown
+
+	int nneutrons = 3; //0,1,2,3
+	TH1D* TrueThetaVis_NeutronMultiPlot[nneutrons];
+	
+	// loop over the neutrons
+	
+	for (int ineutron = 0; ineutron <= nneutrons; ineutron++) {
+	
+		TrueThetaVis_NeutronMultiPlot[ineutron] = new TH1D("NeutronMulti_" + ToString(ineutron) + "_TrueThetaVis_NeutronMultiPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
+
+	}
+
 	// 1D Fine Binning
 
 	TH1D* TrueFineBinNeutronMultiplicityPlot[NInte];
@@ -366,7 +379,7 @@ void FlatTreeAnalyzer::Loop() {
 	  }
 
 	  int ProtonTagging = 0, ChargedPionTagging = 0, NeutralPionTagging = 0, MuonTagging = 0, TrueHeavierMesonCounter = 0;
-	  int ElectronTagging = 0, PhotonTagging = 0, neutron_counter = 0;
+	  int ElectronTagging = 0, PhotonTagging = 0, neutron_counter = 0, neutron_counter_round = 0;
 	  vector <int> ProtonID; ProtonID.clear();
 	  vector <int> MuonID; MuonID.clear();		
 
@@ -442,6 +455,9 @@ void FlatTreeAnalyzer::Loop() {
 
 
 	  } // End of the loop over the final state particles / post FSI
+
+	neutron_counter_round = neutron_counter;
+	if ( neutron_counter_round > nneutrons ) { neutron_counter_round = nneutrons; }
 
 	  //----------------------------------------//	
 
@@ -630,6 +646,8 @@ void FlatTreeAnalyzer::Loop() {
 	    // filling in the histo regardless of interaction mode
 
 	    // 1D Nominal Binning
+
+	    TrueThetaVis_NeutronMultiPlot[neutron_counter_round]->Fill(ThetaVis,weight);
 
 	    TrueMuonCosThetaSingleBinPlot[0]->Fill(0.5,weight);	
 	    TrueMuonCosThetaPlot[0]->Fill(MuonCosTheta,weight);
@@ -853,10 +871,15 @@ void FlatTreeAnalyzer::Loop() {
 
 		}
 
-
 		//----------------------------------------//
 
 	} // End of the loop over the interaction processes		
+
+	for (int ineutron = 0; ineutron <= nneutrons; ineutron++) {
+	
+		Reweight(TrueThetaVis_NeutronMultiPlot[ineutron]);
+
+	}
 
 	//----------------------------------------//		
 

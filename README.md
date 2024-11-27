@@ -9,6 +9,9 @@ root -b script_GeneratorOverlay.cxx
 # Interaction breakdown
 root -b GeneratorInteBreakDown.cxx
 
+# Neutron breakdown
+root -b GeneratorNeutronBreakdown.cxx
+
 # Pdfs
 root -b script_PdfOverlay.cxx
 
