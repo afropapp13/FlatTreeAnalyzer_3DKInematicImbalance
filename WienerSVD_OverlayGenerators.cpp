@@ -27,7 +27,7 @@ using namespace Constants;
 
 //----------------------------------------//
 
-void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool plot_closure = false, bool plot_nuwro = false, bool PlotACHILLES = false, bool PlotANL_SF = false, bool plot_nuclear = false, bool plot_mec = false, bool plot_gibuu = false) {
+void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool plot_closure = false, bool plot_nuwro = false, bool PlotACHILLES = false, bool PlotANL_SF = false, bool plot_nuclear = false, bool plot_mec = false, bool plot_gibuu = false, bool plot_tune_fsi = false) {
 
 	//----------------------------------------//
 
@@ -50,6 +50,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	if (plot_gibuu) { Extra = "gibuu"; }
 	if (plot_mec) { Extra = "mec"; }
 	if (plot_nuclear) { Extra = "nuclear"; }
+	if (plot_tune_fsi) { Extra = "tune_fsi"; }
 
 	//----------------------------------------//
 
@@ -144,8 +145,8 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (plot_closure) {
 
-			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle);
-			NameOfSamples.push_back("NoTuneOverlay9"); Colors.push_back(kOrange+7); Labels.push_back("G18D "); LineStyle.push_back(G21LineStyle);
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("NoTuneOverlay9"); Colors.push_back(kOrange+7); Labels.push_back("G18D "); LineStyle.push_back(G21LineStyle); weighted.push_back("");
 
 		}
 
@@ -153,8 +154,8 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (plot_nuwro) {
 
-			NameOfSamples.push_back("NuWro_21_09_02"); Colors.push_back(kGreen+2); Labels.push_back("NuWro "); LineStyle.push_back(G18LineStyle);
-			NameOfSamples.push_back("Overlay9NuWro"); Colors.push_back(kOrange+7); Labels.push_back("NuWro Ov "); LineStyle.push_back(G21LineStyle);
+			NameOfSamples.push_back("NuWro_21_09_02"); Colors.push_back(kGreen+2); Labels.push_back("NuWro "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("Overlay9NuWro"); Colors.push_back(kOrange+7); Labels.push_back("NuWro Ov "); LineStyle.push_back(G21LineStyle); weighted.push_back("");
 
 		}
 
@@ -186,6 +187,15 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			NameOfSamples.push_back("GENIE_v3_0_6_RFG"); Colors.push_back(kOrange+7); Labels.push_back("RFG "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
 
 		}	
+
+		//----------------------------------------//		
+
+		if (plot_tune_fsi) {
+
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kMagenta+1); Labels.push_back("G18 "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
+			NameOfSamples.push_back("GENIE_v3_4_0_G18_10a_02_11a"); Colors.push_back(kGreen+1); Labels.push_back("G18T "); LineStyle.push_back(GiBUULineStyle); weighted.push_back("Weights"); 
+		}	
+
 
 		//----------------------------------------//
 
@@ -347,7 +357,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 			else {
 		
-			  FileSample.push_back(TFile::Open("OutputFiles/FlatTreeAnalyzerOutput_"+NameOfSamples[WhichSample]+".root")); 
+			  FileSample.push_back(TFile::Open("OutputFiles/" + weighted[WhichSample] + "FlatTreeAnalyzerOutput_"+NameOfSamples[WhichSample]+".root")); 
 
 				for (int WhichPlot = 0; WhichPlot < N1DPlots; WhichPlot ++) {
 
@@ -718,7 +728,8 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			textSlice->SetTextSize(0.06);
 			TString PlotNameDuplicate = PlotNames[WhichPlot];
 			TString ReducedPlotName = PlotNameDuplicate.ReplaceAll("Reco","") ;
-			textSlice->DrawLatexNDC(0.24, 0.92, LatexLabel[ ReducedPlotName ].ReplaceAll("All events","") );
+			TString ReducedLatexLabel = LatexLabel[ ReducedPlotName ];
+			textSlice->DrawLatexNDC(0.2, 0.92, ReducedLatexLabel.ReplaceAll("All events","") );
 
 			TLatex *textPanel = new TLatex();
 			textPanel->SetTextFont(FontStyle);
@@ -869,7 +880,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 				TLegendEntry* ldis = ilegmc->AddEntry(DISPlotsTrue[WhichSample][WhichPlot],"DIS (" + to_string_with_precision(dis_frac,1.) + "%)","f");
 				ldis->SetTextColor(kRed+1);	
 
-			
+				textSlice->DrawLatexNDC(0.17, 0.92, LatexLabel[ ReducedPlotName ] );
 				ilegmc->Draw();
 
 				//----------------------------------------//

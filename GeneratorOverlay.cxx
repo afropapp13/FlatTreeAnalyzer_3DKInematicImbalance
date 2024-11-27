@@ -55,7 +55,8 @@ void GeneratorOverlay(TString Tag = "") {
 	if (Tag == "Tune") {
 
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18"); Colors.push_back(kBlack); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a.root"); Labels.push_back("G18T"); Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a.root"); Labels.push_back("G18T hA"); Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
+	  //Names.push_back(OutFilePath+"WeightsFlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10b_02_11a.root"); Labels.push_back("G18T hN"); Colors.push_back(kGreen+2); LineStyle.push_back(kSolid);
 
 	}
 

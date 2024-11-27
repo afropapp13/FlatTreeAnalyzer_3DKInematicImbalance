@@ -16,5 +16,8 @@
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,false,false,false, false,true)");
 	//gibuu
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,false,false,false,false, false,true)");
+	//tune fsi
+	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,false,false,false,false, false,false,true)");
+
 
 }

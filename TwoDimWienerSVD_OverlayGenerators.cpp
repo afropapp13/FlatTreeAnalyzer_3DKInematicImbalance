@@ -1000,7 +1000,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				
 					ilegmc->Draw();
 
-					textSlice->DrawLatexNDC(0.24, 0.93, LatexLabel[ MapUncorCor[ReducedPlotName] ] );
+					textSlice->DrawLatexNDC(0.19, 0.93, LatexLabel[ MapUncorCor[ReducedPlotName] ] );
 					
 					//----------------------------------------//
 
