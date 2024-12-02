@@ -297,6 +297,10 @@ void FlatTreeAnalyzer::Loop() {
 	  if (fOutputFile == "GENIE_v3_4_0_G18_10a_03_320") { fweights_file = TFile::Open("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/myWeights_uB_Tune_v3_4_0_G18_10a_03_320.root"); }
 	  if (fOutputFile == "GENIE_v3_4_0_G18_10a_03_330") { fweights_file = TFile::Open("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/myWeights_uB_Tune_v3_4_0_G18_10a_03_330.root"); }
 
+	  if (fOutputFile == "GENIE_v3_4_2_G18_10a_02_11a") { fweights_file = TFile::Open("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_2_G18_10a_02_11a/myWeights_v3_4_2_G18_10a_02_11a.root"); }
+	  if (fOutputFile == "GENIE_v3_4_2_G18_10b_02_11a") { fweights_file = TFile::Open("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_2_G18_10b_02_11a/myWeights_v3_4_2_G18_10b_02_11a.root"); }
+	  if (fOutputFile == "GENIE_v3_4_2_G18_10d_02_11a") { fweights_file = TFile::Open("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_2_G18_10d_02_11a/myWeights_v3_4_2_G18_10d_02_11a.root"); }
+
 	  tweights = (TTree*)fweights_file->Get("GenericVectors__VARS");
 	  tweights->SetBranchAddress("Weight", &cv_weight);
 

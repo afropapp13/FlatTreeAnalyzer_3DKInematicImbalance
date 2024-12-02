@@ -27,7 +27,7 @@ using namespace Constants;
 
 //----------------------------------------//
 
-void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotANL_SF = false, bool closure = false, bool plot_nuclear = false, bool plot_mec = false, bool plot_gibuu = false) {
+void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotANL_SF = false, bool closure = false, bool plot_nuclear = false, bool plot_mec = false, bool plot_gibuu = false, bool plot_tune_fsi = false) {
 
 	//----------------------------------------//
 
@@ -51,7 +51,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 	if (plot_gibuu) { Extra = "gibuu"; }
 	if (plot_mec) { Extra = "mec"; }
 	if (plot_nuclear) { Extra = "nuclear"; }
-
+	if (plot_tune_fsi) { Extra = "tune_fsi"; }
 
 	//----------------------------------------//
 
@@ -177,6 +177,15 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 			NameOfSamples.push_back("G18_10a_02_11a_SF_Fortran"); Colors.push_back(kGreen+1); Labels.push_back("SF "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
 			NameOfSamples.push_back("GENIE_v3_0_6_RFG"); Colors.push_back(kOrange+7); Labels.push_back("RFG "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
 
+		}	
+
+		//----------------------------------------//		
+
+		if (plot_tune_fsi) {
+
+			NameOfSamples.push_back("GENIE_v3_4_2_G18_10b_02_11a"); Colors.push_back(kOrange+7); Labels.push_back("G18T hN "); LineStyle.push_back(kSolid); weighted.push_back("Weights"); 
+			NameOfSamples.push_back("GENIE_v3_4_2_G18_10d_02_11a"); Colors.push_back(kGreen+1); Labels.push_back("G18T G4 "); LineStyle.push_back(kSolid); weighted.push_back("Weights"); 
+		
 		}	
 
 		//----------------------------------------//

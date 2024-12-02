@@ -192,10 +192,10 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (plot_tune_fsi) {
 
-			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kMagenta+1); Labels.push_back("G18 "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
-			NameOfSamples.push_back("GENIE_v3_4_0_G18_10a_02_11a"); Colors.push_back(kGreen+1); Labels.push_back("G18T "); LineStyle.push_back(GiBUULineStyle); weighted.push_back("Weights"); 
+			NameOfSamples.push_back("GENIE_v3_4_2_G18_10b_02_11a"); Colors.push_back(kOrange+7); Labels.push_back("G18T hN "); LineStyle.push_back(kSolid); weighted.push_back("Weights"); 
+			NameOfSamples.push_back("GENIE_v3_4_2_G18_10d_02_11a"); Colors.push_back(kGreen+1); Labels.push_back("G18T G4 "); LineStyle.push_back(kSolid); weighted.push_back("Weights"); 
+		
 		}	
-
 
 		//----------------------------------------//
 
