@@ -4,6 +4,7 @@
 	//----------------------------------------//
 			
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.genie_v3_00_06.flat.root"); WhichName.push_back("GENIE_v3_0_6");			 
+	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_2_G18_10a_02_11a_4aflux/14_1000180400_CC_v3_4_2_G18_10a_02_11a.flat.root"); WhichName.push_back("GENIE_v3_0_6_4aflux");			 
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.genie_v2_12_10.mec.flat.root"); WhichName.push_back("GENIE_v2_12_10_MEC");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/mastbaum/tuning2022/mc/bnb_ub/flat/bnb.ub.num.nuwro_19_02_1.flat.root"); WhichName.push_back("NuWro_19_02_1");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/NuWro_Samples/NuWro_numu_21_09_2_2000000.flat.root"); WhichName.push_back("NuWro_21_09_02");

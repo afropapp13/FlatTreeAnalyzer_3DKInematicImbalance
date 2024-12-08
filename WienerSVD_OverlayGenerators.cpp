@@ -692,7 +692,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 			TString Label = ToString(tor860_wcut).ReplaceAll("e"," #times 10").ReplaceAll("+","^{")+"} POT";	
 			if (Runs[WhichRun] == "Combined") { Label = "1.30 #times 10^{21} POT"; }
-
+	
 			// ---------------------------------------------------------------------------------------------------------
 
 			// Total Chi2

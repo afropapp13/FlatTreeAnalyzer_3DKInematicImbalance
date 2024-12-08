@@ -60,6 +60,12 @@ void GeneratorOverlay(TString Tag = "") {
 
 	}
 
+	if (Tag == "flux") {
+
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("cv"); Colors.push_back(kBlack); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_4aflux.root"); Labels.push_back("4a"); Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
+
+	}
 
 	if (Tag == "NuclearModel") {
 
