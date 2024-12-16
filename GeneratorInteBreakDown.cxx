@@ -80,7 +80,8 @@ void GeneratorInteBreakDown() {
 	PlotNames.push_back("TrueFineBinThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{vis}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
 	PlotNames.push_back("TrueFineBinEvPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE_{v}} #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
 	PlotNames.push_back("TrueFineBinPMissPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{miss}} #left[10^{-38} #frac{cm^{2}}{GeV/c Ar}#right]");
-
+	PlotNames.push_back("TrueFineBinECalPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE_{reco}} #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
+	
 	//------------------------------//
 
 	const int NPlots = PlotNames.size();

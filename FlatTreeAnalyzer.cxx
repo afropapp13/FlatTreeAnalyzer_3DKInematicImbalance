@@ -167,7 +167,7 @@ void FlatTreeAnalyzer::Loop() {
 	  TrueFineBinThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
 	  TrueFineBinCosThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinCosThetaVisPlot",";cos#theta_{vis}",25,ArrayNBinsCosThetaVis[0],ArrayNBinsCosThetaVis[NBinsCosThetaVis]);
 	  TrueFineBinEvPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinEvPlot",";E_{#nu} [GeV]",NBinsEv,ArrayNBinEv);
-	  TrueFineBinECalPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinECalPlot",";E^{Cal} [GeV]",NBinsEv,ArrayNBinEv);
+	  TrueFineBinECalPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinECalPlot",";E_{reco} [GeV]",NBinsEv,ArrayNBinEv);
 	  TrueFineBinPMissPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinPMissPlot",";p_{miss} [GeV/c]",20,ArrayNBinsPMiss[0],ArrayNBinsPMiss[NBinsPMiss]);
 
 	  // 1D Nominal Binning

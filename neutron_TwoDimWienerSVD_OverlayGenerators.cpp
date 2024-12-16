@@ -710,7 +710,8 @@ void neutron_TwoDimWienerSVD_OverlayGenerators() {
 					BeamOnStatShape[WhichPlot][NDimSlice]->Draw("e1x0 same"); // BeamOn Stat Total
 					BeamOnStatOnly[WhichPlot][NDimSlice]->Draw("e1x0 same"); // Stat Only
 					BeamOnNormOnly[WhichPlot][NDimSlice]->Draw("e2 hist same"); // norm only	
- MC[WhichPlot][NDimSlice][0]->Draw("same");
+
+					//MC[WhichPlot][NDimSlice][0]->Draw("same");
 
 					//----------------------------------------//
 				
