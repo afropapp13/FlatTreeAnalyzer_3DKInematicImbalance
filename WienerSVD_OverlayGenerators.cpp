@@ -31,7 +31,7 @@ using namespace Constants;
 
 //----------------------------------------//
 
-void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotACHILLES = false, bool PlotANL_SF = false, bool closure = false) {
+void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotACHILLES = false, bool PlotANL_SF = false, bool closure = false, bool plot_gibuu = false, bool plot_g24 = false) {
 
 	//----------------------------------------//
 
@@ -50,6 +50,9 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	if (PlotACHILLES) { Extra = "ACHILLES"; }
 	if (PlotANL_SF) { Extra = "ANL_SF"; }
 	if (closure) { Extra = "Closure"; }
+	if (plot_gibuu) { Extra = "GiBUU"; }
+	if (plot_g24) { Extra = "G24"; }
+
 
 	//----------------------------------------//
 
@@ -66,6 +69,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	PlotNames.push_back("DeltaPhi3DPlot");	
 	PlotNames.push_back("SerialDeltaAlpha3Dq_DeltaPnPlot");	 
 	PlotNames.push_back("SerialDeltaPn_DeltaAlpha3DqPlot");	 
+	PlotNames.push_back("SerialDeltaPT_MuonCosThetaPlot");	 
 
 	const int N1DPlots = PlotNames.size();
 	cout << "Number of 1D Plots = " << N1DPlots << endl;
@@ -120,14 +124,23 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		//----------------------------------------//	
 
+		if (plot_g24) {
+
+			NameOfSamples.push_back("GENIE_v3_4_2_G24_20i_06_22c"); Colors.push_back(kOrange+7); Labels.push_back("G24 "); LineStyle.push_back(kSolid); weights.push_back("");
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weights.push_back("");
+	
+		}
+
+
+		//----------------------------------------//	
+
 		if (PlotANL_SF) {
 
-			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weights.push_back("");
-			//NameOfSamples.push_back("ANL_SF"); Colors.push_back(kOrange+7); Labels.push_back("ANL SF "); LineStyle.push_back(G21LineStyle); weights.push_back("");
+			NameOfSamples.push_back("ANL_SF"); Colors.push_back(kOrange+7); Labels.push_back("SF "); LineStyle.push_back(G21LineStyle); weights.push_back("");
 			//NameOfSamples.push_back("SF_noPB_hA"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hA "); LineStyle.push_back(G21LineStyle); weights.push_back("");
-			NameOfSamples.push_back("SF_noPB_hN"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hN "); LineStyle.push_back(G21LineStyle); weights.push_back("");
-
-
+			//NameOfSamples.push_back("SF_noPB_hN"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hN "); LineStyle.push_back(G21LineStyle); weights.push_back("");
+			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weights.push_back("");
+	
 		}
 
 		//----------------------------------------//	
@@ -147,6 +160,16 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			NameOfSamples.push_back("NuWro_19_02_1"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle); weights.push_back("");
 			NameOfSamples.push_back("GiBUU_2021"); Colors.push_back(GiBUUColor); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weights.push_back("");
 			NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kYellow-6); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle); weights.push_back("");
+
+		}	
+
+		//----------------------------------------//		
+
+		if (plot_gibuu) {
+
+			NameOfSamples.push_back("GiBUU_2023_BU"); Colors.push_back(NEUTColor); Labels.push_back("Gi23 "); LineStyle.push_back(kSolid); weights.push_back("");
+			NameOfSamples.push_back("GiBUU_2023_BU_flagScreen"); Colors.push_back(kYellow-6); Labels.push_back("Screen"); LineStyle.push_back(kSolid); weights.push_back("");
+			NameOfSamples.push_back("GiBUU_2023_BU_flagInMedium"); Colors.push_back(kOrange+7); Labels.push_back("InMedium"); LineStyle.push_back(kSolid); weights.push_back("");
 
 		}	
 
@@ -429,8 +452,8 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			midPad->SetRightMargin(0.03);			
 			midPad->Draw();
 
-			TLegend* leg = new TLegend(0.39,0.69,0.72,0.85);
-			TLegend* legMC = new TLegend(0.7,0.69,0.8,0.85);
+			TLegend* leg = new TLegend(0.38,0.69,0.71,0.85);
+			TLegend* legMC = new TLegend(0.69,0.69,0.79,0.85);
 			
 			if (
 
@@ -449,8 +472,8 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 				PlotNames[WhichPlot] == "DeltaPn_DeltaPT_0_40To1_00Plot"*/
 				) { 
 				
-			  leg = new TLegend(0.22,0.69,0.55,0.85);	
-			  legMC = new TLegend(0.53,0.69,0.63,0.85);
+			  leg = new TLegend(0.21,0.69,0.54,0.85);	
+			  legMC = new TLegend(0.52,0.69,0.62,0.85);
 
 			}
 
@@ -459,8 +482,8 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 				PlotNames[WhichPlot] == "DeltaAlpha3DqPlot"
 			) { 
 
-			  leg = new TLegend(0.22,0.69,0.55,0.85);					
-			  legMC = new TLegend(0.22,0.53,0.38,0.69);
+			  leg = new TLegend(0.21,0.69,0.54,0.85);					
+			  legMC = new TLegend(0.21,0.53,0.37,0.69);
 
 			}
 

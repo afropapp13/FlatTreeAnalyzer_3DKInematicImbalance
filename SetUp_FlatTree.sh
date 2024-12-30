@@ -1,5 +1,8 @@
 #!/bin/bash
-source /grid/fermiapp/products/uboone/setup_uboone.sh
+
+export TERM=screen
+
+source /cvmfs/uboone.opensciencegrid.org/products/setup_uboone.sh
 setup uboonecode v08_00_00_52 -q e17:prof
 #setup scipy v1_1_0 -q e17:p2714b:prof
 #unsetup mrb

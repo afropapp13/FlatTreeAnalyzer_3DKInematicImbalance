@@ -10,7 +10,6 @@
 	gROOT->ProcessLine("GeneratorOverlay(\"EnergyIndependence\")");
 	gROOT->ProcessLine("GeneratorOverlay(\"ANL_SF\")");
 	gROOT->ProcessLine("GeneratorOverlay(\"Gv2\")");
-
-
+	gROOT->ProcessLine("GeneratorOverlay(\"EL_FF\")");
 
 };

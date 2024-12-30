@@ -32,7 +32,7 @@ using namespace Constants;
 
 //----------------------------------------//
 
-void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotANL_SF = false, bool closure = false) {
+void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotANL_SF = false, bool closure = false, bool plot_gibuu = false) {
 
 	//----------------------------------------//
 
@@ -52,6 +52,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 	if (PlotGENIE) { Extra = "Genie"; }
 	if (PlotANL_SF) { Extra = "ANL_SF"; }
 	if (closure) { Extra = "Closure"; }
+	if (plot_gibuu) { Extra = "GiBUU"; }
 
 	//----------------------------------------//
 
@@ -64,10 +65,10 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 	// 2D analysis
 
 	PlotNames.push_back("DeltaPT_DeltaAlphaTPlot"); 
+	PlotNames.push_back("DeltaPT_MuonCosThetaPlot"); 
 	PlotNames.push_back("DeltaPn_DeltaAlpha3DqPlot");
         PlotNames.push_back("DeltaPn_DeltaAlpha3DMuPlot");		
 	PlotNames.push_back("DeltaAlpha3Dq_DeltaPnPlot");
-	//PlotNames.push_back("DeltaAlpha3DMu_DeltaPnPlot");				
 	
 	//----------------------------------------//	
 
@@ -145,6 +146,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
                   NameOfSamples.push_back("NuWro_19_02_1"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle);
 		  NameOfSamples.push_back("GiBUU_2021"); Colors.push_back(GiBUUColor); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle);
+	          //NameOfSamples.push_back("GiBUU_2023_BU"); Colors.push_back(GiBUUColor); Labels.push_back("Gi23 "); LineStyle.push_back(kSolid);
 		  NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kYellow-6); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle);// kMagenta - 9
 
                 }
@@ -157,6 +159,16 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 			NameOfSamples.push_back("NoTuneOverlay9"); Colors.push_back(kOrange+7); Labels.push_back("G18D "); LineStyle.push_back(G21LineStyle); weights.push_back("");
 
 		}
+
+		//----------------------------------------//		
+
+		if (plot_gibuu) {
+
+			NameOfSamples.push_back("GiBUU_2023_BU"); Colors.push_back(NEUTColor); Labels.push_back("Gi23 "); LineStyle.push_back(kSolid); weights.push_back("");
+			NameOfSamples.push_back("GiBUU_2023_BU_flagScreen"); Colors.push_back(kYellow-6); Labels.push_back("Screen"); LineStyle.push_back(kSolid); weights.push_back("");
+			NameOfSamples.push_back("GiBUU_2023_BU_flagInMedium"); Colors.push_back(kOrange+7); Labels.push_back("InMedium"); LineStyle.push_back(kSolid); weights.push_back("");
+
+		}	
 
 		//----------------------------------------//
 
@@ -357,6 +369,13 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 			}
 
+			if (PlotNames[WhichPlot] == "DeltaPT_MuonCosThetaPlot") {
+
+				SliceDiscriminators.push_back(TwoDArrayNBinsMuonCosTheta); 
+				SliceBinning.push_back(TwoDArrayNBinsDeltaPTInMuonCosThetaSlices);
+
+			}
+
 
 			if (PlotNames[WhichPlot] == "DeltaPn_DeltaAlpha3DqPlot") {
 
@@ -412,10 +431,6 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 			TH2D* ShapeCov = (TH2D*)FileSample[0]->Get("ShapeUnfCovSerial"+PlotNames[WhichPlot]);	
 			ShapeCov->Scale(1./TMath::Power(MultiDimScaleFactor["Serial"+PlotNames[WhichPlot]],2.)); // includes scaling factor for multi dimensional analysis
-
-			//----------------------------------------//
-
-//			TH1D* UncHist = (TH1D*)(fUnc->Get("UnfUnc_"+PlotNames[WhichPlot]));
 
 			//----------------------------------------//
 

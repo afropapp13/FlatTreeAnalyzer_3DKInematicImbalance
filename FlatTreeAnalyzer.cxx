@@ -90,17 +90,17 @@ void FlatTreeAnalyzer::Loop() {
 	TH2D* TrueFineBinq2DPlot[NInte];
 
 	// 2D Fine Binning Uncorrelated
-
+	
 	TH1D* TrueFineBinDeltaPT_InDeltaAlphaTTwoDPlot[NInte][TwoDNBinsDeltaAlphaT];
-	TH1D* TrueFineBinDeltaPn_InDeltaAlpha3DqTwoDPlot[NInte][TwoDNBinsDeltaAlpha3Dq];
 	TH1D* TrueFineBinDeltaPn_InDeltaAlpha3DMuTwoDPlot[NInte][TwoDNBinsDeltaAlpha3DMu];
+	TH1D* TrueFineBinDeltaPn_InDeltaAlpha3DqTwoDPlot[NInte][TwoDNBinsDeltaAlpha3Dq];
 	TH1D* TrueFineBinDeltaAlphaT_InDeltaPTTwoDPlot[NInte][TwoDNBinsDeltaPT];
 	TH1D* TrueFineBinDeltaAlpha3Dq_InDeltaPnTwoDPlot[NInte][TwoDNBinsDeltaPn];
 	TH1D* TrueFineBinDeltaAlpha3DMu_InDeltaPnTwoDPlot[NInte][TwoDNBinsDeltaPn];
 
 	// 2D Fine Binning Correlated
 
-	TH1D* SerialTrueFineBinDeltaPT_InDeltaAlphaTPlot[NInte];
+	TH1D* SerialTrueFineBinDeltaPT_InDeltaAlphaTPlot[NInte];	
 	TH1D* SerialTrueFineBinDeltaPn_InDeltaAlpha3DqPlot[NInte];
 	TH1D* SerialTrueFineBinDeltaPn_InDeltaAlpha3DMuPlot[NInte];
 	TH1D* SerialTrueFineBinDeltaAlphaT_InDeltaPTPlot[NInte];
@@ -136,6 +136,7 @@ void FlatTreeAnalyzer::Loop() {
 	// 2D Nominal Binning Correlated
 
 	TH1D* SerialTrueDeltaPT_InDeltaAlphaTPlot[NInte];
+	TH1D* SerialTrueDeltaPT_InMuonCosThetaPlot[NInte];
 	TH1D* SerialTrueDeltaPn_InDeltaAlpha3DqPlot[NInte];
 	TH1D* SerialTrueDeltaPn_InDeltaAlpha3DMuPlot[NInte];
 	TH1D* SerialTrueDeltaAlphaT_InDeltaPTPlot[NInte];
@@ -390,6 +391,7 @@ void FlatTreeAnalyzer::Loop() {
 	  // 2D Nominal Binning Correlated
 
 	  SerialTrueDeltaPT_InDeltaAlphaTPlot[inte] = new TH1D(InteractionLabels[inte]+"SerialTrueDeltaPT_DeltaAlphaTPlot",LabelXAxisDeltaPT,tools.Return2DNBins(TwoDArrayNBinsDeltaPTInDeltaAlphaTSlices),&tools.Return2DBinIndices(TwoDArrayNBinsDeltaPTInDeltaAlphaTSlices)[0]);
+	  SerialTrueDeltaPT_InMuonCosThetaPlot[inte] = new TH1D(InteractionLabels[inte]+"SerialTrueDeltaPT_MuonCosThetaPlot",LabelXAxisDeltaPT,tools.Return2DNBins(TwoDArrayNBinsDeltaPTInMuonCosThetaSlices),&tools.Return2DBinIndices(TwoDArrayNBinsDeltaPTInMuonCosThetaSlices)[0]);
 	  SerialTrueDeltaPn_InDeltaAlpha3DqPlot[inte] = new TH1D(InteractionLabels[inte]+"SerialTrueDeltaPn_DeltaAlpha3DqPlot",LabelXAxisDeltaPn,tools.Return2DNBins(TwoDArrayNBinsDeltaPnInDeltaAlpha3DqSlices),&tools.Return2DBinIndices(TwoDArrayNBinsDeltaPnInDeltaAlpha3DqSlices)[0]);
 	  SerialTrueDeltaPn_InDeltaAlpha3DMuPlot[inte] = new TH1D(InteractionLabels[inte]+"SerialTrueDeltaPn_DeltaAlpha3DMuPlot",LabelXAxisDeltaPn,tools.Return2DNBins(TwoDArrayNBinsDeltaPnInDeltaAlpha3DMuSlices),&tools.Return2DBinIndices(TwoDArrayNBinsDeltaPnInDeltaAlpha3DMuSlices)[0]);
 	  SerialTrueDeltaAlphaT_InDeltaPTPlot[inte] = new TH1D(InteractionLabels[inte]+"SerialTrueDeltaAlphaT_DeltaPTPlot",LabelXAxisDeltaAlphaT,tools.Return2DNBins(TwoDArrayNBinsDeltaAlphaTInDeltaPTSlices),&tools.Return2DBinIndices(TwoDArrayNBinsDeltaAlphaTInDeltaPTSlices)[0]);
@@ -589,6 +591,13 @@ void FlatTreeAnalyzer::Loop() {
 	  if (fOutputFile == "GiBUU_2023") { weight = weight/105.; } // To increase the stats, the GiBUU sample has been produced in 50 samples	
 	  if (fOutputFile == "GiBUU_2023_Patch1") { weight = weight/500.; } // To increase the stats, the GiBUU sample has been produced in 500 samples	
 	  if (fOutputFile == "GiBUU_2021_NoFSI") { weight = weight/100.; } // To increase the stats, Ben Bogart produced the no fsi GiBUU sample in 100 samples
+
+	  // GiBUU Ben-Ulrich (BU) in medium investigation
+	  if (fOutputFile == "GiBUU_2023_BU") { weight = weight/105.; }
+	  if (fOutputFile == "GiBUU_2023_BU_NoFSI") { weight = weight/1119.; }
+	  if (fOutputFile == "GiBUU_2023_BU_flagScreen") { weight = weight/76.; }
+	  if (fOutputFile == "GiBUU_2023_BU_flagInMedium") { weight = weight/73.; }
+
 	  if (fOutputFile == "ACHILLES") { weight = weight*1000./(40./12.); } // ACHILLES scaling still under discussion
 
 	  //----------------------------------------//	
@@ -907,6 +916,8 @@ void FlatTreeAnalyzer::Loop() {
 
 	    int DeltaPTTwoDIndex = tools.ReturnIndex(DeltaPT, TwoDArrayNBinsDeltaPT); 
 	    if (DeltaPTTwoDIndex < 0) { continue; }
+	    int MuonCosThetaTwoDIndex = tools.ReturnIndex(MuonCosTheta, TwoDArrayNBinsMuonCosTheta); 
+	    if (MuonCosThetaTwoDIndex < 0) { continue; }
 	    int DeltaPnTwoDIndex = tools.ReturnIndex(DeltaPn, TwoDArrayNBinsDeltaPn);
 	    if (DeltaPnTwoDIndex < 0) { continue; }
 	    int DeltaAlphaTTwoDIndex = tools.ReturnIndex(DeltaAlphaT, TwoDArrayNBinsDeltaAlphaT);
@@ -920,6 +931,7 @@ void FlatTreeAnalyzer::Loop() {
 	    int SerialDeltaAlpha3DqInDeltaPnIndex = tools.ReturnIndexIn2DList(TwoDArrayNBinsDeltaAlpha3DqInDeltaPnSlices,DeltaPnTwoDIndex,DeltaAlpha3Dq);
 	    int SerialDeltaAlpha3DMuInDeltaPnIndex = tools.ReturnIndexIn2DList(TwoDArrayNBinsDeltaAlpha3DMuInDeltaPnSlices,DeltaPnTwoDIndex,DeltaAlpha3DMu);
 	    int SerialDeltaPTInDeltaAlphaTIndex = tools.ReturnIndexIn2DList(TwoDArrayNBinsDeltaPTInDeltaAlphaTSlices,DeltaAlphaTTwoDIndex,DeltaPT);
+	    int SerialDeltaPTInMuonCosThetaIndex = tools.ReturnIndexIn2DList(TwoDArrayNBinsDeltaPTInMuonCosThetaSlices,MuonCosThetaTwoDIndex,DeltaPT);
 	    int SerialDeltaPnInDeltaAlpha3DqIndex = tools.ReturnIndexIn2DList(TwoDArrayNBinsDeltaPnInDeltaAlpha3DqSlices,DeltaAlpha3DqTwoDIndex,DeltaPn);
 	    int SerialDeltaPnInDeltaAlpha3DMuIndex = tools.ReturnIndexIn2DList(TwoDArrayNBinsDeltaPnInDeltaAlpha3DMuSlices,DeltaAlpha3DMuTwoDIndex,DeltaPn);
 
@@ -937,7 +949,7 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueFineBinDeltaPn_InDeltaAlpha3DMuTwoDPlot[0][DeltaAlpha3DMuTwoDIndex]->Fill(DefaultDeltaPn,weight);
 
 	    // 2D Fine Binning Correlated
-
+	    
 	    SerialTrueFineBinDeltaAlphaT_InDeltaPTPlot[0]->Fill(SerialDeltaAlphaTInDeltaPTIndex,weight);
 	    SerialTrueFineBinDeltaAlpha3Dq_InDeltaPnPlot[0]->Fill(SerialDeltaAlpha3DqInDeltaPnIndex,weight);
 	    SerialTrueFineBinDeltaAlpha3DMu_InDeltaPnPlot[0]->Fill(SerialDeltaAlpha3DMuInDeltaPnIndex,weight);
@@ -970,13 +982,14 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueDeltaPT_InDeltaAlphaTTwoDPlot[0][DeltaAlphaTTwoDIndex]->Fill(DeltaPT,weight);
 	    TrueDeltaPn_InDeltaAlpha3DqTwoDPlot[0][DeltaAlpha3DqTwoDIndex]->Fill(DeltaPn,weight);
 	    TrueDeltaPn_InDeltaAlpha3DMuTwoDPlot[0][DeltaAlpha3DMuTwoDIndex]->Fill(DeltaPn,weight);
-
+	    
 	    // 2D Nominal Binning Correlated
 
 	    SerialTrueDeltaAlphaT_InDeltaPTPlot[0]->Fill(SerialDeltaAlphaTInDeltaPTIndex,weight);
 	    SerialTrueDeltaAlpha3Dq_InDeltaPnPlot[0]->Fill(SerialDeltaAlpha3DqInDeltaPnIndex,weight);
 	    SerialTrueDeltaAlpha3DMu_InDeltaPnPlot[0]->Fill(SerialDeltaAlpha3DMuInDeltaPnIndex,weight);
 	    SerialTrueDeltaPT_InDeltaAlphaTPlot[0]->Fill(SerialDeltaPTInDeltaAlphaTIndex,weight);
+	    SerialTrueDeltaPT_InMuonCosThetaPlot[0]->Fill(SerialDeltaPTInMuonCosThetaIndex,weight);
 	    SerialTrueDeltaPn_InDeltaAlpha3DqPlot[0]->Fill(SerialDeltaPnInDeltaAlpha3DqIndex,weight);
 	    SerialTrueDeltaPn_InDeltaAlpha3DMuPlot[0]->Fill(SerialDeltaPnInDeltaAlpha3DMuIndex,weight);
 
@@ -1034,6 +1047,7 @@ void FlatTreeAnalyzer::Loop() {
 	    SerialTrueDeltaAlpha3Dq_InDeltaPnPlot[genie_mode]->Fill(SerialDeltaAlpha3DqInDeltaPnIndex,weight);
 	    SerialTrueDeltaAlpha3DMu_InDeltaPnPlot[genie_mode]->Fill(SerialDeltaAlpha3DMuInDeltaPnIndex,weight);
 	    SerialTrueDeltaPT_InDeltaAlphaTPlot[genie_mode]->Fill(SerialDeltaPTInDeltaAlphaTIndex,weight);
+	    SerialTrueDeltaPT_InMuonCosThetaPlot[genie_mode]->Fill(SerialDeltaPTInMuonCosThetaIndex,weight);
 	    SerialTrueDeltaPn_InDeltaAlpha3DqPlot[genie_mode]->Fill(SerialDeltaPnInDeltaAlpha3DqIndex,weight);
 	    SerialTrueDeltaPn_InDeltaAlpha3DMuPlot[genie_mode]->Fill(SerialDeltaPnInDeltaAlpha3DMuIndex,weight);
 
@@ -1053,8 +1067,6 @@ void FlatTreeAnalyzer::Loop() {
 	    if (MuonMomentumTwoDIndex < 0) { cout << "MuonMomentumTwoDIndex = " << MuonMomentumTwoDIndex << endl; }
 	    int ProtonMomentumTwoDIndex = tools.ReturnIndex(ProtonMomentum, TwoDArrayNBinsProtonMomentum);
 	    if (ProtonMomentumTwoDIndex < 0) { cout << "ProtonMomentumTwoDIndex = " << ProtonMomentumTwoDIndex << endl; }
-	    int MuonCosThetaTwoDIndex = tools.ReturnIndex(MuonCosTheta, TwoDArrayNBinsMuonCosTheta);
-	    if (MuonMomentumTwoDIndex < 0) { cout << "MuonMomentumTwoDIndex = " << MuonMomentumTwoDIndex << endl; }
 	    int ProtonCosThetaTwoDIndex = tools.ReturnIndex(ProtonCosTheta, TwoDArrayNBinsProtonCosTheta);
 	    if (ProtonMomentumTwoDIndex < 0) { cout << "ProtonMomentumTwoDIndex = " << ProtonMomentumTwoDIndex << endl; }
 	    int DeltaPtxTwoDIndex = tools.ReturnIndex(DeltaPtx, TwoDArrayNBinsDeltaPtx);

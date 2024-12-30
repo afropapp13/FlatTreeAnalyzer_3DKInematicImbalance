@@ -70,6 +70,14 @@ void GeneratorOverlay(TString Tag = "") {
 
 	}
 
+	if (Tag == "EL_FF") {
+
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18"); Colors.push_back(kGreen+2); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_2_G18_10a_02_11a_ELFF.root"); Labels.push_back("ELFF"); Colors.push_back(kOrange+7); LineStyle.push_back(kDashed);
+
+	}
+
+
 
 	if (Tag == "GiBUU") {
 	  
