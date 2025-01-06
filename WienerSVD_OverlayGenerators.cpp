@@ -27,7 +27,7 @@ using namespace Constants;
 
 //----------------------------------------//
 
-void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool plot_closure = false, bool plot_nuwro = false, bool PlotACHILLES = false, bool PlotANL_SF = false, bool plot_nuclear = false, bool plot_mec = false, bool plot_gibuu = false, bool plot_tune_fsi = false) {
+void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool plot_closure = false, bool plot_nuwro = false, bool PlotACHILLES = false, bool PlotANL_SF = false, bool plot_nuclear = false, bool plot_mec = false, bool plot_gibuu = false, bool plot_tune_fsi = false, bool g18t_vs_ar23 = false) {
 
 	//----------------------------------------//
 
@@ -51,6 +51,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	if (plot_mec) { Extra = "mec"; }
 	if (plot_nuclear) { Extra = "nuclear"; }
 	if (plot_tune_fsi) { Extra = "tune_fsi"; }
+	if (g18t_vs_ar23) { Extra = "g18t_vs_ar23"; }
 
 	//----------------------------------------//
 
@@ -107,11 +108,20 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (PlotGENIE) {
 
-			NameOfSamples.push_back("GENIE_v3_4_0_AR23_20i_00_000");  Colors.push_back(GENIEv2Color); Labels.push_back("AR23 "); weighted.push_back("");
+			NameOfSamples.push_back("GENIE_v3_4_2_AR23_20i_00_000");  Colors.push_back(GENIEv2Color); Labels.push_back("AR23 "); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6_G21_11b_00_000"); Colors.push_back(kOrange+6); Labels.push_back("G21 "); LineStyle.push_back(G21LineStyle); weighted.push_back("");
 
 		}
+
+		//----------------------------------------//	
+
+		if (g18t_vs_ar23) {
+
+			NameOfSamples.push_back("GENIE_v3_4_2_AR23_20i_00_000");  Colors.push_back(kOrange+7); Labels.push_back("AR23 "); weighted.push_back("");
+
+		}
+
 
 		//----------------------------------------//	
 
@@ -521,6 +531,13 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			  leg = new TLegend(0.24,0.68,0.57,0.85);	
 			  legMC = new TLegend(0.56,0.68,0.66,0.85);
 
+			}
+
+			if (g18t_vs_ar23) {
+
+				leg = new TLegend(0.55,0.67,0.9,0.85);
+				legMC = new TLegend(0.55,0.57,0.72,.67);
+	
 			}
 
 			leg->SetBorderSize(0);

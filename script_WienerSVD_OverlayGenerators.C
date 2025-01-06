@@ -18,6 +18,9 @@
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,false,false,false,false, false,true)");
 	//tune fsi
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,false,false,false,false, false,false,true)");
+	//g18t vs ar23
+	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,false,false,false,false, false,false,false,true)");
+
 
 
 }

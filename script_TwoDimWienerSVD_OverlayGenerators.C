@@ -21,6 +21,10 @@
 	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,false,false,false,false,true)");
 	//tune fsi
 	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,false,false,false,false,false,true)");
+	//fsi ar23
+	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,false,false,false,false,false,false,true)");
+	//g18t vs ar23
+	gROOT->ProcessLine("TwoDimWienerSVD_OverlayGenerators(false,false,false,false,false,false,false,false,false,true)");
 
 
 }

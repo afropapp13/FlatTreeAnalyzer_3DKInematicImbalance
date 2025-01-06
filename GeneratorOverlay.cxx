@@ -52,6 +52,14 @@ void GeneratorOverlay(TString Tag = "") {
 
 	}
 
+	if (Tag == "neut") {
+
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NEUT_5_4_0_1.root"); Labels.push_back("NEUT v5.4.0.1"); Colors.push_back(kGreen+1); LineStyle.push_back(kSolid); // kMagenta - 9
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_NEUT_5_8_0.root"); Labels.push_back("NEUT v5.8.0"); Colors.push_back(kOrange+7); LineStyle.push_back(kSolid); // kMagenta - 9
+
+	}
+
+
 	if (Tag == "Tune") {
 
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18"); Colors.push_back(kBlack); LineStyle.push_back(kSolid);
@@ -83,6 +91,14 @@ void GeneratorOverlay(TString Tag = "") {
 
 	}
 	
+	if (Tag == "FSIAR23") {
+
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_2_AR23_20i_00_000.root"); Labels.push_back("AR23 hA");Colors.push_back(kBlack); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_2_AR23_20j_00_000.root"); Labels.push_back("AR23 hN"); Colors.push_back(kBlue); LineStyle.push_back(Gv2LineStyle);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_2_AR23_20l_00_000.root"); Labels.push_back("AR23 G4"); Colors.push_back(GiBUUColor); LineStyle.push_back(GiBUULineStyle);
+
+	}
+	
 	if (Tag == "NuclearEffects") {
 
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18");Colors.push_back(kBlack); LineStyle.push_back(kSolid);
@@ -102,7 +118,7 @@ void GeneratorOverlay(TString Tag = "") {
 
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("BNB");Colors.push_back(kBlack); LineStyle.push_back(kSolid);
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_0_G18_10a_02_11a_Honda.root"); Labels.push_back("Honda"); Colors.push_back(NEUTColor); LineStyle.push_back(kSolid);
-	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_BNBToHonda.root"); Labels.push_back("Rw BNB-To-Honda");Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_BNBToHonda.root"); Labels.push_back("Rw BNB-To-Honda");Colors.push_back(kOrange+7); LineStyle.push_back(kDashed);
 	
 	}
 	
@@ -132,7 +148,7 @@ void GeneratorOverlay(TString Tag = "") {
 	PlotNames.push_back("TrueFineBinProtonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{p}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
 	PlotNames.push_back("TrueFineBinThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{vis}}  #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");
 	PlotNames.push_back("TrueFineBinCosThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{vis}}  #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
-	PlotNames.push_back("TrueFineBinEvPlot"); YAxisLabel.push_back("#frac{#sigma}{E_{#nu}}  #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
+	PlotNames.push_back("TrueFineBinEvPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE_{#nu}}  #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
 	PlotNames.push_back("TrueFineBinECalPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE^{Cal}}  #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
 	PlotNames.push_back("TrueFineBinPMissPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{miss}}  #left[10^{-38} #frac{cm^{2}}{GeV/c Ar}#right]");
 
@@ -185,6 +201,8 @@ void GeneratorOverlay(TString Tag = "") {
 		for (int iSample = 0; iSample < NSamples; iSample++) {	
 
 		        Histos[iSample] = (TH1D*)(Files[iSample]->Get(PlotNames[iPlot]));
+
+			//Histos[iSample]->Scale(Histos[0]->Integral() / Histos[iSample]->Integral());
 
 			Histos[iSample]->SetLineWidth(3);
 			Histos[iSample]->SetLineColor( Colors.at(iSample) );	

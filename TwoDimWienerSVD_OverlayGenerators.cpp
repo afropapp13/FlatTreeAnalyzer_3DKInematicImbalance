@@ -27,7 +27,7 @@ using namespace Constants;
 
 //----------------------------------------//
 
-void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotANL_SF = false, bool closure = false, bool plot_nuclear = false, bool plot_mec = false, bool plot_gibuu = false, bool plot_tune_fsi = false) {
+void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bool PlotANL_SF = false, bool closure = false, bool plot_nuclear = false, bool plot_mec = false, bool plot_gibuu = false, bool plot_tune_fsi = false, bool plot_tune_fsi_ar23 = false, bool g18t_vs_ar23 = false) {
 
 	//----------------------------------------//
 
@@ -52,6 +52,8 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 	if (plot_mec) { Extra = "mec"; }
 	if (plot_nuclear) { Extra = "nuclear"; }
 	if (plot_tune_fsi) { Extra = "tune_fsi"; }
+	if (plot_tune_fsi_ar23) { Extra = "fsi_ar23"; }
+	if (g18t_vs_ar23) { Extra = "g18t_vs_ar23"; }
 
 	//----------------------------------------//
 
@@ -106,15 +108,12 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		vector<TString> weighted; weighted.clear();
 
-		// CV
-
-		NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
-
 		//----------------------------------------//	
 
 		if (PlotGENIE) {
 
-			NameOfSamples.push_back("GENIE_v3_4_0_AR23_20i_00_000"); Colors.push_back(kBlue); Labels.push_back("AR23 ");LineStyle.push_back(Gv2LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("GENIE_v3_4_2_AR23_20i_00_000"); Colors.push_back(kBlue); Labels.push_back("AR23 ");LineStyle.push_back(Gv2LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6_G21_11b_00_000"); Colors.push_back(kOrange+6); Labels.push_back("G21 "); LineStyle.push_back(G21LineStyle); weighted.push_back("");
 
@@ -122,8 +121,19 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		//----------------------------------------//	
 
+		if (g18t_vs_ar23) {
+
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("GENIE_v3_4_2_AR23_20i_00_000"); Colors.push_back(kOrange+7); Labels.push_back("AR23 ");LineStyle.push_back(Gv2LineStyle); weighted.push_back("");
+
+		}
+
+
+		//----------------------------------------//	
+
 		if (closure) {
 
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("NoTuneOverlay9"); Colors.push_back(kOrange+7); Labels.push_back("G18D "); LineStyle.push_back(G21LineStyle); weighted.push_back("");
 		
@@ -134,6 +144,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		if (PlotANL_SF) {
 
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weighted.push_back(""); 
 			NameOfSamples.push_back("SF_noPB_hN"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hN "); LineStyle.push_back(G21LineStyle); weighted.push_back(""); 
 
@@ -144,6 +155,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		if (PlotGen) {
 
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("NuWro_21_09_02"); Colors.push_back(NEUTColor); Labels.push_back("NuWro "); LineStyle.push_back(NuWroLineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GiBUU_2023"); Colors.push_back(kMagenta+1); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
 			NameOfSamples.push_back("NEUT_5_4_0_1"); Colors.push_back(kYellow-6); Labels.push_back("NEUT "); LineStyle.push_back(NEUTLineStyle); weighted.push_back("");
@@ -154,6 +166,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		if (plot_gibuu) {
 
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GiBUU_2023_medium"); Colors.push_back(kOrange+7); Labels.push_back("in medium "); LineStyle.push_back(kSolid); weighted.push_back(""); 
 			NameOfSamples.push_back("GiBUU_2023"); Colors.push_back(kGreen+1); Labels.push_back("GiBUU "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
 
@@ -163,6 +176,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		if (plot_mec) {
 
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kMagenta+1); Labels.push_back("Nieves "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
 			NameOfSamples.push_back("GENIE_v3_0_6_Empirical"); Colors.push_back(kGreen+1); Labels.push_back("Empirical "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
 			NameOfSamples.push_back("GENIE_v3_0_6_SuSAv2"); Colors.push_back(kOrange+7); Labels.push_back("SuSAv2 "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
@@ -173,6 +187,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		if (plot_nuclear) {
 
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kMagenta+1); Labels.push_back("LFG "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
 			NameOfSamples.push_back("G18_10a_02_11a_SF_Fortran"); Colors.push_back(kGreen+1); Labels.push_back("SF "); LineStyle.push_back(GiBUULineStyle); weighted.push_back(""); 
 			NameOfSamples.push_back("GENIE_v3_0_6_RFG"); Colors.push_back(kOrange+7); Labels.push_back("RFG "); LineStyle.push_back(kOrange+7); weighted.push_back(""); 
@@ -183,10 +198,23 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		if (plot_tune_fsi) {
 
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
 			NameOfSamples.push_back("GENIE_v3_4_2_G18_10b_02_11a"); Colors.push_back(kOrange+7); Labels.push_back("G18T hN "); LineStyle.push_back(kSolid); weighted.push_back("Weights"); 
 			NameOfSamples.push_back("GENIE_v3_4_2_G18_10d_02_11a"); Colors.push_back(kGreen+1); Labels.push_back("G18T G4 "); LineStyle.push_back(kSolid); weighted.push_back("Weights"); 
 		
 		}	
+
+		//----------------------------------------//		
+
+		if (plot_tune_fsi_ar23) {
+
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("GENIE_v3_4_2_AR23_20i_00_000"); Colors.push_back(OverlayColor); Labels.push_back("AR23 "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("GENIE_v3_4_2_AR23_20j_00_000"); Colors.push_back(kOrange+7); Labels.push_back("AR23 hN "); LineStyle.push_back(kSolid); weighted.push_back(""); 
+			NameOfSamples.push_back("GENIE_v3_4_2_AR23_20l_00_000"); Colors.push_back(kGreen+1); Labels.push_back("AR23 G4 "); LineStyle.push_back(kSolid); weighted.push_back(""); 
+		
+		}	
+
 
 		//----------------------------------------//
 
@@ -755,7 +783,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				MC[WhichPlot][NDimSlice][0]->SetLineColor(Colors[0]);
 				MC[WhichPlot][NDimSlice][0]->SetMarkerColor(Colors[0]);	
 				MC[WhichPlot][NDimSlice][0]->SetLineWidth(3);	
-				MC[WhichPlot][NDimSlice][0]->Draw("hist same");	
+			     	if ( !plot_tune_fsi_ar23 ) { MC[WhichPlot][NDimSlice][0]->Draw("hist same"); }	
 				
 				QEMC[WhichPlot][NDimSlice][0] = tools.GetHistoBins(QEPlotsTrue[0][WhichPlot],SerialVectorLowBin.at(NDimSlice),SerialVectorHighBin.at(NDimSlice), MultiDimScaleFactor[ MapUncorCor[ NameCopy ] ], SerialSliceBinning,"Overlay");
 				MECMC[WhichPlot][NDimSlice][0] = tools.GetHistoBins(MECPlotsTrue[0][WhichPlot],SerialVectorLowBin.at(NDimSlice),SerialVectorHighBin.at(NDimSlice), MultiDimScaleFactor[ MapUncorCor[ NameCopy ] ], SerialSliceBinning,"Overlay");								
