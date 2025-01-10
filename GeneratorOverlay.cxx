@@ -96,6 +96,7 @@ void GeneratorOverlay(TString Tag = "") {
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_2_AR23_20i_00_000.root"); Labels.push_back("AR23 hA");Colors.push_back(kBlack); LineStyle.push_back(kSolid);
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_2_AR23_20j_00_000.root"); Labels.push_back("AR23 hN"); Colors.push_back(kBlue); LineStyle.push_back(Gv2LineStyle);
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_2_AR23_20l_00_000.root"); Labels.push_back("AR23 G4"); Colors.push_back(GiBUUColor); LineStyle.push_back(GiBUULineStyle);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_2_G24_20i_06_22c.root"); Labels.push_back("G24 hA"); Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
 
 	}
 	

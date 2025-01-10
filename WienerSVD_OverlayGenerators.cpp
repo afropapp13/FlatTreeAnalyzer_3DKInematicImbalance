@@ -735,7 +735,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			leg->AddEntry(PlotsReco[0][WhichPlot],"MicroBooNE Data","");
 			leg->AddEntry(PlotsReco[0][WhichPlot],Label,"");
 			leg->AddEntry(PlotsReco[0][WhichPlot],"Stat #oplus Shape","ep");			
-			leg->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm","f"); 
+			leg->AddEntry(PlotsNormOnly[0][WhichPlot],"Norm (#chi^{2}/ndf)","f"); 
 			leg->Draw();			
 
 			legMC->Draw();			
@@ -879,7 +879,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 	
 				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"#chi^{2}/ndf = " + to_string_with_precision(Chi2[WhichSample],1.) + "/"+ to_string_with_precision(Ndof[WhichSample],0) ,"");
 				
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"p-value = " + to_string_with_precision(pval[WhichSample],2.),"");
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"p = " + to_string_with_precision(pval[WhichSample],2.),"");
 				
 				double qe_frac = QEPlotsTrue[WhichSample][WhichPlot]->Integral() / hstack->Integral() * 100.;
 				TLegendEntry* lqe = ilegmc->AddEntry(QEPlotsTrue[WhichSample][WhichPlot],"QE (" + to_string_with_precision(qe_frac,1.) + "%)","f");

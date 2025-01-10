@@ -530,7 +530,7 @@ void neutron_WienerSVD_OverlayGenerators() {
 	
 				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"#chi^{2}/ndf = " + to_string_with_precision(Chi2[WhichSample],1.) + "/"+ to_string_with_precision(Ndof[WhichSample],0) ,"");
 				
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"p-value = " + to_string_with_precision(pval[WhichSample],2.),"");
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"p = " + to_string_with_precision(pval[WhichSample],2.),"");
 				
 				double qe_frac = zeroneutronPlotsTrue[WhichSample][WhichPlot]->Integral() / hstack->Integral() * 100.;
 				TLegendEntry* lqe = ilegmc->AddEntry(zeroneutronPlotsTrue[WhichSample][WhichPlot],"0n (" + to_string_with_precision(qe_frac,1.) + "%)","f");

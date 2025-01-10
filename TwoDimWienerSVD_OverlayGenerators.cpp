@@ -198,9 +198,9 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 		if (plot_tune_fsi) {
 
-			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
-			NameOfSamples.push_back("GENIE_v3_4_2_G18_10b_02_11a"); Colors.push_back(kOrange+7); Labels.push_back("G18T hN "); LineStyle.push_back(kSolid); weighted.push_back("Weights"); 
-			NameOfSamples.push_back("GENIE_v3_4_2_G18_10d_02_11a"); Colors.push_back(kGreen+1); Labels.push_back("G18T G4 "); LineStyle.push_back(kSolid); weighted.push_back("Weights"); 
+			NameOfSamples.push_back("Overlay9"); Colors.push_back(OverlayColor); Labels.push_back("G18T         "); LineStyle.push_back(G18LineStyle); weighted.push_back("");
+			NameOfSamples.push_back("GENIE_v3_4_2_G18_10b_02_11a"); Colors.push_back(kOrange+7); Labels.push_back("G18T hN   "); LineStyle.push_back(kSolid); weighted.push_back("Weights"); 
+			NameOfSamples.push_back("GENIE_v3_4_2_G18_10d_02_11a"); Colors.push_back(kGreen+1); Labels.push_back("G18T G4   "); LineStyle.push_back(kSolid); weighted.push_back("Weights"); 
 		
 		}	
 
@@ -861,7 +861,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				leg->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"MicroBooNE Data","");
 				leg->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],Label,"");
 				leg->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"Stat #oplus Shape","ep");
-				leg->AddEntry(BeamOnNormOnly[WhichPlot][NDimSlice],"Norm Unc","f");
+				leg->AddEntry(BeamOnNormOnly[WhichPlot][NDimSlice],"Norm Unc (#chi^{2}/ndf)","f");
 				leg->Draw();			
 
 				legMC->Draw();
@@ -1017,7 +1017,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 
 					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"#chi^{2}/ndf = " + to_string_with_precision(Chi2[WhichSample],1.) + "/"+ to_string_with_precision(Ndof[WhichSample],0) ,"");
 					
-					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"p-value = " + to_string_with_precision(pval[WhichSample],2.),"");
+					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"p = " + to_string_with_precision(pval[WhichSample],2.),"");
 		
   					double qe_frac = QEMC[WhichPlot][NDimSlice][WhichSample]->Integral() / hstack->Integral() * 100.;
 					TLegendEntry* lqe = ilegmc->AddEntry(QEMC[WhichPlot][NDimSlice][WhichSample],"QE (" + to_string_with_precision(qe_frac,1.) + "%)","f");

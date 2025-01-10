@@ -731,7 +731,7 @@ void neutron_TwoDimWienerSVD_OverlayGenerators() {
 
 					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"#chi^{2}/ndf = " + to_string_with_precision(Chi2[WhichSample],1.) + "/"+ to_string_with_precision(Ndof[WhichSample],0) ,"");
 					
-					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"p-value = " + to_string_with_precision(pval[WhichSample],2.),"");
+					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"p = " + to_string_with_precision(pval[WhichSample],2.),"");
 		
   					double qe_frac = zeroneutronMC[WhichPlot][NDimSlice][WhichSample]->Integral() / hstack->Integral() * 100.;
 					TLegendEntry* lqe = ilegmc->AddEntry(zeroneutronMC[WhichPlot][NDimSlice][WhichSample],"0n (" + to_string_with_precision(qe_frac,1.) + "%)","f");

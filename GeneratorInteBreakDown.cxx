@@ -82,6 +82,10 @@ void GeneratorInteBreakDown() {
 	PlotNames.push_back("TrueFineBinPMissPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{miss}} #left[10^{-38} #frac{cm^{2}}{GeV/c Ar}#right]");
 	PlotNames.push_back("TrueFineBinECalPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE_{reco}} #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
 	
+	// Pre FSI 
+	// 1D
+	PlotNames.push_back("NoFSITrueFineBinPMissPlot"); YAxisLabel.push_back("#frac{d#sigma}{dp_{miss}} #left[10^{-38} #frac{cm^{2}}{GeV/c Ar}#right]");
+	
 	//------------------------------//
 
 	const int NPlots = PlotNames.size();
