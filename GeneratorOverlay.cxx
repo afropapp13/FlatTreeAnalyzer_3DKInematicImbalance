@@ -80,6 +80,7 @@ void GeneratorOverlay(TString Tag = "") {
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6.root"); Labels.push_back("G18 LFG");Colors.push_back(kBlack); LineStyle.push_back(kSolid);
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_RFG.root"); Labels.push_back("G18 RFG"); Colors.push_back(GiBUUColor); LineStyle.push_back(GiBUULineStyle);
 	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_0_6_EffSF.root"); Labels.push_back("G18 SF");Colors.push_back(kRed); LineStyle.push_back(kSolid);
+	  Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_GENIE_v3_4_2_GTEST23_4a_00_000.root"); Labels.push_back("Noah SF");Colors.push_back(kOrange+7); LineStyle.push_back(kSolid);
 
 	}
 	

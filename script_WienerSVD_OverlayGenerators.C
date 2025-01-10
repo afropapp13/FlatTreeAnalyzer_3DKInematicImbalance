@@ -10,6 +10,8 @@
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,true)");
 	//NuWro closure test
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,true)");
+	//sf noah
+	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,false,false,true)");
 	//nuclear
 	gROOT->ProcessLine("WienerSVD_OverlayGenerators(false,false,false,false,false, false,true)");
 	//mec

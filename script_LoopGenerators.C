@@ -29,6 +29,7 @@
  	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_2_G18_10a_02_11a_EmpiricalMEC_CC/14_1000180400_CC_v3_4_2_G18_10a_02_11a.flat.root"); WhichName.push_back("GENIE_v3_0_6_Empirical");		
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_0_ANL_SF/BNB_SF_Ar40.flat.root"); WhichName.push_back("G18_10a_02_11a_SF_Fortran");
 	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/gntp.0.gprep_RFG.flat.root"); WhichName.push_back("GENIE_v3_0_6_RFG");
+	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSamples/v3_4_2_GTEST23_4a_00_000_CCQE/14_1000180400_CCQE_v3_4_2_GTEST23_40a_00_000.flat.root"); WhichName.push_back("GENIE_v3_4_2_GTEST23_4a_00_000");
 
 	// GiBUU
         WhichSample.push_back("/pnfs/uboone/persistent/users/bbogart/GiBUU_samples/GiBUU/GiBUU.flat.root"); WhichName.push_back("GiBUU_2023");
