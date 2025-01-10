@@ -85,6 +85,7 @@ void FlatTreeAnalyzer::Loop() {
 	TH1D* TrueFineBinEvPlot[NInte];
 	TH1D* TrueFineBinECalPlot[NInte];
 	TH1D* TrueFineBinPMissPlot[NInte];
+	TH1D* TrueFineBinDeltaPnPlot[NInte];
 
 	// 1D Nominal Binning
 
@@ -169,6 +170,7 @@ void FlatTreeAnalyzer::Loop() {
 	  TrueFineBinEvPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinEvPlot",";E_{#nu} [GeV]",NBinsEv,ArrayNBinEv);
 	  TrueFineBinECalPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinECalPlot",";E_{reco} [GeV]",NBinsEv,ArrayNBinEv);
 	  TrueFineBinPMissPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinPMissPlot",";p_{miss} [GeV/c]",20,ArrayNBinsPMiss[0],ArrayNBinsPMiss[NBinsPMiss]);
+	  TrueFineBinDeltaPnPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinDeltaPnPlot",";p_{n} [GeV/c]",20,ArrayNBinsDeltaPn[0],ArrayNBinsDeltaPn[NBinsPMiss]);
 
 	  // 1D Nominal Binning
 
@@ -628,6 +630,7 @@ void FlatTreeAnalyzer::Loop() {
 	    PnGKIvsPnTrue[0]->Fill(DeltaPn,pn_true,weight);
 	    ThetaVisvsNeutronTheta[0]->Fill(ThetaVis,init_neutron_theta_vis,weight);
 	    TrueFineBinPMissPlot[0]->Fill(pmiss,weight);
+	    TrueFineBinDeltaPnPlot[0]->Fill(DeltaPn,weight);
 
 	    // filling in the histo based on the interaction mode
 
@@ -644,6 +647,7 @@ void FlatTreeAnalyzer::Loop() {
 	    PnGKIvsPnTrue[genie_mode]->Fill(DeltaPn,pn_true,weight);
 	    ThetaVisvsNeutronTheta[genie_mode]->Fill(ThetaVis,init_neutron_theta_vis,weight);
 	    TrueFineBinPMissPlot[genie_mode]->Fill(pmiss,weight);
+	    TrueFineBinDeltaPnPlot[genie_mode]->Fill(DeltaPn,weight);
 
 	    //----------------------------------------//
 
@@ -843,6 +847,7 @@ void FlatTreeAnalyzer::Loop() {
 		Reweight(TrueFineBinEvPlot[inte]);
 		Reweight(TrueFineBinECalPlot[inte]);
 		Reweight(TrueFineBinPMissPlot[inte]);
+		Reweight(TrueFineBinDeltaPnPlot[inte]);
 
 	        // 1D Fine Binning Pre FSI
 
