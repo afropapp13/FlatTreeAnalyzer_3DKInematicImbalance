@@ -149,7 +149,7 @@ void PdfOverlay(TString Tag = "") {
 			Histos[iSample]->GetYaxis()->SetNdivisions(6);
 			Histos[iSample]->GetYaxis()->SetLabelSize(TextSize);
 			//Histos[iSample]->GetYaxis()->SetTitle(YAxisLabel.at(iPlot));
-			Histos[iSample]->GetYaxis()->SetTitle("PDF");
+			Histos[iSample]->GetYaxis()->SetTitle("Probability density");
 			Histos[iSample]->GetYaxis()->SetTitleSize(TextSize);
 			Histos[iSample]->GetYaxis()->SetTitleOffset(1.2);
 			//Histos[iSample]->GetYaxis()->SetTickSize(0);
