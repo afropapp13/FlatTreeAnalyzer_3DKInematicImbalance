@@ -538,6 +538,13 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 				leg = new TLegend(0.55,0.67,0.9,0.85);
 				legMC = new TLegend(0.55,0.57,0.72,.67);
+
+				if (PlotNames[WhichPlot].Contains("SerialThetaVis_ECal")) {
+
+					leg = new TLegend(0.25,0.67,0.5,0.85);
+					legMC = new TLegend(0.25,0.57,0.42,.67);	
+
+				}	
 	
 			}
 
