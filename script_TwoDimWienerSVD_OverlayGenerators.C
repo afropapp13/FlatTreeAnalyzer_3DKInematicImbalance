@@ -1,8 +1,8 @@
 {
 
-	gROOT->ProcessLine(".L /exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Util.C");
+	gROOT->ProcessLine(".L Util.C");
 
-	gROOT->ProcessLine(".L /exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Tools.cxx");
+	gROOT->ProcessLine(".L Tools.cxx");
 
 	gROOT->ProcessLine(".L TwoDimWienerSVD_OverlayGenerators.cpp");
 	//GENIE versions

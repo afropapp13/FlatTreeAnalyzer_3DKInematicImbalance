@@ -51,10 +51,13 @@ WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/GENIETweakedSample
         WhichSample.push_back("/exp/uboone/data/users/bbogart/samples/GiBUU_2023_inmedium/GiBUU_2023_inmedium_76.flat.root"); WhichName.push_back("GiBUU_2023_BU_flagScreen"); // 76 runs
         WhichSample.push_back("/exp/uboone/data/users/bbogart/samples/GiBUU_2023_flagInMedium/GiBUU_2023_flagInMedium_73.flat.root"); WhichName.push_back("GiBUU_2023_BU_flagInMedium"); // 73 runs
 
+	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/achilles_samples/achilles_delta.flat.root"); WhichName.push_back("achilles_delta");			 	
+	WhichSample.push_back("/pnfs/uboone/persistent/users/apapadop/achilles_samples/achilles_oset.flat.root"); WhichName.push_back("achilles_oset");			 	
+	
 	//----------------------------------------//
 
-        gROOT->ProcessLine(".L /exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Tools.cxx+");
-        gROOT->ProcessLine(".L /exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/STV_Tools.cxx+");
+        gROOT->ProcessLine(".L Tools.cxx+");
+        gROOT->ProcessLine(".L STV_Tools.cxx+");
 	gROOT->ProcessLine(".L FlatTreeAnalyzer.cxx+");
 
 	for (int i =0;i < (int)(WhichSample.size()); i++) {

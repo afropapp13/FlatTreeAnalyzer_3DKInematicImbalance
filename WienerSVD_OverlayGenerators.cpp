@@ -17,17 +17,17 @@
 #include <sstream>
 #include <string>
 
-#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/CenterAxisTitle.cpp"
-#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/SetOffsetAndSize.cpp"
+#include "CenterAxisTitle.cpp"
+#include "SetOffsetAndSize.cpp"
 #include "myFunctions.cpp"
-#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/AnalysisCode/Secondary_Code/MakeMyPlotPretty.cpp"
+#include "MakeMyPlotPretty.cpp"
 
-#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
+#include "Constants.h"
 
 using namespace std;
 using namespace Constants;
 
-#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Util.h"
+#include "Util.h"
 
 //----------------------------------------//
 
@@ -136,11 +136,12 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 		if (PlotANL_SF) {
 
-			NameOfSamples.push_back("ANL_SF"); Colors.push_back(kOrange+7); Labels.push_back("SF "); LineStyle.push_back(G21LineStyle); weights.push_back("");
+			//NameOfSamples.push_back("ANL_SF"); Colors.push_back(kOrange+7); Labels.push_back("SF "); LineStyle.push_back(G21LineStyle); weights.push_back("");
 			//NameOfSamples.push_back("SF_noPB_hA"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hA "); LineStyle.push_back(G21LineStyle); weights.push_back("");
 			//NameOfSamples.push_back("SF_noPB_hN"); Colors.push_back(kOrange+7); Labels.push_back("SF noPB hN "); LineStyle.push_back(G21LineStyle); weights.push_back("");
-			NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(G18LineStyle); weights.push_back("");
-	
+			//NameOfSamples.push_back("GENIE_v3_0_6"); Colors.push_back(kGreen+2); Labels.push_back("G18 "); LineStyle.push_back(kSolid); weights.push_back("");
+			NameOfSamples.push_back("achilles_delta"); Colors.push_back(kOrange+7); Labels.push_back("ach delta "); LineStyle.push_back(kSolid); weights.push_back("");
+			NameOfSamples.push_back("achilles_oset"); Colors.push_back(kBlue+1); Labels.push_back("ach oset "); LineStyle.push_back(kSolid); weights.push_back("");
 		}
 
 		//----------------------------------------//	

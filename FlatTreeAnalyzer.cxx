@@ -16,9 +16,9 @@
 #include <iterator>
 #include <fstream>
 
-#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Constants.h"
-#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/STV_Tools.h"
-#include "/exp/uboone/app/users/apapadop/uboonecode_v08_00_00_52/srcs/ubana/ubana/myClasses/Tools.h"
+#include "Constants.h"
+#include "STV_Tools.h"
+#include "Tools.h"
 
 using namespace std;
 using namespace Constants;
@@ -579,7 +579,7 @@ void FlatTreeAnalyzer::Loop() {
 	  //----------------------------------------//			
 
 	  double weight = fScaleFactor*Units*A*Weight * t2kweight;	
-	  if (fOutputFile == "ACHILLES") { weight = fScaleFactor*Units*Weight; }
+	  if ( fOutputFile.Contains("ACHILLES") || fOutputFile.Contains("achilles")) { weight = fScaleFactor*Units*Weight * A; }
 	  //if (jentry%1000 == 0) { std::cout << "fScaleFactor = " << fScaleFactor << ", weight = " << weight << std::endl; }
 
 	  //	  cout << "fScaleFactor = " << fScaleFactor << ", Weight = " << Weight << endl;
@@ -598,15 +598,16 @@ void FlatTreeAnalyzer::Loop() {
 	  if (fOutputFile == "GiBUU_2023_BU_flagScreen") { weight = weight/76.; }
 	  if (fOutputFile == "GiBUU_2023_BU_flagInMedium") { weight = weight/73.; }
 
-	  if (fOutputFile == "ACHILLES") { weight = weight*1000./(40./12.); } // ACHILLES scaling still under discussion
+	  //if (fOutputFile == "ACHILLES") { weight = weight*1000./(40./12.); } // ACHILLES scaling still under discussion
 
 	  //----------------------------------------//	
 
 	  // Signal definition
 
 	  if (PDGLep != 13) { continue; } // make sure that we have only a muon in the final state
+
 	  // ACHILLES doesn't know how to handle the cc branch yet
-	  if (fOutputFile != "ACHILLES") {
+	  if ( !( fOutputFile.Contains("ACHILLES") || fOutputFile.Contains("achilles") ) ) {
 	    if (cc != 1) { continue; } // make sure that we have only CC interactions		
 	  }
 
@@ -732,9 +733,12 @@ void FlatTreeAnalyzer::Loop() {
 
 	  int genie_mode = -1.;
 
-	  if (fOutputFile ==  "ACHILLES") {
+	  if (fOutputFile.Contains("ACHILLES") || fOutputFile.Contains("achilles")) {
 
-	    genie_mode = 1; // ACHILLES has only QE for now
+	    if (TMath::Abs(Mode) == 200) { genie_mode = 1; } // QE
+	    else if (TMath::Abs(Mode) == 700) { genie_mode = 2; } // MEC
+	    else if (TMath::Abs(Mode) == 400) { genie_mode = 3; } // RES
+	    else { continue; }
 
 	  } else {
 
