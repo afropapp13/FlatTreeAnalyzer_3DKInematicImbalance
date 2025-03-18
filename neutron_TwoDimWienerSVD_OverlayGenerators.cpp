@@ -573,7 +573,7 @@ void neutron_TwoDimWienerSVD_OverlayGenerators() {
 
 				BeamOnNormOnly[WhichPlot][NDimSlice] = tools.GetHistoBins(PlotsNormOnly[0][WhichPlot],SerialVectorLowBin.at(NDimSlice),SerialVectorHighBin.at(NDimSlice), MultiDimScaleFactor[ MapUncorCor[ NameCopy ] ], SerialSliceBinning,"NormOnly");
 				PrettyPlot(BeamOnNormOnly[WhichPlot][NDimSlice]); // includes scaling factor for multi dimensional analysis			
-				BeamOnNormOnly[WhichPlot][NDimSlice]->SetFillColorAlpha(kGray+1, 0.45);	
+				BeamOnNormOnly[WhichPlot][NDimSlice]->SetFillColorAlpha(kGray+1, 0.75);	
 				BeamOnNormOnly[WhichPlot][NDimSlice]->SetLineColor(kGray+1);
 				BeamOnNormOnly[WhichPlot][NDimSlice]->SetMarkerColor(kGray+1);
 				//BeamOnNormOnly[WhichPlot][NDimSlice]->Draw("e2 same");		

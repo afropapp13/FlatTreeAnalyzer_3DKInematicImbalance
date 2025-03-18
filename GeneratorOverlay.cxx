@@ -246,7 +246,15 @@ void GeneratorOverlay(TString Tag = "") {
 			textSlice->SetTextSize(TextSize);
 			TString PlotNameDuplicate = PlotNames[iPlot];
 			TString ReducedPlotName = PlotNameDuplicate.ReplaceAll("TrueFineBin","") ;
-			textSlice->DrawLatexNDC(0.2, 0.8, LatexLabel[ReducedPlotName].ReplaceAll("All events",""));
+			if (Tag == "Honda" && PlotNames[iPlot] == "TrueFineBinEvPlot") {
+
+				textSlice->DrawLatexNDC(0.3, 0.9, "Flux-averaged cross section");
+			
+			} else {
+
+				textSlice->DrawLatexNDC(0.2, 0.8, LatexLabel[ReducedPlotName].ReplaceAll("All events",""));
+
+			}
 
 			//----------------------------------------//					
 
