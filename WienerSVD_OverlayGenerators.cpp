@@ -542,7 +542,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 				if (PlotNames[WhichPlot].Contains("SerialThetaVis_ECal")) {
 
 					leg = new TLegend(0.25,0.67,0.5,0.85);
-					legMC = new TLegend(0.25,0.57,0.42,.67);	
+					legMC = new TLegend(0.25,0.57,0.39,.67);	
 
 				}	
 	
@@ -592,6 +592,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 				TString XaxisTitle = PlotsReco[0][WhichPlot]->GetXaxis()->GetTitle();
 				XaxisTitle.ReplaceAll("deg","bin #");
 				XaxisTitle.ReplaceAll("GeV/c","bin #");
+				XaxisTitle.ReplaceAll("GeV/#it{c}","bin #");
 				XaxisTitle.ReplaceAll("GeV","bin #");				
 				PlotsReco[0][WhichPlot]->GetXaxis()->SetTitle(XaxisTitle);
 
@@ -600,6 +601,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 				YaxisTitle.ReplaceAll("(GeV/c)","");
 				YaxisTitle.ReplaceAll("GeV","");
 				YaxisTitle.ReplaceAll("/c","");
+				YaxisTitle.ReplaceAll("(/#it{c})","");
 				//YaxisTitle.ReplaceAll("^{2}","");												
 				PlotsReco[0][WhichPlot]->GetYaxis()->SetTitle(YaxisTitle);				
 
