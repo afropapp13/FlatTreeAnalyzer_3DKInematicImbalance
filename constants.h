@@ -31,6 +31,10 @@ namespace constants {
 	const double TextSize = 0.07;
 	const int NCont = 999; 
 
+	// events with theta vis better or worse than 5 deg
+	std::vector<TString> ThetaVisLabels = {"","Low","High"};
+	double theta_vis_open = 5; // deg
+
 	//----------------------------------------//
 
 	// Labels / Ranges & Label  map

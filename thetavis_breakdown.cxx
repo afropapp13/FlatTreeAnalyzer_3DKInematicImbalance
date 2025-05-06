@@ -18,12 +18,12 @@
 #include <stdlib.h>
 
 #include "constants.h"
-#include "myFunctions.cpp"
+#include "helper_functions.cxx"
 
 using namespace std;
 using namespace constants;
 
-void GeneratorInteBreakDown() {
+void thetavis_breakdown() {
 
 	//------------------------------//
 
@@ -34,7 +34,7 @@ void GeneratorInteBreakDown() {
 	int FontStyle = 132;
 	double TextSize = 0.06;			
 
-	TString OutFilePath = "OutputFiles/";
+	TString OutFilePath = "output_files/";
 
 	//------------------------------//
 
@@ -43,10 +43,11 @@ void GeneratorInteBreakDown() {
 	std::vector<TString> Names; std::vector<TString> Labels; 
 
 	std::vector<int> Colors{kBlack,kBlue,kRed+1,kOrange+7,kGreen+1, kMagenta+1};
-	std::vector<TString> Process{"","QE","MEC","RES","DIS"};
 
-	Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_bnb_AR23_20i_00_000.root"); Labels.push_back("BNB AR23");
-	Names.push_back(OutFilePath+"FlatTreeAnalyzerOutput_atmo_AR23_20i_00_000.root"); Labels.push_back("Honda AR23");
+	std::vector<TString> Process{"","Low","High"};
+
+	Names.push_back(OutFilePath+"analyzer_output_bnb_AR23_20i_00_000.root"); Labels.push_back("BNB AR23");
+	Names.push_back(OutFilePath+"analyzer_output_atmo_AR23_20i_00_000.root"); Labels.push_back("Honda AR23");
 	
 	const int NSamples = Names.size();
 	const int NColors = Colors.size();
@@ -70,9 +71,7 @@ void GeneratorInteBreakDown() {
 
 	// 1D
 
-	PlotNames.push_back("TrueMuonCosThetaPlot"); YAxisLabel.push_back("#frac{d#sigma}{dcos#theta_{#mu}} #left[10^{-38} #frac{cm^{2}}{Ar}#right]");
-	PlotNames.push_back("TrueThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{vis}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");	
-	PlotNames.push_back("TrueEnuPlot"); YAxisLabel.push_back("#frac{d#sigma}{dE_{#nu}} #left[10^{-38} #frac{cm^{2}}{GeV Ar}#right]");
+	PlotNames.push_back("TrueSplitThetaVisPlot"); YAxisLabel.push_back("#frac{d#sigma}{d#theta_{vis}} #left[10^{-38} #frac{cm^{2}}{deg Ar}#right]");	
 	
 	//------------------------------//
 
@@ -84,11 +83,13 @@ void GeneratorInteBreakDown() {
 
 	//------------------------------//	
 
+	std::vector<TH1D*> Histos; Histos.resize(NProcesses);
+
 	// Loop over the samples to open the files and the TTree
 
 	for (int iSample = 0; iSample < NSamples; iSample++) {
 
-		Files[iSample] = new TFile(Names[iSample],"readonly");
+		Files[iSample] = TFile::Open(Names[iSample],"readonly");
 
 	} // End of the loop over the samples
 
@@ -101,7 +102,7 @@ void GeneratorInteBreakDown() {
 		for (int iSample = 0; iSample < NSamples; iSample++) {	
 
 		  TString LabelCopy = Labels[iSample];
-		  TString CanvasName = "ThreeDKI_"+LabelCopy.ReplaceAll(" ","_")+"_InteBreakDown_" + PlotNames[iPlot];
+		  TString CanvasName = LabelCopy.ReplaceAll(" ","_")+"_ThetaVisBreakDown_" + PlotNames[iPlot];
 		  TCanvas* PlotCanvas = new TCanvas(CanvasName,CanvasName,205,34,1024,768);
 		  PlotCanvas->cd();
 		  PlotCanvas->SetTopMargin(0.13);
@@ -120,11 +121,9 @@ void GeneratorInteBreakDown() {
 
 		  // Loop over the interaction processes
 
-		  std::vector<TH1D*> Histos; Histos.resize(NProcesses);
-
 		  for (int iprocess = 0; iprocess < NProcesses; iprocess++) {	
 
-		        Histos[iprocess] = (TH1D*)(Files[iSample]->Get(Process[iprocess]+PlotNames[iPlot]));
+			Histos[iprocess] = (TH1D*)(Files[iSample]->Get(Process[iprocess]+PlotNames[iPlot]));
 
 			Histos[iprocess]->SetLineWidth(4);
 			Histos[iprocess]->SetLineColor( Colors.at(iprocess) );	
@@ -158,8 +157,6 @@ void GeneratorInteBreakDown() {
 			legColor->SetTextColor( Colors.at(iprocess) ); 
 
 		  } // End of the loop over the processes
-
-
 
 		  PlotCanvas->cd();
 		  leg->Draw();

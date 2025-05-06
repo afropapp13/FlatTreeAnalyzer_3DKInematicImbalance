@@ -1,12 +1,12 @@
-#ifndef FlatTreeAnalyzer_h
-#define FlatTreeAnalyzer_h
+#ifndef analyzer_h
+#define analyzer_h
 
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
 #include <TString.h>
 
-class FlatTreeAnalyzer {
+class analyzer {
 
 private:
 	TFile* fFile;
@@ -84,8 +84,8 @@ public :
    TBranch        *b_E_vert;   //!
    TBranch        *b_pdg_vert;   //!
 
-   FlatTreeAnalyzer(TString in, TString out, TString weight = "", TTree *tree=0);
-   virtual ~FlatTreeAnalyzer();
+   analyzer(TString in, TString out, TString weight = "", TTree *tree=0);
+   virtual ~analyzer();
    virtual Int_t    Cut(Long64_t entry);
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
@@ -97,8 +97,8 @@ public :
 
 #endif
 
-#ifdef FlatTreeAnalyzer_cxx
-FlatTreeAnalyzer::FlatTreeAnalyzer(TString InputFile, TString OutputFile, TString Weights, TTree *tree) : fChain(0) 
+#ifdef analyzer_cxx
+analyzer::analyzer(TString InputFile, TString OutputFile, TString Weights, TTree *tree) : fChain(0) 
 {
 
         fweights = Weights;
@@ -118,19 +118,19 @@ FlatTreeAnalyzer::FlatTreeAnalyzer(TString InputFile, TString OutputFile, TStrin
    Init(tree);
 }
 
-FlatTreeAnalyzer::~FlatTreeAnalyzer()
+analyzer::~analyzer()
 {
    if (!fChain) return;
    delete fChain->GetCurrentFile();
 }
 
-Int_t FlatTreeAnalyzer::GetEntry(Long64_t entry)
+Int_t analyzer::GetEntry(Long64_t entry)
 {
 // Read contents of entry.
    if (!fChain) return 0;
    return fChain->GetEntry(entry);
 }
-Long64_t FlatTreeAnalyzer::LoadTree(Long64_t entry)
+Long64_t analyzer::LoadTree(Long64_t entry)
 {
 // Set the environment to read one entry
    if (!fChain) return -5;
@@ -143,7 +143,7 @@ Long64_t FlatTreeAnalyzer::LoadTree(Long64_t entry)
    return centry;
 }
 
-void FlatTreeAnalyzer::Init(TTree *tree)
+void analyzer::Init(TTree *tree)
 {
 
    // Set branch addresses and branch pointers
@@ -186,24 +186,24 @@ void FlatTreeAnalyzer::Init(TTree *tree)
    Notify();
 }
 
-Bool_t FlatTreeAnalyzer::Notify()
+Bool_t analyzer::Notify()
 {
 
    return kTRUE;
 }
 
-void FlatTreeAnalyzer::Show(Long64_t entry)
+void analyzer::Show(Long64_t entry)
 {
 // Print contents of entry.
 // If entry is not specified, print current entry
    if (!fChain) return;
    fChain->Show(entry);
 }
-Int_t FlatTreeAnalyzer::Cut(Long64_t entry)
+Int_t analyzer::Cut(Long64_t entry)
 {
 // This function may be called from Loop.
 // returns  1 if entry is accepted.
 // returns -1 otherwise.
    return 1;
 }
-#endif // #ifdef FlatTreeAnalyzer_cxx
+#endif // #ifdef analyzer_cxx
