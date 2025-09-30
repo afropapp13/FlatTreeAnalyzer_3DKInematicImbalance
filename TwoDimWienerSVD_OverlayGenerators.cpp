@@ -855,7 +855,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 				if (Runs[WhichRun] == "Combined") { tor860_wcut = Fulltor860_wcut_Combined; }
 
 				TString Label = ToString(tor860_wcut).ReplaceAll("e"," #times10").ReplaceAll("+","^{")+"} POT";	
-				if (Runs[WhichRun] == "Combined") { Label = "1.30 #times 10^{21} POT"; }
+				if (Runs[WhichRun] == "Combined") { Label = "1.31 #times 10^{21} POT"; }
 				
 				// ---------------------------------------------------------------------------------------------------------
 				// ---------------------------------------------------------------------------------------------------------
@@ -1012,7 +1012,7 @@ void TwoDimWienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = fal
 					
 					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"","");	
 					
-					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"1.30 #times 10^{21} POT","");
+					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"1.31 #times 10^{21} POT","");
 					
 					ilegmc->AddEntry(BeamOnStatShape[WhichPlot][NDimSlice],"","");	
 		

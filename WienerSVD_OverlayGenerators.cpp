@@ -236,7 +236,8 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 
 			if (NameOfSamples[WhichSample] == "Overlay9") { // CV with statistical uncertainties only for now
 
-				TString FileSampleName = PathToFiles+"/WienerSVD_ExtractedXSec_"+NameOfSamples[WhichSample]+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".root"; 
+				TString FileSampleName = PathToFiles+"/WienerSVD_ExtractedXSec_"+NameOfSamples[WhichSample]+"_"+Runs[WhichRun]+"_"+UBCodeVersion+".root";
+cout << FileSampleName << endl; 
 				FileSample.push_back(TFile::Open(FileSampleName,"readonly")); 
 
 				for (int WhichPlot = 0; WhichPlot < N1DPlots; WhichPlot ++) {
@@ -718,7 +719,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 			if (Runs[WhichRun] == "Combined") { tor860_wcut = Fulltor860_wcut_Combined; }
 
 			TString Label = ToString(tor860_wcut).ReplaceAll("e"," #times 10").ReplaceAll("+","^{")+"} POT";	
-			if (Runs[WhichRun] == "Combined") { Label = "1.30 #times 10^{21} POT"; }
+			if (Runs[WhichRun] == "Combined") { Label = "1.31 #times 10^{21} POT"; }
 	
 			// ---------------------------------------------------------------------------------------------------------
 
@@ -879,7 +880,7 @@ void WienerSVD_OverlayGenerators(bool PlotGENIE = true, bool PlotGen = false, bo
 				
 				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
 				
-				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"1.30 #times 10^{21} POT","");
+				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"1.31 #times 10^{21} POT","");
 				
 				ilegmc->AddEntry(PlotsReco[0][WhichPlot],"","");	
 

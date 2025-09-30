@@ -87,6 +87,14 @@ void FlatTreeAnalyzer::Loop() {
 	TH1D* TrueFineBinPMissPlot[NInte];
 	TH1D* TrueFineBinDeltaPnPlot[NInte];
 
+	TH1D* TrueFineBinLowEThetaVisPlot[NInte];
+	TH1D* TrueFineBinMidEThetaVisPlot[NInte];	
+	TH1D* TrueFineBinHighEThetaVisPlot[NInte];	
+	
+	TH1D* TrueFineBinLowErecoThetaVisPlot[NInte];
+	TH1D* TrueFineBinMidErecoThetaVisPlot[NInte];	
+	TH1D* TrueFineBinHighErecoThetaVisPlot[NInte];	
+
 	// 1D Nominal Binning
 
 	TH1D* TrueMuonCosThetaSingleBinPlot[NInte];	
@@ -166,6 +174,14 @@ void FlatTreeAnalyzer::Loop() {
 	  TrueFineBinMuonCosThetaPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinMuonCosThetaPlot",";cos#theta_{#mu}",20,-1.,1.);
 	  TrueFineBinProtonCosThetaPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinProtonCosThetaPlot",";cos#theta_{p}",20,-1.,1.);
 	  TrueFineBinThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
+	  TrueFineBinLowEThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinLowEThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
+	  TrueFineBinMidEThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinMidEThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
+	  TrueFineBinHighEThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinHighEThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);	
+	  
+	  TrueFineBinLowErecoThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinLowErecoThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
+	  TrueFineBinMidErecoThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinMidErecoThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);
+	  TrueFineBinHighErecoThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinHighErecoThetaVisPlot",";#theta_{vis} [deg]",25,ArrayNBinsThetaVis[0],ArrayNBinsThetaVis[NBinsThetaVis]);	
+
 	  TrueFineBinCosThetaVisPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinCosThetaVisPlot",";cos#theta_{vis}",25,ArrayNBinsCosThetaVis[0],ArrayNBinsCosThetaVis[NBinsCosThetaVis]);
 	  TrueFineBinEvPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinEvPlot",";E_{#nu} [GeV]",NBinsEv,ArrayNBinEv);
 	  TrueFineBinECalPlot[inte] = new TH1D(InteractionLabels[inte]+"TrueFineBinECalPlot",";E_{reco} [GeV]",NBinsEv,ArrayNBinEv);
@@ -632,6 +648,14 @@ void FlatTreeAnalyzer::Loop() {
 	    TrueFineBinPMissPlot[0]->Fill(pmiss,weight);
 	    TrueFineBinDeltaPnPlot[0]->Fill(DeltaPn,weight);
 
+		if (Enu_true < 0.5 ) { TrueFineBinLowEThetaVisPlot[0]->Fill(ThetaVis,weight); }
+		if (Enu_true > 0.5 && Enu_true < 0.8 ) { TrueFineBinMidEThetaVisPlot[0]->Fill(ThetaVis,weight); }
+		if (Enu_true > 0.8 ) { TrueFineBinHighEThetaVisPlot[0]->Fill(ThetaVis,weight); }	
+		
+		if (ECal < 0.5 ) { TrueFineBinLowErecoThetaVisPlot[0]->Fill(ThetaVis,weight); }
+		if (ECal > 0.5 && Enu_true < 0.8 ) { TrueFineBinMidErecoThetaVisPlot[0]->Fill(ThetaVis,weight); }
+		if (ECal > 0.8 ) { TrueFineBinHighErecoThetaVisPlot[0]->Fill(ThetaVis,weight); }			
+
 	    // filling in the histo based on the interaction mode
 
 	    // 1D Fine Binning
@@ -648,6 +672,14 @@ void FlatTreeAnalyzer::Loop() {
 	    ThetaVisvsNeutronTheta[genie_mode]->Fill(ThetaVis,init_neutron_theta_vis,weight);
 	    TrueFineBinPMissPlot[genie_mode]->Fill(pmiss,weight);
 	    TrueFineBinDeltaPnPlot[genie_mode]->Fill(DeltaPn,weight);
+
+		if (Enu_true < 0.5 ) { TrueFineBinLowEThetaVisPlot[genie_mode]->Fill(ThetaVis,weight); }
+		if (Enu_true > 0.5 && Enu_true < 0.8 ) { TrueFineBinMidEThetaVisPlot[genie_mode]->Fill(ThetaVis,weight); }
+		if (Enu_true > 0.8 ) { TrueFineBinHighEThetaVisPlot[genie_mode]->Fill(ThetaVis,weight); }		
+		
+		if (ECal < 0.5 ) { TrueFineBinLowErecoThetaVisPlot[genie_mode]->Fill(ThetaVis,weight); }
+		if (ECal > 0.5 && Enu_true < 0.8 ) { TrueFineBinMidErecoThetaVisPlot[genie_mode]->Fill(ThetaVis,weight); }
+		if (ECal > 0.8 ) { TrueFineBinHighErecoThetaVisPlot[genie_mode]->Fill(ThetaVis,weight); }		
 
 	    //----------------------------------------//
 
